@@ -229,7 +229,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/25/test-blog/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/25/Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhou">
@@ -248,7 +248,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/25/test-blog/" itemprop="url">test_blog</a></h1>
+                <a class="post-title-link" href="/2019/07/25/Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs/" itemprop="url">Untitled</a></h1>
         
 
         <div class="post-meta">
@@ -260,7 +260,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-25T12:07:54+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-25T15:28:05+08:00">
                 2019-07-25
               </time>
             
@@ -300,7 +300,38 @@
       
         
           
-            
+            <hr>
+<p>title: ‘Bubble Cup 11 - Finals [Online Mirror, Div. 2], problem (H) Palindrome Pairs’<br>date: 2019-07-25 15:28:05</p>
+<h2 id="tags"><a href="#tags" class="headerlink" title="tags:"></a>tags:</h2><p><a href="http://codeforces.com/contest/1046/problem/H" target="_blank" rel="noopener">题目链接</a></p>
+<p>此题是字符处理，两两枚举判断时间复杂度为O(n2)，不能满足要求，可以利用小写字母只有26个可以优化时间复杂度。如果字符串字母都为偶数或者只有一个字母为奇数，则两两符合条件。统计每个字符串奇数字母并记录再根据上述条件求解即可，时间复杂度为O(n)。</p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+#define FOR(I,A,B) for(int I = (A); I &lt; (B); I++)
+#define FORE(I,A,B) for(int I = (A); I &lt;= (B); I++)
+#define PRII pair&lt;int,int&gt; 
+#define LL long long 
+#define INF 1000000001
+#define N 200005
+using namespace std;
+int n;
+map&lt;int,int&gt;m; 
+LL ans;
+int main()
+{
+    cin &gt;&gt; n;
+    FORE(i,1,n){
+    string s;
+    int w = 0;
+    cin &gt;&gt; s;
+    FOR(j,0,s.length())    w^=1&lt;&lt;(s[j]-&apos;a&apos;);
+    ans+=m[w];
+    FOR(j,0,26){
+        if(m.find(w^(1&lt;&lt;j)) != m.end()) ans+=m[w^(1&lt;&lt;j)];
+    }
+    m[w]++;
+}
+cout &lt;&lt; ans &lt;&lt; endl;
+ return 0;
+}</code></pre>
           
         
       
