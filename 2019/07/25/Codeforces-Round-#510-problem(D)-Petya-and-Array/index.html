@@ -90,11 +90,10 @@
 <p>本题如果采用两层for循环遍历每个l和r，时间复杂度为O(n2)，将会超时。所以可以采用分治的算法，将数组二分递归，完成一个分支之后将此次l和r之间的数进行排序，目的是能以O(n)的时间复杂度统计出此分支符合要求的个数。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FOR(I,A,B) for(int I = (A); I &lt; (B); I++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FORE(I,A,B) for(int I = (A); I &lt;= (B); I++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PRII pair<span class="meta-string">&lt;int,int&gt; </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 1000000001</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line">LL a[<span class="number">200005</span>],t;</span><br><span class="line">LL ans;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dg</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l==r) <span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">int</span> mid=(l+r)/<span class="number">2</span>;</span><br><span class="line">	dg(l,mid);</span><br><span class="line">	dg(mid+<span class="number">1</span>,r);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=l,j=mid;i&lt;=mid;i++)&#123;</span><br><span class="line">		<span class="keyword">while</span>(j&lt;r &amp;&amp; (a[j+<span class="number">1</span>]-a[i])&lt;t) j++;</span><br><span class="line">		ans+=j-mid;</span><br><span class="line">	&#125;</span><br><span class="line">	sort(a+l,a+r+<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;t;</span><br><span class="line">	FORE(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">		a[i]+=a[i<span class="number">-1</span>];	</span><br><span class="line">	&#125; </span><br><span class="line">	dg(<span class="number">0</span>,n);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/" data-id="cjyjmhfwg0001sgv3jiif7iix" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/" data-id="cjyjyyak30002l4v3zs5dwv2t" class="article-share-link">Share</a>
       
       
     </footer>
@@ -102,6 +101,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2019/07/26/NGcourse/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          吴恩达机器学习公开课
+        
+      </div>
+    </a>
   
   
     <a href="/2019/07/23/Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs/" id="article-nav-older" class="article-nav-link-wrap">
@@ -141,6 +149,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/07/26/NGcourse/">吴恩达机器学习公开课</a>
+          </li>
         
           <li>
             <a href="/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/">Codeforces-Round-#510-problem(D)-Petya-and-Array</a>
@@ -189,5 +201,21 @@
 
 
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
 </body>
 </html>
