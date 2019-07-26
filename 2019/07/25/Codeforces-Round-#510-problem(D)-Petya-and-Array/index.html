@@ -5,15 +5,19 @@
   
 
   
-  <title>Zhou</title>
+  <title>Codeforces-Round-#510-problem(D)-Petya-and-Array | Zhou</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Zhou">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="题目链接 本题如果采用两层for循环遍历每个l和r，时间复杂度为O(n2)，将会超时。所以可以采用分治的算法，将数组二分递归，完成一个分支之后将此次l和r之间的数进行排序，目的是能以O(n)的时间复杂度统计出此分支符合要求的个数。 123456789101112131415161718192021222324252627282930313233#include &amp;lt;bits/stdc++.h&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Codeforces-Round-#510-problem(D)-Petya-and-Array">
+<meta property="og:url" content="http://yoursite.com/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/index.html">
 <meta property="og:site_name" content="Zhou">
+<meta property="og:description" content="题目链接 本题如果采用两层for循环遍历每个l和r，时间复杂度为O(n2)，将会超时。所以可以采用分治的算法，将数组二分递归，完成一个分支之后将此次l和r之间的数进行排序，目的是能以O(n)的时间复杂度统计出此分支符合要求的个数。 123456789101112131415161718192021222324252627282930313233#include &amp;lt;bits/stdc++.h&amp;">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-26T02:18:04.561Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zhou">
+<meta name="twitter:title" content="Codeforces-Round-#510-problem(D)-Petya-and-Array">
+<meta name="twitter:description" content="题目链接 本题如果采用两层for循环遍历每个l和r，时间复杂度为O(n2)，将会超时。所以可以采用分治的算法，将数组二分递归，完成一个分支之后将此次l和r之间的数进行排序，目的是能以O(n)的时间复杂度统计出此分支符合要求的个数。 123456789101112131415161718192021222324252627282930313233#include &amp;lt;bits/stdc++.h&amp;">
   
     <link rel="alternate" href="/atom.xml" title="Zhou" type="application/atom+xml">
   
@@ -60,49 +64,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/07/25/Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs/" class="article-date">
-  <time datetime="2019-07-25T08:49:09.000Z" itemprop="datePublished">2019-07-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/25/Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs/">Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="http://codeforces.com/contest/1046/problem/H" target="_blank" rel="noopener">题目链接</a></p>
-<p>此题是字符处理，两两枚举判断时间复杂度为O(n2)，不能满足要求，可以利用小写字母只有26个可以优化时间复杂度。如果字符串字母都为偶数或者只有一个字母为奇数，则两两符合条件。统计每个字符串奇数字母并记录再根据上述条件求解即可，时间复杂度为O(n)。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FOR(I,A,B) for(int I = (A); I &lt; (B); I++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FORE(I,A,B) for(int I = (A); I &lt;= (B); I++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PRII pair<span class="meta-string">&lt;int,int&gt; </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 1000000001</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 200005</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="built_in">map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;m; </span><br><span class="line">LL ans;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    FORE(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">    <span class="built_in">string</span> s;</span><br><span class="line">    <span class="keyword">int</span> w = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; s;</span><br><span class="line">    FOR(j,<span class="number">0</span>,s.length()) w^=<span class="number">1</span>&lt;&lt;(s[j]-<span class="string">'a'</span>);</span><br><span class="line">    ans+=m[w];</span><br><span class="line">    FOR(j,<span class="number">0</span>,<span class="number">26</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(m.find(w^(<span class="number">1</span>&lt;&lt;j)) != m.end()) ans+=m[w^(<span class="number">1</span>&lt;&lt;j)];</span><br><span class="line">    &#125;</span><br><span class="line">    m[w]++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/25/Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs/" data-id="cjyjg6a4400005ov3tu0bvbyi" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Codeforces-Round-#510-problem(D)-Petya-and-Array" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Codeforces-Round-#510-problem(D)-Petya-and-Array" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/" class="article-date">
   <time datetime="2019-07-25T08:49:09.000Z" itemprop="datePublished">2019-07-25</time>
@@ -115,8 +77,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/">Codeforces-Round-#510-problem(D)-Petya-and-Array</a>
+    <h1 class="article-title" itemprop="name">
+      Codeforces-Round-#510-problem(D)-Petya-and-Array
     </h1>
   
 
@@ -138,11 +100,23 @@
     </footer>
   </div>
   
-</article>
-
+    
+<nav id="article-nav">
+  
+    <a href="/2019/07/25/Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs
+        
+      </div>
+    </a>
+  
+  
+</nav>
 
   
-
+</article>
 
 </section>
         
