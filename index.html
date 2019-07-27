@@ -123,11 +123,31 @@
 \end{array} }</script><p>其中，p^i为x^i在向量θ上的投影。</p>
 <p>要使得θ越小，所以p就得越大，由于θ参数是分类超平面的法向量，也就是说每个样本的特征向量在分类超平面的法向量的投影需要越大越好，也就是说每个样本的特征向量和分类超平面的法向量夹角越小越好。如图所示：</p>
 <p><img src="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/111.jpg" alt="SVM"></p>
+<p>为了解决分类中的非线性问题，支持向量机引入了核函数的方法。</p>
+<p>由于SVM分类器（未引入核函数之前）的模型是线性的，不能很好的对如下图所示的情况进行分类。所以需要引入核函数来处理非线性的问题。<br>核函数的解决方案是用新的特征f来代替输入向量的特征x，从而构造新的假设函数：</p>
+<script type="math/tex; mode=display">
+{ {\mathop{ {h} } \nolimits_{ { \theta } } { \left( {x}  \right) } } =\mathop{ { \theta } } \nolimits_{ {1} } \mathop{ {f} } \nolimits_{ {1} } +\mathop{ { \theta } } \nolimits_{ {2} } \mathop{ {f} } \nolimits_{ {2} } +...+\mathop{ { \theta } } \nolimits_{ {n} } \mathop{ {f} } \nolimits_{ {n} } }</script><p>新的特征f如何构造呢？首先我们选取标定向量l，l的选取方法为训练集中每个x的位置。即：</p>
+<script type="math/tex; mode=display">
+{l\mathop{ {}  }  \nolimits^{ { { \left( {1}   \right) }  }  }  =x\mathop{ {}  }  \nolimits^{ { { \left( {1}   \right) }  }  }  ,{l\mathop{ {}  }  \nolimits^{ { { \left( {2}   \right) }  }  }  =x\mathop{ {}  }  \nolimits^{ { { \left( {2}   \right) }  }  }  ...{l\mathop{ {}  }  \nolimits^{ { { \left( {n}   \right) }  }  }  =x\mathop{ {}  }  \nolimits^{ { { \left( {n}   \right) }  }  }  }  }  }</script><p>给定一个训练实例x^i，分别对每个l求近似程度来构成新的特征f。求近似程度（f与x/l之间的映射关系）的方法就是我们说的核函数。下面以常用的高斯核函数为例说明其过程：</p>
+<script type="math/tex; mode=display">
+{\begin{array} {*{20} {l} } 
+{f\mathop{ {} } \nolimits_{ {1} } =exp{ \left( {-\frac{ { { \left\Vert {x-l\mathop{ {} } \nolimits^{ { \left( 1 \right) } } }  \right\Vert } \mathop{ {} } \nolimits^{ {2} } } } { {2 \sigma \mathop{ {} } \nolimits^{ {2} } } } }  \right) } } \\
+{...} \\
+{ {f\mathop{ {} } \nolimits_{ {n} } =exp{ \left( {-\frac{ { { \left\Vert {x-l\mathop{ {} } \nolimits^{ { \left( n \right) } } }  \right\Vert } \mathop{ {} } \nolimits^{ {2} } } } { {2 \sigma \mathop{ {} } \nolimits^{ {2} } } } }  \right) } } } 
+\end{array} }</script><p>经过以上过程的处理，成功的在假设函数中用f替代了x，接下来的处理过程同上面介绍的线性的SVM。</p>
+<h1 id="K-means聚类"><a href="#K-means聚类" class="headerlink" title="K-means聚类"></a>K-means聚类</h1><p>K-means是一种聚类算法，属于无监督学习。</p>
+<p>可以设置K个聚类中心，也就是将你的训练样本分为K类。算法原理是首先，随机设置K个点，然后将每个训练样本归类到最近的聚类中心，然后将每个聚类中心移动到所以这一类的样本的平均值的位置。重复执行这个过程，直到距离中心不在变化。</p>
+<p>需要充分理解K-means算法的损失函数，即：</p>
+<script type="math/tex; mode=display">
+{J{ \left( {c\mathop{ {} } \nolimits^{ { \left( 1 \right) } } ,...c\mathop{ {} } \nolimits^{ { \left( m \right) } } , \mu \mathop{ {} } \nolimits_{ {1} } ,...,\mathop{ { \mu } } \nolimits_{ {K} } }  \right) } =\frac{ {1} } { {m} } {\mathop{ \sum } \limits_{ {i=1} } ^{ {m} } { { \left\Vert {X\mathop{ {} } \nolimits^{ { \left( i \right) } } - \mu \mathop{ {} } \nolimits_{ {c\mathop{ {} } \nolimits^{ { \left( i \right) } } } } }  \right\Vert } \mathop{ {} } \nolimits^{ {2} } } } }</script><p>其中，c^i是指x^i所属于是聚类中心，μ是指各个聚类中心的位置。</p>
+<h1 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h1><p>PCA （Principal Component Analysis，主成分分析）是一种降维算法。比如需要将三维的数据集降为二维，就是寻找一个离数据点最近的平面，将数据点映射到此平面内。下图为二维数据集降为一维：</p>
+<p><img src="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/OD2DI9%7BR%7DZA52_ZI%254U7GCH.png" alt="PCA"></p>
+<p>PCA算法的数学原理没有详细展开讲，日后有时间补充。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/26/NGcourse/" data-id="cjyk7sauh0001fov3m04184dr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/26/NGcourse/" data-id="cjyk7t7vj0001d4v3xduppfm5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -166,7 +186,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/" data-id="cjyk7sauk0002fov3bt9d42tv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/" data-id="cjyk7t7vo0002d4v3zaenlarf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -204,7 +224,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/23/Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs/" data-id="cjyk7sau70000fov3gx831oy0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/23/Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs/" data-id="cjyk7t7v70000d4v3plgr12iv" class="article-share-link">Share</a>
       
       
     </footer>
