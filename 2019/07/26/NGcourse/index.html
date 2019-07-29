@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/OD2DI9%7BR%7DZA52_ZI%254U7GCH.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/ET%5DV%40BHLXX7_1D.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/HUWLJRWK8D151T.png">
-<meta property="og:updated_time" content="2019-07-27T14:07:35.240Z">
+<meta property="og:updated_time" content="2019-07-29T06:24:52.425Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="吴恩达机器学习公开课">
 <meta name="twitter:description" content="Firstly, thanks professor Ng! 本文主要总结吴恩达老师机器学习公开课的知识点。课程共8次编程作业已经上传到我的GitHub上了。链接为：https://github.com/Andyflying/ML-assignment-professorNg 回归和分类回归问题是指用已知数据拟合一个合适的假设函数h(x)，或者可以理解为曲线，来预测新输入的变量的输出结果，如给定房间">
@@ -161,17 +161,21 @@
 \end{array} }</script><p>当p(x)&lt;ε时认为是异常。</p>
 <p>但是上述算法存在问题，如图所示：<br><img src="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/ET%5DV%40BHLXX7_1D.jpg" alt="多元高斯分布问题"></p>
 <p>可以通过构建<a href="https://baike.baidu.com/item/%E5%8D%8F%E6%96%B9%E5%B7%AE%E7%9F%A9%E9%98%B5/9822183?fr=aladdin" target="_blank" rel="noopener">协方差矩阵</a>来解决。当然通过自己根据特征的相关性添加新的组合特征向量也可以解决此问题。</p>
-<h1 id="推荐系统"><a href="#推荐系统" class="headerlink" title="推荐系统"></a>推荐系统</h1><p>推荐算法很赚钱。</p>
-<p>推荐系统是根据用户对已有部分产品的评价来自动的为用户推荐同类产品，从而产生广告效益。</p>
+<h1 id="推荐系统"><a href="#推荐系统" class="headerlink" title="推荐系统"></a>推荐系统</h1><p>推荐系统是根据用户对已有部分产品的评价来自动的为用户推荐同类产品，从而产生广告效益。（ps：很赚钱）</p>
 <p>课程中讲的问题实例是推荐电影。利用已有的各个用户的评分数据去学习下图中？的数据。其中x1，x2可以看做是每个电影的类别信息，x项的多少可以根据情况设定。</p>
 <p><img src="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/HUWLJRWK8D151T.png" alt="电影推荐问题"></p>
-<p>采用的方法是协同过滤算法。</p>
+<p>采用的方法是协同过滤算法：</p>
 <script type="math/tex; mode=display">
-{J{ \left( {x\mathop{ {} } \nolimits^{ { \left( 1 \right) } } ,...,x\mathop{ {} } \nolimits^{ { \left( \mathop{ {n} } \nolimits_{ {m} }  \right) } } , \theta \mathop{ {} } \nolimits^{ { \left( 1 \right) } } ,..., \theta \mathop{ {} } \nolimits^{ { \left( \mathop{ {n} } \nolimits_{ {u} }  \right) } } }  \right) } =\frac{ {1} } { {2} } {\mathop{ \sum } \limits_{ { \left( i,j \left) :r \left( i,j \left) =1\right. \right. \right. \right. } } { { \left( { { \left( {\mathop{ { \theta } } \nolimits^{ { \left( j \right) } } }  \right) } \mathop{ {} } \nolimits^{ {T} } x\mathop{ {} } \nolimits^{ { \left( i \right) } } -\mathop{ {y} } \nolimits^{ { \left( i,j \right) } } }  \right) } \mathop{ {} } \nolimits^{ {2} } +\frac{ { \lambda } } { {2} } } } {\mathop{ \sum } \limits_{ {i=1} } ^{ {\mathop{ {n} } \nolimits_{ {m} } } } { {\mathop{ \sum } \limits_{ {k=1} } ^{ {n} } { { \left( {x\mathop{ {} } \nolimits_{ { \left( i \right) } } ^{ {k} } }  \right) } \mathop{ {} } \nolimits^{ {2} } } } +\frac{ { \lambda } } { {2} } {\mathop{ \sum } \limits_{ {j=1} } ^{ {\mathop{ {n} } \nolimits_{ {u} } } } { {\mathop{ \sum } \limits_{ {k=1} } ^{ {n} } { { \left( { \theta \mathop{ {} } \nolimits_{ { \left( j \right) } } ^{ {k} } }  \right) } \mathop{ {} } \nolimits^{ {2} } } } } } } } }</script>
+{J{ \left( {x\mathop{ {} } \nolimits^{ { \left( 1 \right) } } ,...,x\mathop{ {} } \nolimits^{ { \left( \mathop{ {n} } \nolimits_{ {m} }  \right) } } , \theta \mathop{ {} } \nolimits^{ { \left( 1 \right) } } ,..., \theta \mathop{ {} } \nolimits^{ { \left( \mathop{ {n} } \nolimits_{ {u} }  \right) } } }  \right) } =\frac{ {1} } { {2} } {\mathop{ \sum } \limits_{ { \left( i,j \left) :r \left( i,j \left) =1\right. \right. \right. \right. } } { { \left( { { \left( {\mathop{ { \theta } } \nolimits^{ { \left( j \right) } } }  \right) } \mathop{ {} } \nolimits^{ {T} } x\mathop{ {} } \nolimits^{ { \left( i \right) } } -\mathop{ {y} } \nolimits^{ { \left( i,j \right) } } }  \right) } \mathop{ {} } \nolimits^{ {2} } } } +\frac{ { \lambda } } { {2} } {\mathop{ \sum } \limits_{ {i=1} } ^{ {\mathop{ {n} } \nolimits_{ {m} } } } { {\mathop{ \sum } \limits_{ {k=1} } ^{ {n} } { { \left( {x\mathop{ {} } \nolimits_{ { \left( i \right) } } ^{ {k} } }  \right) } \mathop{ {} } \nolimits^{ {2} } } } } } +\frac{ { \lambda } } { {2} } {\mathop{ \sum } \limits_{ {j=1} } ^{ {\mathop{ {n} } \nolimits_{ {u} } } } { {\mathop{ \sum } \limits_{ {k=1} } ^{ {n} } { { \left( { \theta \mathop{ {} } \nolimits_{ { \left( j \right) } } ^{ {k} } }  \right) } \mathop{ {} } \nolimits^{ {2} } } } } } }</script><p>算法执行的过程是先对给定的x来优化θ：</p>
+<script type="math/tex; mode=display">
+{\mathop{ {min} } \limits_{ { \theta \mathop{ {} } \nolimits^{ { \left( 1 \right) } } ,..., \theta \mathop{ {} } \nolimits^{ { \left( nu \right) } } } } \text{ } \text{ } \frac{ {1} } { {2} } {\mathop{ \sum } \limits_{ {j=1} } ^{ {\mathop{ {n} } \nolimits_{ {u} } } } {\mathop{ \sum } \limits_{ {i:r \left( i,j \left) =1\right. \right. } } { { \left( { { \left( \mathop{ \theta } \nolimits^{ { \left( j \right) } }  \right) } \mathop{ {} } \nolimits^{ {T} } x\mathop{ {} } \nolimits^{ { \left( i \right) } } -\mathop{ {y} } \nolimits^{ { \left( i,j \right) } } }  \right) } \mathop{ {} } \nolimits^{ {2} } } } } +\frac{ \lambda } { {2} } {\mathop{ \sum } \limits_{ {j=1} } ^{ {\mathop{ {n} } \nolimits_{ {u} } } } {\mathop{ \sum } \limits_{ {k=1} } ^{ {n} } { { \left( { \theta \mathop{ {} } \nolimits_{ { \left( j \right) } } ^{ {k} } }  \right) } \mathop{ {} } \nolimits^{ {2} } } } } }</script><p>让用给定的θ来优化x：</p>
+<script type="math/tex; mode=display">
+{\mathop{ {min} } \limits_{ {x\mathop{ {} } \nolimits^{ { \left( 1 \right) } } ,...,x\mathop{ {} } \nolimits^{ { \left( \mathop{ {n} } \nolimits_{ {m} }  \right) } } } } \text{ } \text{ } \frac{ {1} } { {2} } {\mathop{ \sum } \limits_{ {i=1} } ^{ {\mathop{ {n} } \nolimits_{ {m} } } } { {\mathop{ \sum } \limits_{ {j:r \left( i,j \left) =1\right. \right. } } { { \left( { { \left( {\mathop{ { \theta } } \nolimits^{ { \left( j \right) } } }  \right) } \mathop{ {} } \nolimits^{ {T} } x\mathop{ {} } \nolimits^{ { \left( i \right) } } -\mathop{ {y} } \nolimits^{ { \left( i,j \right) } } }  \right) } \mathop{ {} } \nolimits^{ {2} } } } } } +\frac{ { \lambda } } { {2} } {\mathop{ \sum } \limits_{ {i=1} } ^{ {\mathop{ {n} } \nolimits_{ {m} } } } { {\mathop{ \sum } \limits_{ {k=1} } ^{ {n} } { { \left( {x\mathop{ {} } \nolimits_{ { \left( i \right) } } ^{ {k} } }  \right) } \mathop{ {} } \nolimits^{ {2} } } } } } }</script><p>迭代执行上述两个优化过程，从而实现对总的损失函数J(x,θ)进行优化。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/26/NGcourse/" data-id="cjyo0aw9a0002vgv3p7zmi3st" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/26/NGcourse/" data-id="cjyo0d11y0002k0v38qlvbx7q" class="article-share-link">Share</a>
       
       
     </footer>
