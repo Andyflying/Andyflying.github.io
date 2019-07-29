@@ -7,21 +7,21 @@
   
   <title>吴恩达机器学习公开课 | Zhou</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Firstly, thanks professor Ng! 本文主要总结吴恩达老师机器学习公开课的知识点。课程共8次编程作业已经上传到我的GitHub上了。链接为：https://github.com/Andyflying/ML-assignment-professorNg 回归和分类回归问题是指用已知数据拟合一个合适的假设函数h(x)，或者可以理解为曲线，来预测新输入的变量的输出结果，如给定房间">
+  <meta name="description" content="本文主要总结吴恩达老师机器学习公开课的知识点。课程共8次编程作业已经上传到我的GitHub上了。链接为：https://github.com/Andyflying/ML-assignment-professorNg 回归和分类回归问题是指用已知数据拟合一个合适的假设函数h(x)，或者可以理解为曲线，来预测新输入的变量的输出结果，如给定房间的大学位置等信息，预测房价。而分类问题，顾名思义，是指用已知">
 <meta property="og:type" content="article">
 <meta property="og:title" content="吴恩达机器学习公开课">
 <meta property="og:url" content="http://yoursite.com/2019/07/26/NGcourse/index.html">
 <meta property="og:site_name" content="Zhou">
-<meta property="og:description" content="Firstly, thanks professor Ng! 本文主要总结吴恩达老师机器学习公开课的知识点。课程共8次编程作业已经上传到我的GitHub上了。链接为：https://github.com/Andyflying/ML-assignment-professorNg 回归和分类回归问题是指用已知数据拟合一个合适的假设函数h(x)，或者可以理解为曲线，来预测新输入的变量的输出结果，如给定房间">
+<meta property="og:description" content="本文主要总结吴恩达老师机器学习公开课的知识点。课程共8次编程作业已经上传到我的GitHub上了。链接为：https://github.com/Andyflying/ML-assignment-professorNg 回归和分类回归问题是指用已知数据拟合一个合适的假设函数h(x)，或者可以理解为曲线，来预测新输入的变量的输出结果，如给定房间的大学位置等信息，预测房价。而分类问题，顾名思义，是指用已知">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/111.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/OD2DI9%7BR%7DZA52_ZI%254U7GCH.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/ET%5DV%40BHLXX7_1D.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/HUWLJRWK8D151T.png">
-<meta property="og:updated_time" content="2019-07-29T06:45:53.994Z">
+<meta property="og:updated_time" content="2019-07-29T06:57:10.689Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="吴恩达机器学习公开课">
-<meta name="twitter:description" content="Firstly, thanks professor Ng! 本文主要总结吴恩达老师机器学习公开课的知识点。课程共8次编程作业已经上传到我的GitHub上了。链接为：https://github.com/Andyflying/ML-assignment-professorNg 回归和分类回归问题是指用已知数据拟合一个合适的假设函数h(x)，或者可以理解为曲线，来预测新输入的变量的输出结果，如给定房间">
+<meta name="twitter:description" content="本文主要总结吴恩达老师机器学习公开课的知识点。课程共8次编程作业已经上传到我的GitHub上了。链接为：https://github.com/Andyflying/ML-assignment-professorNg 回归和分类回归问题是指用已知数据拟合一个合适的假设函数h(x)，或者可以理解为曲线，来预测新输入的变量的输出结果，如给定房间的大学位置等信息，预测房价。而分类问题，顾名思义，是指用已知">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/111.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Zhou" type="application/atom+xml">
@@ -91,8 +91,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>Firstly, thanks professor Ng!</strong></p>
-<p>本文主要总结吴恩达老师机器学习公开课的知识点。课程共8次编程作业已经上传到我的GitHub上了。链接为：<a href="https://github.com/Andyflying/ML-assignment-professorNg" target="_blank" rel="noopener">https://github.com/Andyflying/ML-assignment-professorNg</a></p>
+        <p>本文主要总结吴恩达老师机器学习公开课的知识点。课程共8次编程作业已经上传到我的GitHub上了。链接为：<a href="https://github.com/Andyflying/ML-assignment-professorNg" target="_blank" rel="noopener">https://github.com/Andyflying/ML-assignment-professorNg</a></p>
 <h1 id="回归和分类"><a href="#回归和分类" class="headerlink" title="回归和分类"></a>回归和分类</h1><p>回归问题是指用已知数据拟合一个合适的假设函数h(x)，或者可以理解为曲线，来预测新输入的变量的输出结果，如给定房间的大学位置等信息，预测房价。<br>而分类问题，顾名思义，是指用已知数据拟合一个合适的假设函数h(x)，对未知数据进行分类。在分类问题中，用到的假设函数为logistic函数：</p>
 <script type="math/tex; mode=display">
 {h\mathop{ { } }\nolimits_{ { \theta } } \left( x \left) =g \left(  \theta \mathop{ { } }\nolimits^{ {T} }X \left) =\frac{ {1} } { {1+e{  }_{ }^{- \theta \mathop{ { } }\nolimits^{ {T} }X} { }_{ }^{ } } }\right. \right. \right. \right. }</script><p>回归问题和分类问题的代价函数也有所不同。回归问题的代价函数为：</p>
@@ -175,7 +174,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/26/NGcourse/" data-id="cjyo13rt4000294v3lggeexo8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/26/NGcourse/" data-id="cjyo1i9f000024kv38sebhcrp" class="article-share-link">Share</a>
       
       
     </footer>
