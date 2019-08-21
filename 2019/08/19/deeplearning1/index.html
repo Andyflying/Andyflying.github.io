@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>吴恩达深度学习--神经网络与深度学习 | Zhou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="计算图吴恩达老师用计算图形象的说明的链式求导的问题。链式求导是反向传播算法（BP算法）的核心依据。 举个例子，如果，f是关于z的函数，z又是关于x的函数，则链式求导就是：  {\frac{ { \partial f} } { { \partial x} } =\frac{ { \partial f} } { { \partial z} } \frac{ { \partial z} } { { \p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="吴恩达深度学习--神经网络与深度学习">
+<meta property="og:url" content="http://yoursite.com/2019/08/19/deeplearning1/index.html">
+<meta property="og:site_name" content="Zhou">
+<meta property="og:description" content="计算图吴恩达老师用计算图形象的说明的链式求导的问题。链式求导是反向传播算法（BP算法）的核心依据。 举个例子，如果，f是关于z的函数，z又是关于x的函数，则链式求导就是：  {\frac{ { \partial f} } { { \partial x} } =\frac{ { \partial f} } { { \partial z} } \frac{ { \partial z} } { { \p">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/shbdfsgfsd5.jpg">
+<meta property="og:updated_time" content="2019-08-21T12:41:17.794Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="吴恩达深度学习--神经网络与深度学习">
+<meta name="twitter:description" content="计算图吴恩达老师用计算图形象的说明的链式求导的问题。链式求导是反向传播算法（BP算法）的核心依据。 举个例子，如果，f是关于z的函数，z又是关于x的函数，则链式求导就是：  {\frac{ { \partial f} } { { \partial x} } =\frac{ { \partial f} } { { \partial z} } \frac{ { \partial z} } { { \p">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/shbdfsgfsd5.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Zhou" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Zhou</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-deeplearning1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/19/deeplearning1/" class="article-date">
+  <time datetime="2019-08-19T12:33:48.000Z" itemprop="datePublished">2019-08-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      吴恩达深度学习--神经网络与深度学习
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="计算图"><a href="#计算图" class="headerlink" title="计算图"></a>计算图</h1><p>吴恩达老师用计算图形象的说明的链式求导的问题。链式求导是反向传播算法（BP算法）的核心依据。</p>
+<p>举个例子，如果，f是关于z的函数，z又是关于x的函数，则链式求导就是：</p>
+<script type="math/tex; mode=display">
+{\frac{ { \partial f} } { { \partial x} } =\frac{ { \partial f} } { { \partial z} } \frac{ { \partial z} } { { \partial x} } }</script><h1 id="向量化"><a href="#向量化" class="headerlink" title="向量化"></a>向量化</h1><p>在深度学习中，数据的处理量往往是巨大的。为了加快运算，可以采用并行运算的方法节约运算时间，增加效率。向量化的方法就是将神经网络间的运算表示为矩阵运算的形式，从而进行并行计算；而不是使用for循环。在python中可以使用numpy库进行矩阵运算。</p>
+<h1 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h1><p>神经网络需要使用非线性激活函数，否则整个神经网络就可以用一层的线性结构来代替。</p>
+<p>常用的非线性激活函数有ReLU、sigmoid、tanh等。</p>
+<p>sigmoid函数并不是很常用，因为在原理零点的时候，sigmoid函数导数很小，训练网络时容易产生梯度消失。所以sigmoid函数大多数只作为二元分类的最后一层的激活函数。在大多数应用场景中，它的效果不如tanh函数。</p>
+<p>ReLU函数的优点是执行速度快。有一种改进的ReLU函数叫做leaky ReLU，它在负半轴有一个很小的正斜率。</p>
+<h1 id="反向传播"><a href="#反向传播" class="headerlink" title="反向传播"></a>反向传播</h1><p>反向传播算法运用于训练神经网络模型，更新学习参数以得到最小的loss值。反向传播的大概结构和原理如下图所示。</p>
+<p><img src="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/shbdfsgfsd5.jpg" alt="BP"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/19/deeplearning1/" data-id="cjzl8yd910000bgv3d7lrmdzc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/26/NGcourse/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">吴恩达机器学习公开课</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/08/19/deeplearning1/">吴恩达深度学习--神经网络与深度学习</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/26/NGcourse/">吴恩达机器学习公开课</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/">Codeforces-Round-#510-problem(D)-Petya-and-Array</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/23/Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs/">Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 zhou<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+</body>
+</html>
