@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>deeplearning2 | Zhou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="正则化参数惩罚项在吴恩达的机器学习课程中，降到了加入参数项的惩罚项的正则化方法，目的是为了防止过拟合。正则化的方法如下：  {J{ \left(  \theta  \right) }=-\frac{ {1} }{ {m} }{\mathop{ \sum }\limits_{ {i=1} }^{ {m} }{ \left[ {y\mathop{ {} }\nolimits^{ { \left( i">
+<meta name="keywords" content="吴恩达深度学习--改善深层神经网络：超参数调试、正则化以及优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="deeplearning2">
+<meta property="og:url" content="http://yoursite.com/2019/08/22/deeplearning2/index.html">
+<meta property="og:site_name" content="Zhou">
+<meta property="og:description" content="正则化参数惩罚项在吴恩达的机器学习课程中，降到了加入参数项的惩罚项的正则化方法，目的是为了防止过拟合。正则化的方法如下：  {J{ \left(  \theta  \right) }=-\frac{ {1} }{ {m} }{\mathop{ \sum }\limits_{ {i=1} }^{ {m} }{ \left[ {y\mathop{ {} }\nolimits^{ { \left( i">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-22T12:41:52.987Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="deeplearning2">
+<meta name="twitter:description" content="正则化参数惩罚项在吴恩达的机器学习课程中，降到了加入参数项的惩罚项的正则化方法，目的是为了防止过拟合。正则化的方法如下：  {J{ \left(  \theta  \right) }=-\frac{ {1} }{ {m} }{\mathop{ \sum }\limits_{ {i=1} }^{ {m} }{ \left[ {y\mathop{ {} }\nolimits^{ { \left( i">
+  
+    <link rel="alternate" href="/atom.xml" title="Zhou" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Zhou</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-deeplearning2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/22/deeplearning2/" class="article-date">
+  <time datetime="2019-08-22T06:09:58.000Z" itemprop="datePublished">2019-08-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      deeplearning2
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h1><h2 id="参数惩罚项"><a href="#参数惩罚项" class="headerlink" title="参数惩罚项"></a>参数惩罚项</h2><p>在吴恩达的机器学习课程中，降到了加入参数项的惩罚项的正则化方法，目的是为了防止过拟合。正则化的方法如下：</p>
+<script type="math/tex; mode=display">
+{J{ \left(  \theta  \right) }=-\frac{ {1} }{ {m} }{\mathop{ \sum }\limits_{ {i=1} }^{ {m} }{ \left[ {y\mathop{ {} }\nolimits^{ { \left( i \right) } }log{ \left( {\mathop{ {h} }\nolimits_{ \theta }{ \left( \mathop{ {x} }\nolimits^{ { \left( i \right) } } \right) } } \right) }+{ \left( {1-y\mathop{ {} }\nolimits^{ { \left( i \right) } } } \right) }log{ \left( {1-\mathop{ {h} }\nolimits_{ \theta } { \left( \mathop{ {x} }\nolimits^{ { \left( i \right) } } \right) } } \right) }+\frac{ { \lambda } }{ {2m} }{ {\mathop{ \sum }\limits_{ {j=1}}^{ {n} }{ \theta \mathop{ { } }\nolimits_{ {j} }^{ {2} } } } } } \right] } } }</script><h2 id="dropout"><a href="#dropout" class="headerlink" title="dropout"></a>dropout</h2><p>在这个课程中，介绍了dropout正则化。dropout正则化就是每次迭代训练网络时<strong>随机删除网络中的一些神经元节点</strong>。dropout正则化可以防止过拟合的原因可能是这种方法限制了单一输入节点的作用，因为节点可以随机的被取消。实际上也是起到了压缩权重的方法，和加入参数项的惩罚项的正则化方法有类似之处。</p>
+<p>使用dropout正则化的缺点是损失函数<strong>J</strong>不能被明确定义。</p>
+<h2 id="提前终止训练"><a href="#提前终止训练" class="headerlink" title="提前终止训练"></a>提前终止训练</h2><p>可以通过提前终止训练的方法，在交叉验证集表现最好的时候保存模型。在实际操作中，可以每隔一定次数的迭代就保存一个模型，最后选择在交叉验证集表现最好的模型进行使用。</p>
+<h2 id="正则化输入"><a href="#正则化输入" class="headerlink" title="正则化输入"></a>正则化输入</h2><p>使得输入数据遵循：</p>
+<script type="math/tex; mode=display">
+{ \mu =\frac{ {1} } { {m} } {\mathop{ \sum } \limits_{ {i=1} } ^{ {m} } {\mathop{ {x} } \nolimits^{ { { \left( {i}  \right) } } } } } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } x \leftarrow x- \mu }</script><script type="math/tex; mode=display">
+{ \sigma \mathop{ {} } \nolimits^{ {2} } =\frac{ {1} } { {m} } {\mathop{ \sum } \limits_{ {i=1} } ^{ {m} } { { \left( {x\mathop{ {} } \nolimits^{ { { \left( {i}  \right) } } } }  \right) } \mathop{ {} } \nolimits^{ {2} } } } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } x \leftarrow \frac{ {x} } { { \sigma \mathop{ {} } \nolimits^{ {2} } } } }</script><h1 id="梯度消失与梯度爆炸"><a href="#梯度消失与梯度爆炸" class="headerlink" title="梯度消失与梯度爆炸"></a>梯度消失与梯度爆炸</h1><p>在深层神经网络中，每一层都是以乘法形式运算。如果数值比1大，则随着网络的加深，数值会越来越大，产生梯度爆炸的现象；反正，则会产生梯度消失的现象。<br>解决方法是按照一定的规律设置初始权重为1左右，并且对于不同的激活函数，设置方法也不太相同。</p>
+<h1 id="优化算法"><a href="#优化算法" class="headerlink" title="优化算法"></a>优化算法</h1><h2 id="mini-batch"><a href="#mini-batch" class="headerlink" title="mini-batch"></a>mini-batch</h2><p>以特定数量的训练样本为一组进行计算损失和更新网络参数值，而不是所有训练样本为一组。这样可以加快训练速度，避免训练集样本过多时内存占用大的问题。</p>
+<h2 id="momentum"><a href="#momentum" class="headerlink" title="momentum"></a>momentum</h2><p>动量梯度下降（momentum）算法是利用指数加权平均的方法，在更新<strong>需要训练的网络参数</strong>的时候，参考之前的偏差，按照下式进行更新：</p>
+<script type="math/tex; mode=display">
+{\begin{array} {*{20} {l} } 
+{V\mathop{ {} } \nolimits_{ {dW} } = \beta V\mathop{ {} } \nolimits_{ {dW} } +{ \left( {1- \beta }  \right) } dW} \\
+{W \leftarrow W- \alpha V\mathop{ {} } \nolimits_{ {dW} } } 
+\end{array} }</script><script type="math/tex; mode=display">
+{\begin{array} {*{20} {l} } 
+{V\mathop{ {} } \nolimits_{ {db} } = \beta V\mathop{ {} } \nolimits_{ {db} } +{ \left( {1- \beta }  \right) } db} \\
+{b \leftarrow b- \alpha V\mathop{ {} } \nolimits_{ {db} } } 
+\end{array} }</script><p>其中α为学习率。</p>
+<p>由于初始的dW、db值为0，导致初期的计算结果与实际值偏移较大，可以用偏差修正的方法，即：</p>
+<script type="math/tex; mode=display">
+{V\mathop{ {} } \nolimits_{ {dW} } =\frac{ {V\mathop{ {} } \nolimits_{ {dW} } } } { {1- \beta \mathop{ {} } \nolimits^{ {t} } } } }</script><p>其中t为迭代次数。这样就可以在前期也可以得到较为准确的结果。</p>
+<h2 id="RMSprop"><a href="#RMSprop" class="headerlink" title="RMSprop"></a>RMSprop</h2><p>RMSprop算法应用于减缓b方向的学习和加速W方向的学习。（具体原理我也没弄明白）</p>
+<p>公式如下：</p>
+<script type="math/tex; mode=display">
+{\begin{array} {*{20} {l} } 
+{\mathop{ {S} } \nolimits_{ {dW} } = \beta S\mathop{ {} } \nolimits_{ {dW} } +{ \left( {1- \beta }  \right) } dW\mathop{ {} } \nolimits^{ {2} } } \\
+{W \leftarrow W- \alpha \frac{ {dW} } { {\sqrt{ {S\mathop{ {} } \nolimits_{ {dW} } } } + \varepsilon } } } 
+\end{array} }</script><script type="math/tex; mode=display">
+{\begin{array} {*{20} {l} } 
+{\mathop{ {S} } \nolimits_{ {db} } = \beta S\mathop{ {} } \nolimits_{ {db} } +{ \left( {1- \beta }  \right) } db\mathop{ {} } \nolimits^{ {2} } } \\
+{b \leftarrow b- \alpha \frac{ {db} } { {\sqrt{ {S\mathop{ {} } \nolimits_{ {db} } } } + \varepsilon } } } 
+\end{array} }</script><p>其中ε是一个很小的数，目的是防止分母为0。</p>
+<h2 id="Adam"><a href="#Adam" class="headerlink" title="Adam"></a>Adam</h2><p>Adam算法（Adaptive Moment Estimation）就是将momentum和RMSprop结合起来，作用于更新网络参数的时候。</p>
+<p>公式如下：</p>
+<script type="math/tex; mode=display">
+{\mathop{ {V} } \nolimits_{ {dW} } = \beta \mathop{ {} } \nolimits_{ {1} } V\mathop{ {} } \nolimits_{ {dW} } +{ \left( {1- \beta \mathop{ {} } \nolimits_{ {1} } }  \right) } dW\text{ } {\mathop{ {\text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } V} } \nolimits_{ {db} } = \beta \mathop{ {} } \nolimits_{ {1} } V\mathop{ {} } \nolimits_{ {db} } +{ \left( {1- \beta \mathop{ {} } \nolimits_{ {1} } }  \right) } db} }</script><script type="math/tex; mode=display">
+{\mathop{ {S} } \nolimits_{ {dW} } = \beta \mathop{ {} } \nolimits_{ {2} } S\mathop{ {} } \nolimits_{ {dW} } +{ \left( {1- \beta \mathop{ {} } \nolimits_{ {2} } }  \right) } dW\mathop{ {} } \nolimits^{ {2} } \text{ } {\mathop{ {\text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } S} } \nolimits_{ {db} } = \beta \mathop{ {} } \nolimits_{ {2} } S\mathop{ {} } \nolimits_{ {db} } +{ \left( {1- \beta \mathop{ {} } \nolimits_{ {2} } }  \right) } db\mathop{ {} } \nolimits^{ {2} } } }</script><script type="math/tex; mode=display">
+{\mathop{ {V}  }  \nolimits_{ {dW}  }   \leftarrow \frac{ {V\mathop{ {}  }  \nolimits_{ {dW}  }  }  }  { {1- \beta \mathop{ {}  }  \nolimits_{ {1}  }  ^{ {t}  }  }  }  {\mathop{ {\text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  V}  }  \nolimits_{ {db}  }   \leftarrow \frac{ {V\mathop{ {}  }  \nolimits_{ {db}  }  }  }  { {1- \beta \mathop{ {}  }  \nolimits_{ {1}  }  ^{ {t}  }  }  }  }  }</script><script type="math/tex; mode=display">
+{\mathop{ {S}  }  \nolimits_{ {dW}  }   \leftarrow \frac{ {S\mathop{ {}  }  \nolimits_{ {dW}  }  }  }  { {1- \beta \mathop{ {}  }  \nolimits_{ {2}  }  ^{ {t}  }  }  }  {\mathop{ {\text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  S}  }  \nolimits_{ {db}  }   \leftarrow \frac{ {S\mathop{ {}  }  \nolimits_{ {db}  }  }  }  { {1- \beta \mathop{ {}  }  \nolimits_{ {2}  }  ^{ {t}  }  }  }  }  }</script><script type="math/tex; mode=display">
+{ {W \leftarrow W- \alpha \frac{ {V\mathop{ {} } \nolimits_{ {dW} } } } { {\sqrt{ {S\mathop{ {} } \nolimits_{ {dW} } } } + \varepsilon } } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } b \leftarrow b- \alpha \frac{ {V\mathop{ {} } \nolimits_{ {db} } } } { {\sqrt{ {S\mathop{ {} } \nolimits_{ {db} } } } + \varepsilon } } } }</script><p>通常β1=0.9、β2=0.999、ε=10-8。</p>
+<h2 id="学习率衰减"><a href="#学习率衰减" class="headerlink" title="学习率衰减"></a>学习率衰减</h2><p>通过迭代次数来减小学习率而不是使用固定的学习率，有助于提升模型训练速度和训练出更接近最优的模型。学习率衰减的方法有很多，视情况而定。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/22/deeplearning2/" data-id="cjzmoe9ho0003cgv38dwixp1m" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/吴恩达深度学习-改善深层神经网络：超参数调试、正则化以及优化/">吴恩达深度学习--改善深层神经网络：超参数调试、正则化以及优化</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/19/deeplearning1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">吴恩达深度学习--神经网络与深度学习</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/吴恩达深度学习-改善深层神经网络：超参数调试、正则化以及优化/">吴恩达深度学习--改善深层神经网络：超参数调试、正则化以及优化</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/吴恩达深度学习-改善深层神经网络：超参数调试、正则化以及优化/" style="font-size: 10px;">吴恩达深度学习--改善深层神经网络：超参数调试、正则化以及优化</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/08/22/deeplearning2/">deeplearning2</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/19/deeplearning1/">吴恩达深度学习--神经网络与深度学习</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/26/NGcourse/">吴恩达机器学习公开课</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/">Codeforces-Round-#510-problem(D)-Petya-and-Array</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/23/Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs/">Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 zhou<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+</body>
+</html>
