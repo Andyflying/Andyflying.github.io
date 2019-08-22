@@ -92,13 +92,16 @@
 <p>常用的非线性激活函数有ReLU、sigmoid、tanh等。</p>
 <p>sigmoid函数并不是很常用，因为在原理零点的时候，sigmoid函数导数很小，训练网络时容易产生梯度消失。所以sigmoid函数大多数只作为二元分类的最后一层的激活函数。在大多数应用场景中，它的效果不如tanh函数。</p>
 <p>ReLU函数的优点是执行速度快。有一种改进的ReLU函数叫做leaky ReLU，它在负半轴有一个很小的正斜率。</p>
-<h1 id="反向传播"><a href="#反向传播" class="headerlink" title="反向传播"></a>反向传播</h1><p>反向传播算法运用于训练神经网络模型，更新学习参数以得到最小的loss值。反向传播的大概结构和原理如下图所示。</p>
+<h1 id="前向传播和反向传播"><a href="#前向传播和反向传播" class="headerlink" title="前向传播和反向传播"></a>前向传播和反向传播</h1><p>前向传播和反向传播的大概结构和原理如下图所示。</p>
 <p><img src="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/shbdfsgfsd5.jpg" alt="BP"></p>
+<p>反向传播算法运用于训练神经网络模型，更新学习参数以得到最小的loss值。反向传播的核心思想就是利用链式求导求出每一层参数w和b的误差dw和db，按照学习率更新参数w和b。</p>
+<h1 id="参数和超参数"><a href="#参数和超参数" class="headerlink" title="参数和超参数"></a>参数和超参数</h1><p>参数指的是在神经网络中可以通过训练进行改变和优化的参数，比如网络中的权值。</p>
+<p>超参数指的是训练之前预先设定好的参数。比如学习率，迭代次数，隐藏层层数，每层的神经元个数，选择的激活函数等。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/19/deeplearning1/" data-id="cjzl94cri000238v3yk61bnbc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/19/deeplearning1/" data-id="cjzm9s81x0002l8v3k08rdjyc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -213,7 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/26/NGcourse/" data-id="cjzl94crv000338v3kye0qat8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/26/NGcourse/" data-id="cjzm9s82a0003l8v349978tjf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -252,7 +255,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/" data-id="cjzl94cr6000038v3j6qqt8ka" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/" data-id="cjzm9s81u0001l8v3fj5xgf96" class="article-share-link">Share</a>
       
       
     </footer>
@@ -290,7 +293,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/23/Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs/" data-id="cjzl94crf000138v3cq2w6f7m" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/23/Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs/" data-id="cjzm9s81m0000l8v3zu8rta4r" class="article-share-link">Share</a>
       
       
     </footer>

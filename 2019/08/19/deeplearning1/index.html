@@ -15,7 +15,7 @@
 <meta property="og:description" content="计算图吴恩达老师用计算图形象的说明的链式求导的问题。链式求导是反向传播算法（BP算法）的核心依据。 举个例子，如果，f是关于z的函数，z又是关于x的函数，则链式求导就是：  {\frac{ { \partial f} } { { \partial x} } =\frac{ { \partial f} } { { \partial z} } \frac{ { \partial z} } { { \p">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/shbdfsgfsd5.jpg">
-<meta property="og:updated_time" content="2019-08-21T12:41:17.794Z">
+<meta property="og:updated_time" content="2019-08-22T05:52:34.990Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="吴恩达深度学习--神经网络与深度学习">
 <meta name="twitter:description" content="计算图吴恩达老师用计算图形象的说明的链式求导的问题。链式求导是反向传播算法（BP算法）的核心依据。 举个例子，如果，f是关于z的函数，z又是关于x的函数，则链式求导就是：  {\frac{ { \partial f} } { { \partial x} } =\frac{ { \partial f} } { { \partial z} } \frac{ { \partial z} } { { \p">
@@ -96,13 +96,16 @@
 <p>常用的非线性激活函数有ReLU、sigmoid、tanh等。</p>
 <p>sigmoid函数并不是很常用，因为在原理零点的时候，sigmoid函数导数很小，训练网络时容易产生梯度消失。所以sigmoid函数大多数只作为二元分类的最后一层的激活函数。在大多数应用场景中，它的效果不如tanh函数。</p>
 <p>ReLU函数的优点是执行速度快。有一种改进的ReLU函数叫做leaky ReLU，它在负半轴有一个很小的正斜率。</p>
-<h1 id="反向传播"><a href="#反向传播" class="headerlink" title="反向传播"></a>反向传播</h1><p>反向传播算法运用于训练神经网络模型，更新学习参数以得到最小的loss值。反向传播的大概结构和原理如下图所示。</p>
+<h1 id="前向传播和反向传播"><a href="#前向传播和反向传播" class="headerlink" title="前向传播和反向传播"></a>前向传播和反向传播</h1><p>前向传播和反向传播的大概结构和原理如下图所示。</p>
 <p><img src="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/shbdfsgfsd5.jpg" alt="BP"></p>
+<p>反向传播算法运用于训练神经网络模型，更新学习参数以得到最小的loss值。反向传播的核心思想就是利用链式求导求出每一层参数w和b的误差dw和db，按照学习率更新参数w和b。</p>
+<h1 id="参数和超参数"><a href="#参数和超参数" class="headerlink" title="参数和超参数"></a>参数和超参数</h1><p>参数指的是在神经网络中可以通过训练进行改变和优化的参数，比如网络中的权值。</p>
+<p>超参数指的是训练之前预先设定好的参数。比如学习率，迭代次数，隐藏层层数，每层的神经元个数，选择的激活函数等。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/19/deeplearning1/" data-id="cjzl94cri000238v3yk61bnbc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/19/deeplearning1/" data-id="cjzm9s81x0002l8v3k08rdjyc" class="article-share-link">Share</a>
       
       
     </footer>
