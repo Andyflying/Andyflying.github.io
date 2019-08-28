@@ -62,6 +62,61 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-project1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/28/project1/" class="article-date">
+  <time datetime="2019-08-28T13:43:10.000Z" itemprop="datePublished">2019-08-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/28/project1/">船舰识别比赛总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近参加了中科星图杯的遥感图像船舰识别的比赛，在此总结一下。</p>
+<h1 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h1><p>组委会只给了10张遥感图像数据，所以我们要对数据进行扩增。</p>
+<p>数据扩增的大概步骤为：</p>
+<ul>
+<li>截取原始图片的船舰</li>
+<li>将船舰贴到新的海港图片中并标记标签</li>
+</ul>
+<h2 id="截取原始图片的船舰"><a href="#截取原始图片的船舰" class="headerlink" title="截取原始图片的船舰"></a>截取原始图片的船舰</h2><p>根据提供的数据集中船的坐标，可以用脚本将船单独截取出来。注意有的船不是正的矩形而是旋转过的矩形或者四边形，所以要将四边形外的像素点设置成透明（PNG格式的图片第四个通道表示透明度）。</p>
+<p>这个算法需要通过四个点的坐标计算其围成的四边形所包含的像素。我采用的方法是先将四边形的四条边旋转绕一个顶点旋转为竖直和水平，记录旋转角度θ，再将所有像素点旋转θ后与边界比较，即可判断某一像素点是否在四边形内了。</p>
+<h2 id="将船舰贴到新的海港图片中并标记标签"><a href="#将船舰贴到新的海港图片中并标记标签" class="headerlink" title="将船舰贴到新的海港图片中并标记标签"></a>将船舰贴到新的海港图片中并标记标签</h2><p>这一步可以采用了两种扩增方式：</p>
+<ul>
+<li><p>用PS+labelme软件手动打标签</p>
+<p>由于船舰的位置一般靠近码头，所有手动添加可以使得扩增的数据维持这个特性。做法是先用PS将截取的船只放到靠近码头的海域，再用labelme软件打上标签。这种方法虽然能维持船舰的位置靠近码头这一特性，但是效率较低。</p>
+</li>
+<li><p>寻找海港图片的海洋区域，随机把船贴到海洋上</p>
+<p>首先，我们先寻找海港图片的海洋区域。我采用的方法是对于每个海港图片，取一块海洋区域，计算RGB通道的平均值，设置阈值来寻找图片的海洋区域。</p>
+<p>提取出海洋区域后，就可以随机的往上面放船了。</p>
+</li>
+</ul>
+<h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/28/project1/" data-id="cjzvb9zvp0003d4uahzkfeznv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-labelme-tutor" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/08/27/labelme-tutor/" class="article-date">
@@ -76,7 +131,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/27/labelme-tutor/">labelme安装简介</a>
+      <a class="article-title" href="/2019/08/27/labelme-tutor/">Windows下labelme安装简介</a>
     </h1>
   
 
@@ -87,12 +142,12 @@
         <p>1.安装anaconda。<br>2.打开anaconda prompt，依次输入：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conda create --name=labelme python=3.5 </span><br><span class="line">activate labelme</span><br><span class="line">conda install pyqt</span><br><span class="line">pip install labelme</span><br></pre></td></tr></table></figure>
 <p>tip：由于Python2和Python3存在兼容性问题，使用时注意Python版本。</p>
-<p>参考文献：</p>
+<p>参考文献：<br><a href="https://blog.csdn.net/DuanTuiXiaoALi/article/details/78295053" target="_blank" rel="noopener">https://blog.csdn.net/DuanTuiXiaoALi/article/details/78295053</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/27/labelme-tutor/" data-id="cjztt73ij0002wwuaw7fq8llv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/27/labelme-tutor/" data-id="cjzvb9zvo0002d4ualyz6tuhw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -171,7 +226,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/22/deeplearning2/" data-id="cjztt73in0004wwuausoi9wkn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/22/deeplearning2/" data-id="cjzvb9zvs0005d4ua0fj2gnyt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -220,7 +275,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/19/deeplearning1/" data-id="cjztt73il0003wwua330uo4el" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/19/deeplearning1/" data-id="cjzvb9zvr0004d4ua3kfutzbf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -335,7 +390,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/26/NGcourse/" data-id="cjztt73ix0005wwua02jqaa49" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/26/NGcourse/" data-id="cjzvb9zw10006d4uavmw4tvkf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -374,7 +429,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/" data-id="cjztt73ih0001wwua1516phd1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/" data-id="cjzvb9zve0000d4ua6kr1nyn2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -412,7 +467,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/23/Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs/" data-id="cjztt73i80000wwuagr26ui2c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/23/Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs/" data-id="cjzvb9zvl0001d4uarjuwqnwy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -453,7 +508,11 @@
       <ul>
         
           <li>
-            <a href="/2019/08/27/labelme-tutor/">labelme安装简介</a>
+            <a href="/2019/08/28/project1/">船舰识别比赛总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/27/labelme-tutor/">Windows下labelme安装简介</a>
           </li>
         
           <li>
@@ -466,10 +525,6 @@
         
           <li>
             <a href="/2019/07/26/NGcourse/">吴恩达机器学习公开课</a>
-          </li>
-        
-          <li>
-            <a href="/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/">Codeforces-Round-#510-problem(D)-Petya-and-Array</a>
           </li>
         
       </ul>

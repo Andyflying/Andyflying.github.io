@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>船舰识别比赛总结 | Zhou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近参加了中科星图杯的遥感图像船舰识别的比赛，在此总结一下。 数据组委会只给了10张遥感图像数据，所以我们要对数据进行扩增。 数据扩增的大概步骤为：  截取原始图片的船舰 将船舰贴到新的海港图片中并标记标签  截取原始图片的船舰根据提供的数据集中船的坐标，可以用脚本将船单独截取出来。注意有的船不是正的矩形而是旋转过的矩形或者四边形，所以要将四边形外的像素点设置成透明（PNG格式的图片第四个通道表示">
+<meta property="og:type" content="article">
+<meta property="og:title" content="船舰识别比赛总结">
+<meta property="og:url" content="http://yoursite.com/2019/08/28/project1/index.html">
+<meta property="og:site_name" content="Zhou">
+<meta property="og:description" content="最近参加了中科星图杯的遥感图像船舰识别的比赛，在此总结一下。 数据组委会只给了10张遥感图像数据，所以我们要对数据进行扩增。 数据扩增的大概步骤为：  截取原始图片的船舰 将船舰贴到新的海港图片中并标记标签  截取原始图片的船舰根据提供的数据集中船的坐标，可以用脚本将船单独截取出来。注意有的船不是正的矩形而是旋转过的矩形或者四边形，所以要将四边形外的像素点设置成透明（PNG格式的图片第四个通道表示">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-28T13:44:04.808Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="船舰识别比赛总结">
+<meta name="twitter:description" content="最近参加了中科星图杯的遥感图像船舰识别的比赛，在此总结一下。 数据组委会只给了10张遥感图像数据，所以我们要对数据进行扩增。 数据扩增的大概步骤为：  截取原始图片的船舰 将船舰贴到新的海港图片中并标记标签  截取原始图片的船舰根据提供的数据集中船的坐标，可以用脚本将船单独截取出来。注意有的船不是正的矩形而是旋转过的矩形或者四边形，所以要将四边形外的像素点设置成透明（PNG格式的图片第四个通道表示">
+  
+    <link rel="alternate" href="/atom.xml" title="Zhou" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Zhou</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-project1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/28/project1/" class="article-date">
+  <time datetime="2019-08-28T13:43:10.000Z" itemprop="datePublished">2019-08-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      船舰识别比赛总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近参加了中科星图杯的遥感图像船舰识别的比赛，在此总结一下。</p>
+<h1 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h1><p>组委会只给了10张遥感图像数据，所以我们要对数据进行扩增。</p>
+<p>数据扩增的大概步骤为：</p>
+<ul>
+<li>截取原始图片的船舰</li>
+<li>将船舰贴到新的海港图片中并标记标签</li>
+</ul>
+<h2 id="截取原始图片的船舰"><a href="#截取原始图片的船舰" class="headerlink" title="截取原始图片的船舰"></a>截取原始图片的船舰</h2><p>根据提供的数据集中船的坐标，可以用脚本将船单独截取出来。注意有的船不是正的矩形而是旋转过的矩形或者四边形，所以要将四边形外的像素点设置成透明（PNG格式的图片第四个通道表示透明度）。</p>
+<p>这个算法需要通过四个点的坐标计算其围成的四边形所包含的像素。我采用的方法是先将四边形的四条边旋转绕一个顶点旋转为竖直和水平，记录旋转角度θ，再将所有像素点旋转θ后与边界比较，即可判断某一像素点是否在四边形内了。</p>
+<h2 id="将船舰贴到新的海港图片中并标记标签"><a href="#将船舰贴到新的海港图片中并标记标签" class="headerlink" title="将船舰贴到新的海港图片中并标记标签"></a>将船舰贴到新的海港图片中并标记标签</h2><p>这一步可以采用了两种扩增方式：</p>
+<ul>
+<li><p>用PS+labelme软件手动打标签</p>
+<p>由于船舰的位置一般靠近码头，所有手动添加可以使得扩增的数据维持这个特性。做法是先用PS将截取的船只放到靠近码头的海域，再用labelme软件打上标签。这种方法虽然能维持船舰的位置靠近码头这一特性，但是效率较低。</p>
+</li>
+<li><p>寻找海港图片的海洋区域，随机把船贴到海洋上</p>
+<p>首先，我们先寻找海港图片的海洋区域。我采用的方法是对于每个海港图片，取一块海洋区域，计算RGB通道的平均值，设置阈值来寻找图片的海洋区域。</p>
+<p>提取出海洋区域后，就可以随机的往上面放船了。</p>
+</li>
+</ul>
+<h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/28/project1/" data-id="cjzvb9zvp0003d4uahzkfeznv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/27/labelme-tutor/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Windows下labelme安装简介</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/08/28/project1/">船舰识别比赛总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/27/labelme-tutor/">Windows下labelme安装简介</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/22/deeplearning2/">吴恩达深度学习--改善深层神经网络：超参数调试、正则化以及优化</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/19/deeplearning1/">吴恩达深度学习--神经网络与深度学习</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/26/NGcourse/">吴恩达机器学习公开课</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 zhou<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+</body>
+</html>
