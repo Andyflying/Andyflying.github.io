@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Zhou">
 <meta property="og:description" content="最近参加了中科星图杯的遥感图像船舰识别的比赛，在此总结一下。 数据组委会只给了10张遥感图像数据，所以我们要对数据进行扩增。 数据扩增的大概步骤为：  截取原始图片的船舰 将船舰贴到新的海港图片中并标记标签  截取原始图片的船舰根据提供的数据集中船的坐标，可以用脚本将船单独截取出来。注意有的船不是正的矩形而是旋转过的矩形或者四边形，所以要将四边形外的像素点设置成透明（PNG格式的图片第四个通道表示">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-28T13:44:04.808Z">
+<meta property="og:updated_time" content="2019-09-04T10:48:34.281Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="船舰识别比赛总结">
 <meta name="twitter:description" content="最近参加了中科星图杯的遥感图像船舰识别的比赛，在此总结一下。 数据组委会只给了10张遥感图像数据，所以我们要对数据进行扩增。 数据扩增的大概步骤为：  截取原始图片的船舰 将船舰贴到新的海港图片中并标记标签  截取原始图片的船舰根据提供的数据集中船的坐标，可以用脚本将船单独截取出来。注意有的船不是正的矩形而是旋转过的矩形或者四边形，所以要将四边形外的像素点设置成透明（PNG格式的图片第四个通道表示">
@@ -105,11 +105,12 @@
 <p>提取出海洋区域后，就可以随机的往上面放船了。</p>
 </li>
 </ul>
-<h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1>
+<h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1><p>用了R2CNN-FPN网络，<a href="https://github.com/yangxue0827/R2CNN_FPN_Tensorflow" target="_blank" rel="noopener">源代码链接</a>。<br>用这个结果训练和测试自己随机生成的数据效果还不错，但是跑组委会的数据效果不好，有待改进和分析。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/28/project1/" data-id="cjzvb9zvp0003d4uahzkfeznv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/28/project1/" data-id="ck0552msg0001ekuavy26gcim" class="article-share-link">Share</a>
       
       
     </footer>
