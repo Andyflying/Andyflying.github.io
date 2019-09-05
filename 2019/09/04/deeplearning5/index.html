@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>吴恩达深度学习--序列模型 | Zhou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="循环序列模型模型的输入每一条输入x^(i)包括一些有时间差异的序列数据，如x^(i,t)表示输入样例i在时刻t时的数据；以及表示这条序列的总长度T_x^(i)。 网络结构每个时刻对应一层网络。每层网络的输入有两部分，分别是时刻输入数据和前一层网络的输出。第一层的前层网络输入（也就是T=0时刻的值）一般设为0。网络中每一层的参数是共享的。从网络结构可以看出，循环网络可以实现通过当前时刻之前的输入预测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="吴恩达深度学习--序列模型">
+<meta property="og:url" content="http://yoursite.com/2019/09/04/deeplearning5/index.html">
+<meta property="og:site_name" content="Zhou">
+<meta property="og:description" content="循环序列模型模型的输入每一条输入x^(i)包括一些有时间差异的序列数据，如x^(i,t)表示输入样例i在时刻t时的数据；以及表示这条序列的总长度T_x^(i)。 网络结构每个时刻对应一层网络。每层网络的输入有两部分，分别是时刻输入数据和前一层网络的输出。第一层的前层网络输入（也就是T=0时刻的值）一般设为0。网络中每一层的参数是共享的。从网络结构可以看出，循环网络可以实现通过当前时刻之前的输入预测">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/20190905214603.jpg">
+<meta property="og:updated_time" content="2019-09-05T13:49:31.671Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="吴恩达深度学习--序列模型">
+<meta name="twitter:description" content="循环序列模型模型的输入每一条输入x^(i)包括一些有时间差异的序列数据，如x^(i,t)表示输入样例i在时刻t时的数据；以及表示这条序列的总长度T_x^(i)。 网络结构每个时刻对应一层网络。每层网络的输入有两部分，分别是时刻输入数据和前一层网络的输出。第一层的前层网络输入（也就是T=0时刻的值）一般设为0。网络中每一层的参数是共享的。从网络结构可以看出，循环网络可以实现通过当前时刻之前的输入预测">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/20190905214603.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Zhou" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Zhou</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-deeplearning5" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/04/deeplearning5/" class="article-date">
+  <time datetime="2019-09-04T11:10:30.000Z" itemprop="datePublished">2019-09-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      吴恩达深度学习--序列模型
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="循环序列模型"><a href="#循环序列模型" class="headerlink" title="循环序列模型"></a>循环序列模型</h1><h2 id="模型的输入"><a href="#模型的输入" class="headerlink" title="模型的输入"></a>模型的输入</h2><p>每一条输入x^(i)包括一些有时间差异的序列数据，如x^(i,t)表示输入样例i在时刻t时的数据；以及表示这条序列的总长度T_x^(i)。</p>
+<h2 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h2><p>每个时刻对应一层网络。每层网络的输入有两部分，分别是时刻输入数据和前一层网络的输出。第一层的前层网络输入（也就是T=0时刻的值）一般设为0。<br>网络中每一层的参数是共享的。<br>从网络结构可以看出，循环网络可以实现通过当前时刻之前的输入预测当前时刻的输出。</p>
+<h2 id="前向传播"><a href="#前向传播" class="headerlink" title="前向传播"></a>前向传播</h2><p>在每一层网络中，前向传播的方式如下：</p>
+<script type="math/tex; mode=display">
+{\begin{array} {*{20} {l} } 
+{a\mathop{ {} } \nolimits^{ { \left( t \right) } } =g{ \left( {W\mathop{ {} } \nolimits_{ {aa} } a\mathop{ {} } \nolimits^{ { \left( t-1 \right) } } +W\mathop{ {} } \nolimits_{ {ax} } x\mathop{ {} } \nolimits^{ { \left( t \right) } } +b\mathop{ {} } \nolimits_{ {a} } }  \right) } } \\
+{\mathop{ {y} } \limits^{ {\text{^} } } \mathop{ {} } \nolimits^{ { \left( t \right) } } =g{ \left( {W\mathop{ {} } \nolimits_{ {ya} } a\mathop{ {} } \nolimits^{ { \left( t \right) } } +b\mathop{ {} } \nolimits_{ {y} } }  \right) } } 
+\end{array} }</script><p>激活函数g一般采用tanh函数；有时候也用ReLU函数。</p>
+<h2 id="反向传播"><a href="#反向传播" class="headerlink" title="反向传播"></a>反向传播</h2><p>循环神经网络的损失函数如下：</p>
+<script type="math/tex; mode=display">
+{L\mathop{ {} } \nolimits^{ { \left( t \right) } } { \left( {\mathop{ {y} } \limits^{ {\text{^} } } \mathop{ {} } \nolimits^{ { \left( t \right) } } ,y\mathop{ {} } \nolimits^{ { \left( t \right) } } }  \right) } =-y\mathop{ {} } \nolimits^{ { \left( t \right) } } log\mathop{ {y} } \limits^{ {\text{^} } } \mathop{ {} } \nolimits^{ { \left( t \right) } } -{ \left( {1-y\mathop{ {} } \nolimits^{ { \left( t \right) } } }  \right) } log{ \left( {1-\mathop{ {y} } \limits^{ {\text{^} } } \mathop{ {} } \nolimits^{ { \left( t \right) } } }  \right) } }</script><script type="math/tex; mode=display">
+{ {L{ \left( {\mathop{ {y} } \limits^{ {\text{^} } } ,y}  \right) } ={\mathop{ \sum } \limits_{ {t=1} } ^{ {\mathop{ {T} } \nolimits_{ {y} } } } {L\mathop{ {} } \nolimits^{ { \left( t \right) } } { \left( {\mathop{ {y} } \limits^{ {\text{^} } } \mathop{ {} } \nolimits^{ { \left( t \right) } } ,y\mathop{ {} } \nolimits^{ { \left( t \right) } } }  \right) } } } } }</script><p>前向传播和反向传播的大致过程如下图所示：<br><img src="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/20190905214603.jpg" alt="RNN"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/09/04/deeplearning5/" data-id="ck06qzkvo0001rkuadvpgqycu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/28/project1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">船舰识别比赛总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/09/04/deeplearning5/">吴恩达深度学习--序列模型</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/28/project1/">船舰识别比赛总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/27/labelme-tutor/">Windows下labelme安装简介</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/22/deeplearning2/">吴恩达深度学习--改善深层神经网络：超参数调试、正则化以及优化</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/19/deeplearning1/">吴恩达深度学习--神经网络与深度学习</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 zhou<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+</body>
+</html>
