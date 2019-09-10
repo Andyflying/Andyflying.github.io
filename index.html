@@ -98,7 +98,9 @@
 {L\mathop{ {} } \nolimits^{ { \left( t \right) } } { \left( {\mathop{ {y} } \limits^{ {\text{^} } } \mathop{ {} } \nolimits^{ { \left( t \right) } } ,y\mathop{ {} } \nolimits^{ { \left( t \right) } } }  \right) } =-y\mathop{ {} } \nolimits^{ { \left( t \right) } } log\mathop{ {y} } \limits^{ {\text{^} } } \mathop{ {} } \nolimits^{ { \left( t \right) } } -{ \left( {1-y\mathop{ {} } \nolimits^{ { \left( t \right) } } }  \right) } log{ \left( {1-\mathop{ {y} } \limits^{ {\text{^} } } \mathop{ {} } \nolimits^{ { \left( t \right) } } }  \right) } }</script><script type="math/tex; mode=display">
 { {L{ \left( {\mathop{ {y} } \limits^{ {\text{^} } } ,y}  \right) } ={\mathop{ \sum } \limits_{ {t=1} } ^{ {\mathop{ {T} } \nolimits_{ {y} } } } {L\mathop{ {} } \nolimits^{ { \left( t \right) } } { \left( {\mathop{ {y} } \limits^{ {\text{^} } } \mathop{ {} } \nolimits^{ { \left( t \right) } } ,y\mathop{ {} } \nolimits^{ { \left( t \right) } } }  \right) } } } } }</script><p>前向传播和反向传播的大致过程如下图所示（Tx=Ty的情况）：<br><img src="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/20190905214603.jpg" alt="RNN"></p>
 <h2 id="梯度消失"><a href="#梯度消失" class="headerlink" title="梯度消失"></a>梯度消失</h2><p>RNN中，梯度消失问题主要是由于网络深度的增加，靠后的网络层的损失难以传播到靠前的网络层来影响其权重。下面介绍的GRU和LSTM可以一定程度上解决这个问题。</p>
-<h2 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h2><p>GRU（Gate Recurrent Unit）可以很好的捕获深层连接，改善RNN中梯度消失的问题。（某种程度上可以看做LSTM的简化版本）<br>GRU相比基本的RNN网络，加入了能起到记忆或者遗忘作用的门函数，如果这个时刻需要被记忆，则门函数的值为1，不需要被记忆则为0。GRU单层网络的公式如下：</p>
+<h2 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h2><p>GRU（Gate Recurrent Unit）可以很好的捕获深层连接，改善RNN中梯度消失的问题。（某种程度上可以看做LSTM的简化版本）</p>
+<p>GRU中的门函数的取值在0-1之间，往往接近0或者1，作用是选择保留或遗忘此时刻的数据。</p>
+<p>GRU相比基本的RNN网络，加入了能起到记忆或者遗忘作用的门函数，如果这个时刻需要被记忆，则门函数的值为1，不需要被记忆则为0。GRU单层网络的公式如下：</p>
 <script type="math/tex; mode=display">
 {\mathop{ {c} } \limits^{ {\text{~} } } \mathop{ {} } \nolimits^{ { \left( t \right) } } =tanh{ \left( {W\mathop{ {} } \nolimits_{ {c} }  \left[  \Gamma \mathop{ {} } \nolimits_{ {r} } *c\mathop{ {} } \nolimits^{ { \left( t-1 \right) } } ,x\mathop{ {} } \nolimits^{ { \left( t \right) } }  \left] +\mathop{ {b} } \nolimits_{ {c} } \right. \right. }  \right) } }</script><script type="math/tex; mode=display">
 { \Gamma \mathop{ {} } \nolimits_{ {u} } =sigmoid \left( W\mathop{ {} } \nolimits_{ {u} } { \left[ {c\mathop{ {} } \nolimits^{ { \left( t-1 \right) } } ,x\mathop{ {} } \nolimits^{ { \left( t \right) } } }  \right] } +\mathop{ {b} } \nolimits_{ {u} }  \right) }</script><script type="math/tex; mode=display">
@@ -113,7 +115,7 @@
 { \Gamma \mathop{ {} } \nolimits_{ {f} } =sigmoid \left( W\mathop{ {} } \nolimits_{ {f} } { \left[ {a\mathop{ {} } \nolimits^{ { \left( t-1 \right) } } ,x\mathop{ {} } \nolimits^{ { \left( t \right) } } }  \right] } +\mathop{ {b} } \nolimits_{ {f} }  \right) }</script><script type="math/tex; mode=display">
 { \Gamma \mathop{ {} } \nolimits_{ {o} } =sigmoid \left( W\mathop{ {} } \nolimits_{ {o} } { \left[ {a\mathop{ {} } \nolimits^{ { \left( t-1 \right) } } ,x\mathop{ {} } \nolimits^{ { \left( t \right) } } }  \right] } +\mathop{ {b} } \nolimits_{ {o} }  \right) }</script><script type="math/tex; mode=display">
 { {c\mathop{ {} } \nolimits^{ { \left( t \right) } } = \Gamma \mathop{ {} } \nolimits_{ {u} }* \mathop{ {c} } \limits^{ {\text{~} } } \mathop{ {} } \nolimits^{ { \left( t \right) } } +}  \Gamma \mathop{} \nolimits_{ {f} } *c\mathop{ {} } \nolimits^{ { \left( t-1 \right) } } }</script><script type="math/tex; mode=display">
-{ {a\mathop{ {} } \nolimits^{ { \left( t \right) } } = \Gamma \mathop{ {} } \nolimits_{ {o} }{*c\mathop{ {} } \nolimits^{ { \left( t \right) } }} } }</script><p>LSTM单层网络的示意图如下：</p>
+{a\mathop{ {} } \nolimits^{ { \left( t \right) } } = \Gamma \mathop{ {} } \nolimits_{ {o} } *tanh{ \left( {c\mathop{ {} } \nolimits^{ { \left( t \right) } } }  \right) } }</script><p>LSTM单层网络的示意图如下：</p>
 <p><img src="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/0190909184632.jpg" alt="LSTM"></p>
 <h2 id="双向RNN-amp-深层RNN"><a href="#双向RNN-amp-深层RNN" class="headerlink" title="双向RNN&amp;深层RNN"></a>双向RNN&amp;深层RNN</h2><p>双向RNN比普通的RNN加入了沿时间序列反向计算的模块，所以双向RNN的输出公式为：</p>
 <script type="math/tex; mode=display">
@@ -123,7 +125,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/04/deeplearning5/" data-id="ck0cf085s0000f0ualfnwih1o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/04/deeplearning5/" data-id="ck0d8cvfp0004j0uaokls45dy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -179,7 +181,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/28/project1/" data-id="ck0cf08680006f0uayvln6m4l" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/28/project1/" data-id="ck0d8cvfq0005j0uapazvo4ct" class="article-share-link">Share</a>
       
       
     </footer>
@@ -219,7 +221,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/27/labelme-tutor/" data-id="ck0cf08670005f0ua3vw3ggkp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/27/labelme-tutor/" data-id="ck0d8cvfs0006j0uacn3n8u5n" class="article-share-link">Share</a>
       
       
     </footer>
@@ -298,7 +300,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/22/deeplearning2/" data-id="ck0cf08650004f0ua4vizehdi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/22/deeplearning2/" data-id="ck0d8cvfm0002j0uaoe632z0h" class="article-share-link">Share</a>
       
       
     </footer>
@@ -347,7 +349,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/19/deeplearning1/" data-id="ck0cf08640003f0uaxaatajf4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/19/deeplearning1/" data-id="ck0d8cvfo0003j0uap9lp6uql" class="article-share-link">Share</a>
       
       
     </footer>
@@ -462,7 +464,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/26/NGcourse/" data-id="ck0cf086i0007f0ua06mz11sy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/26/NGcourse/" data-id="ck0d8cvg30007j0ua4y26l1e0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -501,7 +503,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/" data-id="ck0cf08620002f0ua5tlkfnxn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/" data-id="ck0d8cvfk0001j0ua1co5tebo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -539,7 +541,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/23/Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs/" data-id="ck0cf08600001f0ua16e62dc4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/23/Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs/" data-id="ck0d8cvfc0000j0uaglu65hf2" class="article-share-link">Share</a>
       
       
     </footer>
