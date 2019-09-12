@@ -62,6 +62,96 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-linearAlgebra" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/12/linearAlgebra/" class="article-date">
+  <time datetime="2019-09-12T08:42:36.000Z" itemprop="datePublished">2019-09-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/12/linearAlgebra/">线性代数常用知识点总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="正交矩阵"><a href="#正交矩阵" class="headerlink" title="正交矩阵"></a>正交矩阵</h1><p>实矩阵<strong>A</strong>满足：</p>
+<script type="math/tex; mode=display">
+{AA\mathop{ {} } \nolimits^{ {T} } =E}</script><p>则<strong>A</strong>为正交矩阵其中E为单位矩阵。正交矩阵是<a href="[https://baike.baidu.com/item/%E6%A0%87%E5%87%86%E6%AD%A3%E4%BA%A4%E5%9F%BA/4729576?fr=aladdin](https://baike.baidu.com/item/标准正交基/4729576?fr=aladdin">标准正交基</a>)按列排列起来得到的矩阵。</p>
+<p>正交矩阵是<a href="https://baike.baidu.com/item/%E5%B9%BA%E6%AD%A3%E7%9F%A9%E9%98%B5/1651000?fromtitle=%E9%85%89%E7%9F%A9%E9%98%B5&amp;fromid=2967660" target="_blank" rel="noopener">酉矩阵</a>的在实数域的一种特殊形式。</p>
+<h1 id="特征向量-amp-特征值"><a href="#特征向量-amp-特征值" class="headerlink" title="特征向量&amp;特征值"></a>特征向量&amp;特征值</h1><p>设<strong>A</strong>是n阶<strong>方阵</strong>，如果存在数λ和非零向量ε，使得：</p>
+<script type="math/tex; mode=display">
+{A \varepsilon = \lambda  \varepsilon }</script><p>则称λ为方阵<strong>A</strong>的<strong>特征值</strong>，ε称为方阵A的<strong>特征向量</strong>。</p>
+<h1 id="相似矩阵"><a href="#相似矩阵" class="headerlink" title="相似矩阵"></a>相似矩阵</h1><p>设<strong>A</strong>，<strong>B</strong>都是n阶矩阵，如果存在可逆矩阵<strong>P</strong>，使得：</p>
+<script type="math/tex; mode=display">
+{P\mathop{ {} } \nolimits^{ {-1} } AP=B}</script><p>则称<strong>A</strong>与<strong>B</strong>相似。</p>
+<p>相似矩阵有相同的特征多项式，也就是说<strong>A</strong>与<strong>B</strong>有相同的特征值和相同的行列式（det）。</p>
+<h1 id="矩阵对角化"><a href="#矩阵对角化" class="headerlink" title="矩阵对角化"></a>矩阵对角化</h1><p>对于一个矩阵来讲，对角矩阵在各种计算上比较简单，比如二次型中的标准型就可以用对角矩阵表示。所以如果能将矩阵对角化，就可以方便计算。</p>
+<p>n阶方阵<strong>A</strong>可对角化的充要条件是它有n个<strong>线性无关</strong>的特征向量。则有：</p>
+<script type="math/tex; mode=display">
+{P\mathop{ {} } \nolimits^{ {-1} } AP= \Lambda }</script><p><strong>P</strong>由特征向量组成，<strong>Λ</strong>由特征值组成，即：</p>
+<script type="math/tex; mode=display">
+{\begin{array} {*{20} {l} } 
+{P={ \left( { \varepsilon \mathop{ {} } \nolimits_{ {1} } , \varepsilon \mathop{ {} } \nolimits_{ {2} } ,..., \varepsilon \mathop{ {} } \nolimits_{ {n} } }  \right) } } \\
+{ \Lambda ={ \left( {\begin{array} {*{20} {l} } 
+{\mathop{ { \lambda } } \nolimits_{ {1} } } &{0} &{ \cdots } &{0} \\
+{0} &{\mathop{ { \lambda } } \nolimits_{ {n} } } &{ \cdots } &{0} \\
+{ \cdots } &{ \cdots } &{ \ddots } &{ \vdots } \\
+{0} &{0} &{ \cdots } &{\mathop{ { \lambda } } \nolimits_{ {n} } } 
+\end{array} }  \right) } } 
+\end{array} }</script><p>若<strong>A</strong>为<strong>实对称矩阵</strong>，则有：</p>
+<script type="math/tex; mode=display">
+{Q\mathop{ {} } \nolimits^{ {-1} } AQ=Q\mathop{ {} } \nolimits^{ {T} } AQ= \Lambda }</script><p>其中<strong>Q</strong>是<strong>A</strong>的特征向量经过<a href="https://baike.baidu.com/item/%E6%96%BD%E5%AF%86%E7%89%B9%E6%AD%A3%E4%BA%A4%E5%8C%96/756386?fr=aladdin" target="_blank" rel="noopener">施密特正交化</a>和单位化后得到的两两正交的单位向量。</p>
+<h1 id="二次型"><a href="#二次型" class="headerlink" title="二次型"></a>二次型</h1><p>二次型表示的是二次<a href="https://baike.baidu.com/item/%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84/2225933?fr=aladdin" target="_blank" rel="noopener">齐次多项式</a>，用矩阵表示。</p>
+<p>二次齐次多项式形式如下：</p>
+<script type="math/tex; mode=display">
+{\begin{array} {*{20} {l} } 
+{\begin{array} {*{20} {l} } 
+{ {f{ \left( {x\mathop{ {} } \nolimits_{ {1} } ,x\mathop{ {} } \nolimits_{ {2} } ,...,x\mathop{ {} } \nolimits_{ {n} } }  \right) } =a\mathop{ {} } \nolimits_{ {11} } \mathop{ {x} } \nolimits_{ {1} } ^{ {2} } +a\mathop{ {} } \nolimits_{ {12} } x} \mathop{ {} } \nolimits_{ {1} } x\mathop{ {} } \nolimits_{ {2} } +...+a\mathop{ {} } \nolimits_{ {1n} } x\mathop{ {} } \nolimits_{ {1} } x\mathop{ {} } \nolimits_{ {n} } } \\
+{\text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } +{a\mathop{ {} } \nolimits_{ {21} } x\mathop{ {} } \nolimits_{ {2} } x\mathop{ {} } \nolimits_{ {1} } +a\mathop{ {} } \nolimits_{ {22} } } \mathop{ {x} } \nolimits_{ {2} } ^{ {2} } +...+a\mathop{ {} } \nolimits_{ {2n} } x\mathop{ {} } \nolimits_{ {2} } x\mathop{ {} } \nolimits_{ {n} }} 
+\end{array} } \\
+{\text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ }+\text{ }...} \\
+{\text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } +{ {a\mathop{ {} } \nolimits_{ {n1} } x\mathop{ {} } \nolimits_{ {n} } x\mathop{ {} } \nolimits_{ {1} } +a\mathop{ {} } \nolimits_{ {n2} } } x\mathop{ {} } \nolimits_{ {n} } x\mathop{ {} } \nolimits_{ {2} } +...+a\mathop{ {} } \nolimits_{ {nn} } \mathop{ {x} } \nolimits_{ {n} } ^{ {2} } } } 
+\end{array} }</script><script type="math/tex; mode=display">
+{ { { {f{ \left( {x\mathop{ {} } \nolimits_{ {1} } ,x\mathop{ {} } \nolimits_{ {2} } ,...,x\mathop{ {} } \nolimits_{ {n} } }  \right) } ={\mathop{ \sum } \limits_{ {i=1} } ^{ {n} } { {\mathop{ \sum } \limits_{ {j=1} } ^{ {n} } {a\mathop{ {} } \nolimits_{ {ij} } x\mathop{ {} } \nolimits_{ {i} } x\mathop{ {} } \nolimits_{ {j} } } } } } } } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } } }</script><p>令：</p>
+<script type="math/tex; mode=display">
+{ {A={ \left( {\begin{array} {*{20} {l} } 
+{\mathop{ {a} } \nolimits_{ {11} } } &{\mathop{ {a} } \nolimits_{ {12} } } &{ \cdots } &{\mathop{ {a} } \nolimits_{ {1n} } } \\
+{\mathop{ {a} } \nolimits_{ {21} } } &{\mathop{ {a} } \nolimits_{ {22} } } &{ \cdots } &{\mathop{ {a} } \nolimits_{ {2n} } } \\
+{ \vdots } &{ \vdots } &{ \ddots } &{ \vdots } \\
+{\mathop{ {a} } \nolimits_{ {n1} } } &{\mathop{ {a} } \nolimits_{ {n2} } } &{ \cdots } &{\mathop{ {a} } \nolimits_{ {nn} } } 
+\end{array} }  \right) } ,\text{ } \text{ } x=} { \left( {\begin{array} {*{20} {l} } 
+{\mathop{ {x} } \nolimits_{ {1} } } \\
+{\mathop{ {x} } \nolimits_{ {2} } } \\
+{ \vdots } \\
+{\mathop{ {x} } \nolimits_{ {n} } } 
+\end{array} }  \right) } ,\text{ } \text{ }  \left( \mathop{ {a} } \nolimits_{ {ij} } =\mathop{ {a} } \nolimits_{ {ji} }  \right) }</script><p>所以函数f可以写成矩阵的形式：</p>
+<script type="math/tex; mode=display">
+{ {f{ \left( {x\mathop{ {} } \nolimits_{ {1} } ,x\mathop{ {} } \nolimits_{ {2} } ,...,x\mathop{ {} } \nolimits_{ {n} } }  \right) } =f{ \left( {x}  \right) } =x\mathop{ {} } \nolimits^{ {T} } Ax} \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } { \left( {A=A\mathop{ {} } \nolimits^{ {T} } }  \right) } }</script><p>只含有平方项的二次型称为<strong>标准型</strong>。一般的二次型可以通过正交变换得到标准型。</p>
+<p>对于非零向量x∈R，如果总有f(x)&gt;0，则称这个二次型为<strong>正定二次型</strong>，A为<strong>正定矩阵</strong>。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/09/12/linearAlgebra/" data-id="ck0gg4qmj00022suan17u90gd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-deeplearning5" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/09/04/deeplearning5/" class="article-date">
@@ -125,7 +215,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/04/deeplearning5/" data-id="ck0d8cvfp0004j0uaokls45dy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/04/deeplearning5/" data-id="ck0gg4qml00042suah8lbiqft" class="article-share-link">Share</a>
       
       
     </footer>
@@ -181,7 +271,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/28/project1/" data-id="ck0d8cvfq0005j0uapazvo4ct" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/28/project1/" data-id="ck0gg4qmm00052suaifgr6ptk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -221,7 +311,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/27/labelme-tutor/" data-id="ck0d8cvfs0006j0uacn3n8u5n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/27/labelme-tutor/" data-id="ck0gg4qmo00062suaba4fus68" class="article-share-link">Share</a>
       
       
     </footer>
@@ -300,7 +390,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/22/deeplearning2/" data-id="ck0d8cvfm0002j0uaoe632z0h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/22/deeplearning2/" data-id="ck0gg4qmp00072sua9qbholzr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -349,7 +439,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/19/deeplearning1/" data-id="ck0d8cvfo0003j0uap9lp6uql" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/19/deeplearning1/" data-id="ck0gg4qm900002suatgobuqe0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -464,7 +554,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/26/NGcourse/" data-id="ck0d8cvg30007j0ua4y26l1e0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/26/NGcourse/" data-id="ck0gg4qnb00082suam37ptbzl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -503,7 +593,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/" data-id="ck0d8cvfk0001j0ua1co5tebo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/" data-id="ck0gg4qmk00032suadtzrlg9k" class="article-share-link">Share</a>
       
       
     </footer>
@@ -541,7 +631,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/23/Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs/" data-id="ck0d8cvfc0000j0uaglu65hf2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/23/Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs/" data-id="ck0gg4qmh00012suatymf98op" class="article-share-link">Share</a>
       
       
     </footer>
@@ -582,6 +672,10 @@
       <ul>
         
           <li>
+            <a href="/2019/09/12/linearAlgebra/">线性代数常用知识点总结</a>
+          </li>
+        
+          <li>
             <a href="/2019/09/04/deeplearning5/">吴恩达深度学习--序列模型</a>
           </li>
         
@@ -595,10 +689,6 @@
         
           <li>
             <a href="/2019/08/22/deeplearning2/">吴恩达深度学习--改善深层神经网络：超参数调试、正则化以及优化</a>
-          </li>
-        
-          <li>
-            <a href="/2019/08/19/deeplearning1/">吴恩达深度学习--神经网络与深度学习</a>
           </li>
         
       </ul>
