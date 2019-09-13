@@ -110,7 +110,32 @@
 \end{array} }  \right) } } 
 \end{array} }</script><p>若<strong>A</strong>为<strong>实对称矩阵</strong>，则有：</p>
 <script type="math/tex; mode=display">
-{Q\mathop{ {} } \nolimits^{ {-1} } AQ=Q\mathop{ {} } \nolimits^{ {T} } AQ= \Lambda }</script><p>其中<strong>Q</strong>是<strong>A</strong>的特征向量经过<a href="https://baike.baidu.com/item/%E6%96%BD%E5%AF%86%E7%89%B9%E6%AD%A3%E4%BA%A4%E5%8C%96/756386?fr=aladdin" target="_blank" rel="noopener">施密特正交化</a>和单位化后得到的两两正交的单位向量。</p>
+{Q\mathop{ {} } \nolimits^{ {-1} } AQ=Q\mathop{ {} } \nolimits^{ {T} } AQ= \Lambda }</script><p>其中<strong>Q</strong>是<strong>A</strong>的特征向量经过<a href="https://baike.baidu.com/item/%E6%96%BD%E5%AF%86%E7%89%B9%E6%AD%A3%E4%BA%A4%E5%8C%96/756386?fr=aladdin" target="_blank" rel="noopener">施密特正交化</a>和单位化后得到正交矩阵。</p>
+<h1 id="奇异值分解（SVD）"><a href="#奇异值分解（SVD）" class="headerlink" title="奇异值分解（SVD）"></a>奇异值分解（SVD）</h1><p>当矩阵<strong>A</strong>不为方阵的时候，如果仍然想将矩阵<strong>A</strong>变为对角化的形式，则需要用到奇异值分解（SVD）的方法。</p>
+<p>直接说结论。矩阵<strong>A</strong>可以分解为下面的形式：</p>
+<script type="math/tex; mode=display">
+{A=UDV\mathop{ {} } \nolimits^{ {T} } ={ \left[ {\begin{array} {*{20} {l} } 
+{ \Delta } &{0} \\
+{0} &{0} 
+\end{array} }  \right] } }</script><p>其中：</p>
+<script type="math/tex; mode=display">
+{\begin{array} {*{20} {l} } 
+{ \Delta =diag{ \left( { \lambda \mathop{ {} } \nolimits_{ {1} } , \lambda \mathop{ {} } \nolimits_{ {2} } ,..., \lambda \mathop{ {} } \nolimits_{ {n} } }  \right) } \text{ } \text{ } \text{ } \text{ } \text{ }  \lambda \text{是} AA\mathop{ {} } \nolimits^{ {T} } \text{的} \text{特} \text{征} \text{值} } \\
+{U\text{满} \text{足} U\mathop{ {} } \nolimits^{ {T} } AA\mathop{ {} } \nolimits^{ {T} } U\text{是} \text{对} \text{角} \text{矩} \text{阵} } \\
+{V\text{满} \text{足} V\mathop{ {} } \nolimits^{ {T} } A\mathop{ {} } \nolimits^{ {T} } AV\text{是} \text{对} \text{角} \text{矩} \text{阵} } 
+\end{array} }</script><p>如果矩阵<strong>A</strong>为m×n维矩阵，那么矩阵<strong>U</strong>为m×m维矩阵，矩阵<strong>D</strong>为m×n维矩阵，矩阵<strong>V</strong>为n×n维矩阵。</p>
+<h1 id="主成分分析（PCA）"><a href="#主成分分析（PCA）" class="headerlink" title="主成分分析（PCA）"></a>主成分分析（PCA）</h1><ul>
+<li><p>去平均值，即每一位特征减去各自的平均值。</p>
+</li>
+<li><p>计算协方差矩阵。</p>
+</li>
+<li><p>通过SVD计算协方差矩阵的特征值与特征向量。（因为是方阵，我觉的也可以直接求特征值和特征向量再归一化。）</p>
+</li>
+<li><p>对特征值从大到小排序（计算时往往已经排好），选择其中最大的k个。然后将其对应的k个特征向量分别作为列向量组成特征向量矩阵。</p>
+</li>
+<li><p>将数据转换到k个特征向量构建的新空间中，即取矩阵<strong>U</strong>或矩阵<strong>V</strong>的前k行或前k列与原矩阵相乘。</p>
+</li>
+</ul>
 <h1 id="二次型"><a href="#二次型" class="headerlink" title="二次型"></a>二次型</h1><p>二次型表示的是二次<a href="https://baike.baidu.com/item/%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84/2225933?fr=aladdin" target="_blank" rel="noopener">齐次多项式</a>，用矩阵表示。</p>
 <p>二次齐次多项式形式如下：</p>
 <script type="math/tex; mode=display">
@@ -136,13 +161,14 @@
 {\mathop{ {x} } \nolimits_{ {n} } } 
 \end{array} }  \right) } ,\text{ } \text{ }  \left( \mathop{ {a} } \nolimits_{ {ij} } =\mathop{ {a} } \nolimits_{ {ji} }  \right) }</script><p>所以函数f可以写成矩阵的形式：</p>
 <script type="math/tex; mode=display">
-{ {f{ \left( {x\mathop{ {} } \nolimits_{ {1} } ,x\mathop{ {} } \nolimits_{ {2} } ,...,x\mathop{ {} } \nolimits_{ {n} } }  \right) } =f{ \left( {x}  \right) } =x\mathop{ {} } \nolimits^{ {T} } Ax} \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } { \left( {A=A\mathop{ {} } \nolimits^{ {T} } }  \right) } }</script><p>只含有平方项的二次型称为<strong>标准型</strong>。一般的二次型可以通过正交变换得到标准型。</p>
+{ {f{ \left( {x\mathop{ {} } \nolimits_{ {1} } ,x\mathop{ {} } \nolimits_{ {2} } ,...,x\mathop{ {} } \nolimits_{ {n} } }  \right) } =f{ \left( {x}  \right) } =x\mathop{ {} } \nolimits^{ {T} } Ax} \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } { \left( {A=A\mathop{ {} } \nolimits^{ {T} } }  \right) } }</script><p>只含有平方项的二次型称为<strong>标准型</strong>。一般的二次型可以通过正交矩阵对角化变换得到标准型。</p>
 <p>对于非零向量x∈R，如果总有f(x)&gt;0，则称这个二次型为<strong>正定二次型</strong>，A为<strong>正定矩阵</strong>。</p>
+<p>对于非零向量x∈R，如果总有f(x)&gt;=0，则称这个二次型为<strong>半正定二次型</strong>，A为<strong>半正定矩阵</strong>。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/12/linearAlgebra/" data-id="ck0gg4qmj00022suan17u90gd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/12/linearAlgebra/" data-id="ck0ht3bou000774uaw1mqc7ji" class="article-share-link">Share</a>
       
       
     </footer>
@@ -215,7 +241,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/04/deeplearning5/" data-id="ck0gg4qml00042suah8lbiqft" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/04/deeplearning5/" data-id="ck0ht3boe000374uau8tu8tto" class="article-share-link">Share</a>
       
       
     </footer>
@@ -271,7 +297,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/28/project1/" data-id="ck0gg4qmm00052suaifgr6ptk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/28/project1/" data-id="ck0ht3boh000574uadryhcokv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -311,7 +337,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/27/labelme-tutor/" data-id="ck0gg4qmo00062suaba4fus68" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/27/labelme-tutor/" data-id="ck0ht3bog000474uaiv04an6g" class="article-share-link">Share</a>
       
       
     </footer>
@@ -390,7 +416,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/22/deeplearning2/" data-id="ck0gg4qmp00072sua9qbholzr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/22/deeplearning2/" data-id="ck0ht3boi000674ua43621f6n" class="article-share-link">Share</a>
       
       
     </footer>
@@ -439,7 +465,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/19/deeplearning1/" data-id="ck0gg4qm900002suatgobuqe0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/19/deeplearning1/" data-id="ck0ht3bod000274uazmhaat2v" class="article-share-link">Share</a>
       
       
     </footer>
@@ -554,7 +580,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/26/NGcourse/" data-id="ck0gg4qnb00082suam37ptbzl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/26/NGcourse/" data-id="ck0ht3bp4000874ua8p2l3fcm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -593,7 +619,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/" data-id="ck0gg4qmk00032suadtzrlg9k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/" data-id="ck0ht3bob000174uaa3guzt9f" class="article-share-link">Share</a>
       
       
     </footer>
@@ -631,7 +657,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/23/Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs/" data-id="ck0gg4qmh00012suatymf98op" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/23/Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs/" data-id="ck0ht3bo5000074uavftejkws" class="article-share-link">Share</a>
       
       
     </footer>
