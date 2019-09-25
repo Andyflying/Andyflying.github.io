@@ -7,17 +7,17 @@
   
   <title>线性代数常用知识点总结 | Zhou</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="正交矩阵实矩阵A满足：  {AA\mathop{ {} } \nolimits^{ {T} } =E}则A为正交矩阵其中E为单位矩阵。正交矩阵是标准正交基)按列排列起来得到的矩阵。 正交矩阵是酉矩阵的在实数域的一种特殊形式。 特征向量&amp;amp;特征值设A是n阶方阵，如果存在数λ和非零向量ε，使得：  {A \varepsilon = \lambda  \varepsilon }则称λ为方阵A的特征">
+  <meta name="description" content="（^_^比较乱，持续更新中…） 矩阵的四个基本子空间矩阵的四个基本子空间分别是列空间、零空间、行空间、左零空间。 对于m×n维的矩阵A：  列空间C(A)，是方程Ax=b中b的解空间。可以理解为有列向量组成的矩阵A的线性组合。维数是rank(A)。 零空间N(A)，是方程Ax=0中x的可行解空间。维数是n-rank(A)。 行空间C(A^T)，是A转置的列空间。维数是rank(A)。 左零空间N(">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线性代数常用知识点总结">
 <meta property="og:url" content="http://yoursite.com/2019/09/12/linearAlgebra/index.html">
 <meta property="og:site_name" content="Zhou">
-<meta property="og:description" content="正交矩阵实矩阵A满足：  {AA\mathop{ {} } \nolimits^{ {T} } =E}则A为正交矩阵其中E为单位矩阵。正交矩阵是标准正交基)按列排列起来得到的矩阵。 正交矩阵是酉矩阵的在实数域的一种特殊形式。 特征向量&amp;amp;特征值设A是n阶方阵，如果存在数λ和非零向量ε，使得：  {A \varepsilon = \lambda  \varepsilon }则称λ为方阵A的特征">
+<meta property="og:description" content="（^_^比较乱，持续更新中…） 矩阵的四个基本子空间矩阵的四个基本子空间分别是列空间、零空间、行空间、左零空间。 对于m×n维的矩阵A：  列空间C(A)，是方程Ax=b中b的解空间。可以理解为有列向量组成的矩阵A的线性组合。维数是rank(A)。 零空间N(A)，是方程Ax=0中x的可行解空间。维数是n-rank(A)。 行空间C(A^T)，是A转置的列空间。维数是rank(A)。 左零空间N(">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-23T13:23:42.853Z">
+<meta property="og:updated_time" content="2019-09-25T13:45:01.867Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性代数常用知识点总结">
-<meta name="twitter:description" content="正交矩阵实矩阵A满足：  {AA\mathop{ {} } \nolimits^{ {T} } =E}则A为正交矩阵其中E为单位矩阵。正交矩阵是标准正交基)按列排列起来得到的矩阵。 正交矩阵是酉矩阵的在实数域的一种特殊形式。 特征向量&amp;amp;特征值设A是n阶方阵，如果存在数λ和非零向量ε，使得：  {A \varepsilon = \lambda  \varepsilon }则称λ为方阵A的特征">
+<meta name="twitter:description" content="（^_^比较乱，持续更新中…） 矩阵的四个基本子空间矩阵的四个基本子空间分别是列空间、零空间、行空间、左零空间。 对于m×n维的矩阵A：  列空间C(A)，是方程Ax=b中b的解空间。可以理解为有列向量组成的矩阵A的线性组合。维数是rank(A)。 零空间N(A)，是方程Ax=0中x的可行解空间。维数是n-rank(A)。 行空间C(A^T)，是A转置的列空间。维数是rank(A)。 左零空间N(">
   
     <link rel="alternate" href="/atom.xml" title="Zhou" type="application/atom+xml">
   
@@ -86,7 +86,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="正交矩阵"><a href="#正交矩阵" class="headerlink" title="正交矩阵"></a>正交矩阵</h1><p>实矩阵<strong>A</strong>满足：</p>
+        <p>（^_^比较乱，持续更新中…）</p>
+<h1 id="矩阵的四个基本子空间"><a href="#矩阵的四个基本子空间" class="headerlink" title="矩阵的四个基本子空间"></a>矩阵的四个基本子空间</h1><p>矩阵的四个基本子空间分别是列空间、零空间、行空间、左零空间。</p>
+<p>对于m×n维的矩阵A：</p>
+<ul>
+<li>列空间C(A)，是方程Ax=b中b的解空间。可以理解为有列向量组成的矩阵A的线性组合。维数是rank(A)。</li>
+<li>零空间N(A)，是方程Ax=0中x的可行解空间。维数是n-rank(A)。</li>
+<li>行空间C(A^T)，是A转置的列空间。维数是rank(A)。</li>
+<li>左零空间N(A^T)，是A转置的零空间。维数是m-rank(A)。</li>
+</ul>
+<p>可以把行空间和零空间看做一组，列空间和左零空间看做一组，利用<a href="https://baike.baidu.com/item/高斯-若尔当消元法/19969775?fr=aladdin" target="_blank" rel="noopener">Gauss-Jordan消元法</a>可以方便的同时求解两个空间的基。</p>
+<h1 id="正交矩阵"><a href="#正交矩阵" class="headerlink" title="正交矩阵"></a>正交矩阵</h1><p>实矩阵<strong>A</strong>满足：</p>
 <script type="math/tex; mode=display">
 {AA\mathop{ {} } \nolimits^{ {T} } =E}</script><p>则<strong>A</strong>为正交矩阵其中E为单位矩阵。正交矩阵是<a href="[https://baike.baidu.com/item/%E6%A0%87%E5%87%86%E6%AD%A3%E4%BA%A4%E5%9F%BA/4729576?fr=aladdin](https://baike.baidu.com/item/标准正交基/4729576?fr=aladdin">标准正交基</a>)按列排列起来得到的矩阵。</p>
 <p>正交矩阵是<a href="https://baike.baidu.com/item/%E5%B9%BA%E6%AD%A3%E7%9F%A9%E9%98%B5/1651000?fromtitle=%E9%85%89%E7%9F%A9%E9%98%B5&amp;fromid=2967660" target="_blank" rel="noopener">酉矩阵</a>的在实数域的一种特殊形式。</p>
@@ -192,7 +202,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/12/linearAlgebra/" data-id="ck0wfzq6j00062oua5ipfi54i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/12/linearAlgebra/" data-id="ck0zbmiww00071wuawowyk79d" class="article-share-link">Share</a>
       
       
     </footer>
