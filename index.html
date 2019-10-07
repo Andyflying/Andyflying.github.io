@@ -62,10 +62,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-linearAlgebra" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-deeplearning4" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/09/12/linearAlgebra/" class="article-date">
-  <time datetime="2019-09-12T08:42:36.000Z" itemprop="datePublished">2019-09-12</time>
+    <a href="/2019/10/04/deeplearning4/" class="article-date">
+  <time datetime="2019-10-04T06:34:35.000Z" itemprop="datePublished">2019-10-04</time>
 </a>
     
   </div>
@@ -76,7 +76,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/12/linearAlgebra/">线性代数常用知识点总结</a>
+      <a class="article-title" href="/2019/10/04/deeplearning4/">deeplearning4</a>
     </h1>
   
 
@@ -84,7 +84,45 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>（^_^比较乱，持续更新中…）</p>
+        <h1 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h1><p>一般的经典卷积神经网络是由卷积层、池化层和全连接层组成。其中卷积层和池化层交替出现，全连接层都在最后。</p>
+<p>一个卷积层运算的细节：#卷积运算后输出图片的像素大小：</p>
+<script type="math/tex; mode=display">
+{ \left\lfloor {\frac{ {n+2p-f} } { {s} } +1}  \right\rfloor }</script><p>其中，输入图片像素为n×n，滤波器大小为f×f，p为padding大小，s为步长。这个公式也可以用于算池化层的输出图片像素。</p>
+<p>如果严格按照数学定义的话，卷积操作应该先将卷积核翻转一次，如何不进行翻转应该叫做互相关操作。但为了操作简便，深度学习中的卷积不进行卷积核翻转。</p>
+<h1 id="ResNet"><a href="#ResNet" class="headerlink" title="ResNet"></a>ResNet</h1><p>残差网络（ResNet）就是在普通的卷积神经网络中，加入短路连接。短路连接就是讲第i层直接连到i+n层，作为i+n层的一个输入。这种操作可以起到加深网络层数，而有效抑制使得随着网络层数的增加而产生的梯度爆炸、梯度消失的现象。</p>
+<h1 id="1×1卷积"><a href="#1×1卷积" class="headerlink" title="1×1卷积"></a>1×1卷积</h1><p>我们知道池化层可以压缩数据长和宽的尺寸，而1×1卷积可以用来的压缩（改变）图像通道的维度。比起比较大的卷积核，1×1卷积改变通道的维度的计算量较小，速度更快。</p>
+<p>例如，如果想将28×28×192的数据变为28×28×32，就可以用32个1×1×192的卷积核对其进行卷积操作。</p>
+<p> 在inception网络中用到1×1卷积来压缩图像通道的维度用来提升计算速度。</p>
+<h1 id="Inception"><a href="#Inception" class="headerlink" title="Inception"></a>Inception</h1><p>Inception模块是用多个不同大小的卷积核和池化层同时处理某一层的输入，再讲处理的结果叠加起来进行输出。</p>
+<h1 id="迁移学习"><a href="#迁移学习" class="headerlink" title="迁移学习"></a>迁移学习</h1><p>下载已经在大数据集上训练好的网络权重，只根据自己的业务进行少量层数（后面几层）的训练。通常是数据越多，应该训练的层数也越多。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/deeplearning4/" data-id="ck1ggb5xl0000r4uarisbyxew" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linearAlgebra" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/12/linearAlgebra/" class="article-date">
+  <time datetime="2019-09-12T08:42:36.929Z" itemprop="datePublished">2019-09-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>title: 线性代数常用知识点总结<br>date: 2019-09-12 16:42:36<br>tags:</p>
+<p>（^_^比较乱，持续更新中…）</p>
 <h1 id="矩阵的四个基本子空间"><a href="#矩阵的四个基本子空间" class="headerlink" title="矩阵的四个基本子空间"></a>矩阵的四个基本子空间</h1><p>矩阵的四个基本子空间分别是列空间、零空间、行空间、左零空间。</p>
 <p>对于m×n维的矩阵A：</p>
 <ul>
@@ -200,7 +238,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/12/linearAlgebra/" data-id="ck0zbmiww00071wuawowyk79d" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/12/linearAlgebra/" data-id="ck1ggb5yk0008r4uar0t3sc2l" class="article-share-link">Share</a>
       
       
     </footer>
@@ -275,11 +313,12 @@
 {a\mathop{ {} } \nolimits^{ { < t,t\mathop{ {} } \nolimits^{ {\text{'} } }  > } } \text{表} \text{示} \text{此} \text{时} \text{刻} t\text{把} \text{注} \text{意} \text{力} \text{放} \text{在} t\mathop{ {} } \nolimits^{ {\text{'} } } \text{时} \text{刻} \text{的} \text{程} \text{度} }</script><p>网络结构如下图：</p>
 <p><img src="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/attn_mechanism.png" alt="att"></p>
 <p><img src="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/attn_model.png" alt="attn"></p>
+<h1 id="词嵌入"><a href="#词嵌入" class="headerlink" title="词嵌入"></a>词嵌入</h1><p>词嵌入是对单词之间的相似度进行评价的一个矩阵，每个单词对应矩阵的一个高维的向量。如果两个单词关联相近，那么两个向量的距离就相近。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/04/deeplearning5/" data-id="ck0zbmiwu00061wuasd5n8377" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/04/deeplearning5/" data-id="ck1ggb5yb0007r4uaxnw6t8h2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -335,7 +374,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/28/project1/" data-id="ck0zbmiwr00041wua32t0dlxe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/28/project1/" data-id="ck1ggb5xy0005r4uadvmwpci3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -375,7 +414,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/27/labelme-tutor/" data-id="ck0zbmiwf00031wuao1rpvl8v" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/27/labelme-tutor/" data-id="ck1ggb5xu0002r4uaa1bc658h" class="article-share-link">Share</a>
       
       
     </footer>
@@ -454,7 +493,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/22/deeplearning2/" data-id="ck0zbmiwc00021wuaektmmw0g" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/22/deeplearning2/" data-id="ck1ggb5xz0006r4uatgbe3u7a" class="article-share-link">Share</a>
       
       
     </footer>
@@ -503,7 +542,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/19/deeplearning1/" data-id="ck0zbmiwt00051wuaff7o1ath" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/19/deeplearning1/" data-id="ck1ggb5xv0003r4ua3p74s66o" class="article-share-link">Share</a>
       
       
     </footer>
@@ -618,7 +657,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/26/NGcourse/" data-id="ck0zbmix400081wua87evei1y" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/26/NGcourse/" data-id="ck1ggb5yl0009r4ua34d9fobk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -657,7 +696,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/" data-id="ck0zbmivy00001wuao62z4lq8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/" data-id="ck1ggb5xx0004r4uawkagkght" class="article-share-link">Share</a>
       
       
     </footer>
@@ -695,7 +734,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/23/Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs/" data-id="ck0zbmiw900011wuag6tk39nq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/23/Bubble-Cup-11-Finals-Online-Mirror-Div-2-problem-H-Palindrome-Pairs/" data-id="ck1ggb5xs0001r4ua981gtvys" class="article-share-link">Share</a>
       
       
     </footer>
@@ -723,7 +762,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
     </div>
   </div>
 
@@ -736,7 +775,11 @@
       <ul>
         
           <li>
-            <a href="/2019/09/12/linearAlgebra/">线性代数常用知识点总结</a>
+            <a href="/2019/10/04/deeplearning4/">deeplearning4</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/12/linearAlgebra/">(no title)</a>
           </li>
         
           <li>
@@ -749,10 +792,6 @@
         
           <li>
             <a href="/2019/08/27/labelme-tutor/">Windows下labelme安装简介</a>
-          </li>
-        
-          <li>
-            <a href="/2019/08/22/deeplearning2/">吴恩达深度学习--改善深层神经网络：超参数调试、正则化以及优化</a>
           </li>
         
       </ul>

@@ -5,19 +5,19 @@
   
 
   
-  <title>Windows下labelme安装简介 | Zhou</title>
+  <title>deeplearning4 | Zhou</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.安装anaconda。2.打开anaconda prompt，依次输入： 1234conda create --name=labelme python=3.5 activate labelmeconda install pyqtpip install labelme tip：由于Python2和Python3存在兼容性问题，使用时注意Python版本。 参考文献：https://blog.cs">
+  <meta name="description" content="卷积神经网络一般的经典卷积神经网络是由卷积层、池化层和全连接层组成。其中卷积层和池化层交替出现，全连接层都在最后。 一个卷积层运算的细节：#卷积运算后输出图片的像素大小：  { \left\lfloor {\frac{ {n+2p-f} } { {s} } +1}  \right\rfloor }其中，输入图片像素为n×n，滤波器大小为f×f，p为padding大小，s为步长。这个公式也可以用于算">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Windows下labelme安装简介">
-<meta property="og:url" content="http://yoursite.com/2019/08/27/labelme-tutor/index.html">
+<meta property="og:title" content="deeplearning4">
+<meta property="og:url" content="http://yoursite.com/2019/10/04/deeplearning4/index.html">
 <meta property="og:site_name" content="Zhou">
-<meta property="og:description" content="1.安装anaconda。2.打开anaconda prompt，依次输入： 1234conda create --name=labelme python=3.5 activate labelmeconda install pyqtpip install labelme tip：由于Python2和Python3存在兼容性问题，使用时注意Python版本。 参考文献：https://blog.cs">
+<meta property="og:description" content="卷积神经网络一般的经典卷积神经网络是由卷积层、池化层和全连接层组成。其中卷积层和池化层交替出现，全连接层都在最后。 一个卷积层运算的细节：#卷积运算后输出图片的像素大小：  { \left\lfloor {\frac{ {n+2p-f} } { {s} } +1}  \right\rfloor }其中，输入图片像素为n×n，滤波器大小为f×f，p为padding大小，s为步长。这个公式也可以用于算">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-28T11:06:00.371Z">
+<meta property="og:updated_time" content="2019-10-07T13:28:21.101Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Windows下labelme安装简介">
-<meta name="twitter:description" content="1.安装anaconda。2.打开anaconda prompt，依次输入： 1234conda create --name=labelme python=3.5 activate labelmeconda install pyqtpip install labelme tip：由于Python2和Python3存在兼容性问题，使用时注意Python版本。 参考文献：https://blog.cs">
+<meta name="twitter:title" content="deeplearning4">
+<meta name="twitter:description" content="卷积神经网络一般的经典卷积神经网络是由卷积层、池化层和全连接层组成。其中卷积层和池化层交替出现，全连接层都在最后。 一个卷积层运算的细节：#卷积运算后输出图片的像素大小：  { \left\lfloor {\frac{ {n+2p-f} } { {s} } +1}  \right\rfloor }其中，输入图片像素为n×n，滤波器大小为f×f，p为padding大小，s为步长。这个公式也可以用于算">
   
     <link rel="alternate" href="/atom.xml" title="Zhou" type="application/atom+xml">
   
@@ -64,10 +64,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-labelme-tutor" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-deeplearning4" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/08/27/labelme-tutor/" class="article-date">
-  <time datetime="2019-08-27T12:26:46.000Z" itemprop="datePublished">2019-08-27</time>
+    <a href="/2019/10/04/deeplearning4/" class="article-date">
+  <time datetime="2019-10-04T06:34:35.000Z" itemprop="datePublished">2019-10-04</time>
 </a>
     
   </div>
@@ -78,7 +78,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Windows下labelme安装简介
+      deeplearning4
     </h1>
   
 
@@ -86,15 +86,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1.安装anaconda。<br>2.打开anaconda prompt，依次输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conda create --name=labelme python=3.5 </span><br><span class="line">activate labelme</span><br><span class="line">conda install pyqt</span><br><span class="line">pip install labelme</span><br></pre></td></tr></table></figure>
-<p>tip：由于Python2和Python3存在兼容性问题，使用时注意Python版本。</p>
-<p>参考文献：<br><a href="https://blog.csdn.net/DuanTuiXiaoALi/article/details/78295053" target="_blank" rel="noopener">https://blog.csdn.net/DuanTuiXiaoALi/article/details/78295053</a></p>
+        <h1 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h1><p>一般的经典卷积神经网络是由卷积层、池化层和全连接层组成。其中卷积层和池化层交替出现，全连接层都在最后。</p>
+<p>一个卷积层运算的细节：#卷积运算后输出图片的像素大小：</p>
+<script type="math/tex; mode=display">
+{ \left\lfloor {\frac{ {n+2p-f} } { {s} } +1}  \right\rfloor }</script><p>其中，输入图片像素为n×n，滤波器大小为f×f，p为padding大小，s为步长。这个公式也可以用于算池化层的输出图片像素。</p>
+<p>如果严格按照数学定义的话，卷积操作应该先将卷积核翻转一次，如何不进行翻转应该叫做互相关操作。但为了操作简便，深度学习中的卷积不进行卷积核翻转。</p>
+<h1 id="ResNet"><a href="#ResNet" class="headerlink" title="ResNet"></a>ResNet</h1><p>残差网络（ResNet）就是在普通的卷积神经网络中，加入短路连接。短路连接就是讲第i层直接连到i+n层，作为i+n层的一个输入。这种操作可以起到加深网络层数，而有效抑制使得随着网络层数的增加而产生的梯度爆炸、梯度消失的现象。</p>
+<h1 id="1×1卷积"><a href="#1×1卷积" class="headerlink" title="1×1卷积"></a>1×1卷积</h1><p>我们知道池化层可以压缩数据长和宽的尺寸，而1×1卷积可以用来的压缩（改变）图像通道的维度。比起比较大的卷积核，1×1卷积改变通道的维度的计算量较小，速度更快。</p>
+<p>例如，如果想将28×28×192的数据变为28×28×32，就可以用32个1×1×192的卷积核对其进行卷积操作。</p>
+<p> 在inception网络中用到1×1卷积来压缩图像通道的维度用来提升计算速度。</p>
+<h1 id="Inception"><a href="#Inception" class="headerlink" title="Inception"></a>Inception</h1><p>Inception模块是用多个不同大小的卷积核和池化层同时处理某一层的输入，再讲处理的结果叠加起来进行输出。</p>
+<h1 id="迁移学习"><a href="#迁移学习" class="headerlink" title="迁移学习"></a>迁移学习</h1><p>下载已经在大数据集上训练好的网络权重，只根据自己的业务进行少量层数（后面几层）的训练。通常是数据越多，应该训练的层数也越多。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/27/labelme-tutor/" data-id="ck1ggb5xu0002r4uaa1bc658h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/04/deeplearning4/" data-id="ck1ggb5xl0000r4uarisbyxew" class="article-share-link">Share</a>
       
       
     </footer>
@@ -103,19 +110,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/08/28/project1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          船舰识别比赛总结
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/08/22/deeplearning2/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/09/12/linearAlgebra/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">吴恩达深度学习--改善深层神经网络：超参数调试、正则化以及优化</div>
+      <div class="article-nav-title"></div>
     </a>
   
 </nav>
