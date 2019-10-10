@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>主成分分析（PCA）算法的介绍、解释和证明 | Zhou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="算法的目标主成分分析（PCA）算法的目标是将一组p维的样本数据降为d维；需要满足两个条件：  样本数据各点与其映射到d维中的点的距离尽量近。 样本数据映射到d维之后，他们的投影之间的相互距离尽可能远。  （其实这两个条件是等价的。） 举个例子，如果p=2，d=1，则PCA算法可以由下图表示：  算法的步骤 对所有的样本进行中心化操作，如果有m个样本数据，中心化操作如下：   {x\mathop{">
+<meta property="og:type" content="article">
+<meta property="og:title" content="主成分分析（PCA）算法的介绍、解释和证明">
+<meta property="og:url" content="http://yoursite.com/2019/10/10/pcaAlgorithm/index.html">
+<meta property="og:site_name" content="Zhou">
+<meta property="og:description" content="算法的目标主成分分析（PCA）算法的目标是将一组p维的样本数据降为d维；需要满足两个条件：  样本数据各点与其映射到d维中的点的距离尽量近。 样本数据映射到d维之后，他们的投影之间的相互距离尽可能远。  （其实这两个条件是等价的。） 举个例子，如果p=2，d=1，则PCA算法可以由下图表示：  算法的步骤 对所有的样本进行中心化操作，如果有m个样本数据，中心化操作如下：   {x\mathop{">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/OD2DI9%7BR%7DZA52_ZI%254U7GCH.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/fbfdgdfg3.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/91010161848.jpg">
+<meta property="og:updated_time" content="2019-10-10T08:49:22.373Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="主成分分析（PCA）算法的介绍、解释和证明">
+<meta name="twitter:description" content="算法的目标主成分分析（PCA）算法的目标是将一组p维的样本数据降为d维；需要满足两个条件：  样本数据各点与其映射到d维中的点的距离尽量近。 样本数据映射到d维之后，他们的投影之间的相互距离尽可能远。  （其实这两个条件是等价的。） 举个例子，如果p=2，d=1，则PCA算法可以由下图表示：  算法的步骤 对所有的样本进行中心化操作，如果有m个样本数据，中心化操作如下：   {x\mathop{">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/OD2DI9%7BR%7DZA52_ZI%254U7GCH.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Zhou" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Zhou</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-pcaAlgorithm" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/10/pcaAlgorithm/" class="article-date">
+  <time datetime="2019-10-10T08:48:09.000Z" itemprop="datePublished">2019-10-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      主成分分析（PCA）算法的介绍、解释和证明
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="算法的目标"><a href="#算法的目标" class="headerlink" title="算法的目标"></a>算法的目标</h1><p>主成分分析（PCA）算法的目标是将一组p维的样本数据降为d维；需要满足两个条件：</p>
+<ul>
+<li>样本数据各点与其映射到d维中的点的距离尽量近。</li>
+<li>样本数据映射到d维之后，他们的投影之间的相互距离尽可能远。</li>
+</ul>
+<p>（其实这两个条件是等价的。）</p>
+<p>举个例子，如果p=2，d=1，则PCA算法可以由下图表示：</p>
+<p><img src="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/OD2DI9%7BR%7DZA52_ZI%254U7GCH.png" alt="PCA"></p>
+<h1 id="算法的步骤"><a href="#算法的步骤" class="headerlink" title="算法的步骤"></a>算法的步骤</h1><ul>
+<li>对所有的样本进行中心化操作，如果有m个样本数据，中心化操作如下：</li>
+</ul>
+<script type="math/tex; mode=display">
+{x\mathop{ {} } \nolimits_{ {i} }  \leftarrow x\mathop{ {} } \nolimits_{ {i} } -\frac{ {1} } { {m} } {\mathop{ \sum } \limits_{ {i=1} } ^{ {m} } {x\mathop{ {} } \nolimits_{ {i} } } } }</script><ul>
+<li>计算样本矩阵<strong>X</strong>的协方差矩阵，并做特征值分解。</li>
+<li>取最大的d个特征值所对应的特征向量作为维度变换的投影矩阵<strong>W*</strong>。所以PCA算法的结果为：</li>
+</ul>
+<script type="math/tex; mode=display">
+{Y=W\mathop{ {} } \nolimits^{ {*T} } X}</script><h1 id="解释和证明"><a href="#解释和证明" class="headerlink" title="解释和证明"></a>解释和证明</h1><h2 id="为什么要对输入数据进行中心化操作呢？"><a href="#为什么要对输入数据进行中心化操作呢？" class="headerlink" title="为什么要对输入数据进行中心化操作呢？"></a>为什么要对输入数据进行中心化操作呢？</h2><p>很显然，我们求协方差的时候，先会将每个样本减去平均值，再进行取平方再平均的运算。中心化的操作可以看成求协方差的一部分。如果没有进行中心化操作，效果可以见<a href="https://blog.csdn.net/fisherming/article/details/80236631。" target="_blank" rel="noopener">https://blog.csdn.net/fisherming/article/details/80236631。</a></p>
+<h2 id="为什么计算样本的协方差矩阵，并做特征值分解？"><a href="#为什么计算样本的协方差矩阵，并做特征值分解？" class="headerlink" title="为什么计算样本的协方差矩阵，并做特征值分解？"></a>为什么计算样本的协方差矩阵，并做特征值分解？</h2><p>这就是PCA的核心证明问题了，有一定的数学功底而且想弄明白PCA算法原理的读者可以往下继续看。</p>
+<p>首先，设降维映射后的坐标系的标准正交基为：</p>
+<script type="math/tex; mode=display">
+{ \left\{ {w\mathop{ {} } \nolimits_{ {1} } ,w\mathop{ {} } \nolimits_{ {2} } ,...,w\mathop{ {} } \nolimits_{ {d} } }  \right\}  }</script><p>这里要解释一下，如果我们输入的样本是在普通的p维直角坐标系下表示的，那么降维变换后，映射到新的d为空间很有可能不是与以前的p维空间的某d和坐标轴重合，通俗的讲，这个d维空间往往是个斜的，就像把2维的数据映射到1维的直线的那个图一样，直线是斜的。所以就需要d为空间的基进行变换，从而达到用d维的数据就可以进行表示的目的。</p>
+<p>所以，降维变换之后的一个d维向量可以表示为z(z1,z2,…,zd)。注意这个坐标的基已经进行了变换。所以：</p>
+<script type="math/tex; mode=display">
+{z\mathop{ {} } \nolimits_{ {j} } =w\mathop{ {} } \nolimits_{ {j} } ^{ {T} } x}</script><p>(1) 考虑样本数据各点与其映射到d维中的点的距离尽量近</p>
+<p>我们这时候要算降维变换前后对应点之间的距离，将其最小化就好了。可是我们发现降维变换前后的维度都不一样了，该如何算距离呢？这时我们要将降维变换后的坐标反变换回原来的p维空间内就好了。计算操作如下：</p>
+<script type="math/tex; mode=display">
+{\mathop{ {x} } \limits^{ {\text{^} } } ={\mathop{ \sum } \limits_{ {j=1} } ^{ {d} } {z\mathop{ {} } \nolimits_{ {j} } w\mathop{ {} } \nolimits_{ {j} } } } }</script><p>所以所有降维变换前后的样本点之间的对应欧式距离就可以计算了，计算公式如下：</p>
+<script type="math/tex; mode=display">
+{\mathop{ \sum } \limits_{ {i=1} } ^{ {m} } { { \left\Vert { {\mathop{ \sum } \limits_{ {j=1} } ^{ {d} } {z\mathop{ {} } \nolimits_{ {ij} } w\mathop{ {} } \nolimits_{ {j} } } } -x\mathop{ {} } \nolimits_{ {i} } }  \right\Vert } \mathop{ {} } \nolimits_{ {2} } ^{ {2} } } }</script><p>上式应该被最小化，化简的步骤参照南瓜书，我就直接贴图了：</p>
+<p><img src="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/fbfdgdfg3.jpg" alt="f1"></p>
+<p>所以PCA算法让我们转换成了一个典型的最优化问题：</p>
+<script type="math/tex; mode=display">
+{\begin{array} {*{20} {l} } 
+{\mathop{ {min} } \limits_{ {W} } \text{ } \text{ } -tr{ \left( {W\mathop{ {} } \nolimits^{ {T} } XX\mathop{ {} } \nolimits^{ {T} } W}  \right) } } \\
+{s.t.\text{ } \text{ } W\mathop{ {} } \nolimits^{ {T} } W=I} 
+\end{array} }</script><p>(2) 考虑样本数据映射到d维之后，他们的投影之间的相互距离尽可能远</p>
+<p>换成数学语言描述这个条件，就可以描述为最大化类内方差。也就是降维变换之后，使得样本在各个维度的方差最大化。这个思路似乎可以更简单的用数学表达式来描述。如果降维映射的标准正交基组成的矩阵为<strong>W</strong>，则：</p>
+<script type="math/tex; mode=display">
+{Z=W\mathop{ {} } \nolimits^{ {T} } X}</script><p>所以也可以转化成一个典型的最优化问题：</p>
+<script type="math/tex; mode=display">
+{\begin{array} {*{20} {l} } 
+{\mathop{ {max} } \limits_{ {W} } \text{ } \text{ } tr{ \left( {W\mathop{ {} } \nolimits^{ {T} } XX\mathop{ {} } \nolimits^{ {T} } W}  \right) } } \\
+{s.t.\text{ } \text{ } W\mathop{ {} } \nolimits^{ {T} } W=I} 
+\end{array} }</script><p>我们可以发现，和(1)中的结果是等价的。</p>
+<p>求解此最优化问题的步骤参照南瓜书，我这里也直接贴图了：</p>
+<p><img src="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/91010161848.jpg" alt="f2"></p>
+<p>学过线性代数的同学就会发现，证明的结果就是输入样本协方差矩阵的特征向量的定义式。所以我们需要计算协方差矩阵并对协方差矩阵进行特征值分解。</p>
+<h2 id="为什么要取最大的d个特征值所对应的特征向量作为维度变换的投影矩阵？"><a href="#为什么要取最大的d个特征值所对应的特征向量作为维度变换的投影矩阵？" class="headerlink" title="为什么要取最大的d个特征值所对应的特征向量作为维度变换的投影矩阵？"></a>为什么要取最大的d个特征值所对应的特征向量作为维度变换的投影矩阵？</h2><p>如果我们将原先的p为向量降维到d维，则需要取最大的d个特征值对应的特征向量构成d维空间的基向量，证明如下：</p>
+<script type="math/tex; mode=display">
+{\begin{array} {*{20} {l} } 
+{ {\begin{array} {*{20} {l} } 
+{\mathop{ {max} } \limits_{ {W} } \text{ } \text{ } tr{ \left( {W\mathop{ {} } \nolimits^{ {T} } XX\mathop{ {} } \nolimits^{ {T} } W}  \right) } } \\
+{=\mathop{ {max} } \limits_{ {W} } \text{ } \text{ } {\mathop{ \sum } \limits_{ {i=1} } ^{ {d} } {w\mathop{ {} } \nolimits_{ {i} } ^{ {T} } XX\mathop{ {} } \nolimits^{ {T} } w\mathop{ {} } \nolimits_{ {i} } } } } \\
+{=\mathop{ {max} } \limits_{ {W} } \text{ } \text{ } {\mathop{ \sum } \limits_{ {i=1} } ^{ {d} } {w\mathop{ {} } \nolimits_{ {i} } ^{ {T} }  \lambda \mathop{ {} } \nolimits_{ {i} } w\mathop{ {} } \nolimits_{ {i} } } } } 
+\end{array} } } \\
+{=\mathop{ {max} } \limits_{ {W} } \text{ } \text{ } {\mathop{ \sum } \limits_{ {i=1} } ^{ {d} } { \lambda \mathop{ {} } \nolimits_{ {i} } } } } 
+\end{array} }</script><h1 id="降维后的损失"><a href="#降维后的损失" class="headerlink" title="降维后的损失"></a>降维后的损失</h1><p>既然是数据降维，就不可避免的损失一些东西。那么如何衡量损失的大小呢？可以通过特征值分解后最大的d个特征值之和与所有p个特征值之和的比值来反映损失的大小，即：</p>
+<script type="math/tex; mode=display">
+{\frac{ { {\mathop{ \sum } \limits_{ {i=1} } ^{ {d} } { \lambda \mathop{ {} } \nolimits_{ {i} } } } } } { { {\mathop{ \sum } \limits_{ {i=1} } ^{ {p} } { \lambda \mathop{ {} } \nolimits_{ {i} } } } } } }</script><h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>《机器学习》周志华</p>
+<p><a href="https://datawhalechina.github.io/pumpkin-book/#/" target="_blank" rel="noopener">https://datawhalechina.github.io/pumpkin-book/#/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/10/pcaAlgorithm/" data-id="ck1kgpcq000039wuav56twhr8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/10/04/deeplearning4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">deeplearning4</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/10/pcaAlgorithm/">主成分分析（PCA）算法的介绍、解释和证明</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/deeplearning4/">deeplearning4</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/12/linearAlgebra/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/04/deeplearning5/">吴恩达深度学习--序列模型</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/28/project1/">船舰识别比赛总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 zhou<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+</body>
+</html>

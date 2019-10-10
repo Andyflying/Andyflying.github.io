@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/OD2DI9%7BR%7DZA52_ZI%254U7GCH.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/ET%5DV%40BHLXX7_1D.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/HUWLJRWK8D151T.png">
-<meta property="og:updated_time" content="2019-09-26T12:30:40.922Z">
+<meta property="og:updated_time" content="2019-10-10T08:50:14.698Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="吴恩达机器学习公开课">
 <meta name="twitter:description" content="本文主要总结吴恩达老师机器学习公开课的知识点。课程共8次编程作业已经上传到我的GitHub上了。链接为：https://github.com/Andyflying/ML-assignment-professorNg 回归和分类回归问题是指用已知数据拟合一个合适的假设函数h(x)，或者可以理解为曲线，来预测新输入的变量的输出结果，如给定房间的大学位置等信息，预测房价。而分类问题，顾名思义，是指用已知">
@@ -148,7 +148,7 @@
 {J{ \left( {c\mathop{ {} } \nolimits^{ { \left( 1 \right) } } ,...c\mathop{ {} } \nolimits^{ { \left( m \right) } } , \mu \mathop{ {} } \nolimits_{ {1} } ,...,\mathop{ { \mu } } \nolimits_{ {K} } }  \right) } =\frac{ {1} } { {m} } {\mathop{ \sum } \limits_{ {i=1} } ^{ {m} } { { \left\Vert {X\mathop{ {} } \nolimits^{ { \left( i \right) } } - \mu \mathop{ {} } \nolimits_{ {c\mathop{ {} } \nolimits^{ { \left( i \right) } } } } }  \right\Vert } \mathop{ {} } \nolimits^{ {2} } } } }</script><p>其中，c^i是指x^i所属于是聚类中心，μ是指各个聚类中心的位置。</p>
 <h1 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h1><p>PCA （Principal Component Analysis，主成分分析）是一种降维算法。比如需要将三维的数据集降为二维，就是寻找一个离数据点最近的平面，将数据点映射到此平面内。下图为二维数据集降为一维：</p>
 <p><img src="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/OD2DI9%7BR%7DZA52_ZI%254U7GCH.png" alt="PCA"></p>
-<p>PCA算法的数学原理没有详细展开讲，日后有时间补充。</p>
+<p>PCA算法的数学原理详见</p>
 <h1 id="异常检测"><a href="#异常检测" class="headerlink" title="异常检测"></a>异常检测</h1><p>感觉异常检测算法既可以看做监督学习，又可以看做无监督学习，有点迷。<br>异常分析简单讲就是将数据归一化之后，建立高斯分布模型。然后设置阈值，未能达到阈值的样本就认为是异常样本。<br>算法具体步骤是对给定数据集，计算每一个维度特征的均值μ和方差σ2。</p>
 <script type="math/tex; mode=display">
 {\begin{array} {*{20} {l} } 
@@ -174,7 +174,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/26/NGcourse/" data-id="ck1ggb5yl0009r4ua34d9fobk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/26/NGcourse/" data-id="ck1kgpcqr000a9wuak68idm8w" class="article-share-link">Share</a>
       
       
     </footer>
@@ -232,6 +232,10 @@
       <ul>
         
           <li>
+            <a href="/2019/10/10/pcaAlgorithm/">主成分分析（PCA）算法的介绍、解释和证明</a>
+          </li>
+        
+          <li>
             <a href="/2019/10/04/deeplearning4/">deeplearning4</a>
           </li>
         
@@ -245,10 +249,6 @@
         
           <li>
             <a href="/2019/08/28/project1/">船舰识别比赛总结</a>
-          </li>
-        
-          <li>
-            <a href="/2019/08/27/labelme-tutor/">Windows下labelme安装简介</a>
           </li>
         
       </ul>
