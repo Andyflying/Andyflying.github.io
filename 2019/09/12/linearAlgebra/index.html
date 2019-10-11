@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Zhou">
 <meta property="og:description" content="矩阵的四个基本子空间矩阵的四个基本子空间分别是列空间、零空间、行空间、左零空间。 对于m×n维的矩阵A：  列空间C(A)，是方程Ax=b中b的解空间。可以理解为有列向量组成的矩阵A的线性组合。维数是rank(A)。 零空间N(A)，是方程Ax=0中x的可行解空间。维数是n-rank(A)。 行空间C(A^T)，是A转置的列空间。维数是rank(A)。 左零空间N(A^T)，是A转置的零空间。维数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-10T09:02:34.118Z">
+<meta property="og:updated_time" content="2019-10-11T15:54:31.530Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性代数常用知识点总结">
 <meta name="twitter:description" content="矩阵的四个基本子空间矩阵的四个基本子空间分别是列空间、零空间、行空间、左零空间。 对于m×n维的矩阵A：  列空间C(A)，是方程Ax=b中b的解空间。可以理解为有列向量组成的矩阵A的线性组合。维数是rank(A)。 零空间N(A)，是方程Ax=0中x的可行解空间。维数是n-rank(A)。 行空间C(A^T)，是A转置的列空间。维数是rank(A)。 左零空间N(A^T)，是A转置的零空间。维数">
@@ -197,11 +197,48 @@
 { {f{ \left( {x\mathop{ {} } \nolimits_{ {1} } ,x\mathop{ {} } \nolimits_{ {2} } ,...,x\mathop{ {} } \nolimits_{ {n} } }  \right) } =f{ \left( {x}  \right) } =x\mathop{ {} } \nolimits^{ {T} } Ax} \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } { \left( {A=A\mathop{ {} } \nolimits^{ {T} } }  \right) } }</script><p>只含有平方项的二次型称为<strong>标准型</strong>。一般的二次型可以通过正交矩阵对角化变换得到标准型。</p>
 <p>对于非零向量x∈R，如果总有f(x)&gt;0，则称这个二次型为<strong>正定二次型</strong>，A为<strong>正定矩阵</strong>。</p>
 <p>对于非零向量x∈R，如果总有f(x)&gt;=0，则称这个二次型为<strong>半正定二次型</strong>，A为<strong>半正定矩阵</strong>。</p>
+<h1 id="行列式"><a href="#行列式" class="headerlink" title="行列式"></a>行列式</h1><p>行列式的研究对象是<strong>方阵</strong>。</p>
+<p>行列式的四条<strong>基本性质</strong>：</p>
+<ul>
+<li>单位阵的行列式等于1。</li>
+<li>交换行列式的两行，行列式符号取反。</li>
+<li>矩阵某行的元素都乘以一个系数t，它的行列式是原先的t倍。即：</li>
+</ul>
+<script type="math/tex; mode=display">
+{ { \left| {\begin{array} {*{20} {l} } 
+{ta} &{tb} \\
+{c} &{d} 
+\end{array} }  \right| } =t{ \left| {\begin{array} {*{20} {l} } 
+{a} &{b} \\
+{c} &{d} 
+\end{array} }  \right| } }</script><ul>
+<li>矩阵某行的元素都加任意一个数，它的行列式等于原先的行列式加用被加数替换的矩阵的行列式。即：</li>
+</ul>
+<script type="math/tex; mode=display">
+{ { { { \left| {\begin{array} {*{20} {l} } 
+{a+a\mathop{ {} } \nolimits^{ {\text{'} } } } &{b+b\mathop{ {} } \nolimits^{ {\text{'} } } } \\
+{c} &{d} 
+\end{array} }  \right| } ={ \left| {\begin{array} {*{20} {l} } 
+{a} &{b} \\
+{c} &{d} 
+\end{array} }  \right| } } +} { \left| {\begin{array} {*{20} {l} } 
+{a\mathop{ {} } \nolimits^{ {\text{'} } } } &{b\mathop{ {} } \nolimits^{ {\text{'} } } } \\
+{c} &{d} 
+\end{array} }  \right| } }</script><p>由以上四条基本性质可以推导出以下几条常用的性质：</p>
+<ul>
+<li>矩阵存在任意两行相等时，其行列式为0。</li>
+<li>经过行初等变换的矩阵，其行列式不变。</li>
+<li>若有一行全为0，则其行列式为0。</li>
+<li>矩阵为奇异矩阵时，其行列式为0。</li>
+<li>一个矩阵和它的转置矩阵行列式相等。</li>
+<li>上三角矩阵（下三角矩阵）的行列式等于对角线元素的乘积。</li>
+<li>两个矩阵相乘的行列式等于两个矩阵的行列式相乘。即det(AB)=det(A)×det(B)。</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/12/linearAlgebra/" data-id="ck1kh4um40009dguaqyi4qrar" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/12/linearAlgebra/" data-id="ck1mbb3de00094ouaocf6dllr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -214,7 +251,7 @@
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          deeplearning4
+          吴恩达深度学习--卷积神经网络
         
       </div>
     </a>
@@ -263,7 +300,7 @@
           </li>
         
           <li>
-            <a href="/2019/10/04/deeplearning4/">deeplearning4</a>
+            <a href="/2019/10/04/deeplearning4/">吴恩达深度学习--卷积神经网络</a>
           </li>
         
           <li>

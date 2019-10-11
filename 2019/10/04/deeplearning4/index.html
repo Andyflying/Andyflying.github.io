@@ -5,18 +5,18 @@
   
 
   
-  <title>deeplearning4 | Zhou</title>
+  <title>吴恩达深度学习--卷积神经网络 | Zhou</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="卷积神经网络一般的经典卷积神经网络是由卷积层、池化层和全连接层组成。其中卷积层和池化层交替出现，全连接层都在最后。 一个卷积层运算的细节：#卷积运算后输出图片的像素大小：  { \left\lfloor {\frac{ {n+2p-f} } { {s} } +1}  \right\rfloor }其中，输入图片像素为n×n，滤波器大小为f×f，p为padding大小，s为步长。这个公式也可以用于算">
 <meta property="og:type" content="article">
-<meta property="og:title" content="deeplearning4">
+<meta property="og:title" content="吴恩达深度学习--卷积神经网络">
 <meta property="og:url" content="http://yoursite.com/2019/10/04/deeplearning4/index.html">
 <meta property="og:site_name" content="Zhou">
 <meta property="og:description" content="卷积神经网络一般的经典卷积神经网络是由卷积层、池化层和全连接层组成。其中卷积层和池化层交替出现，全连接层都在最后。 一个卷积层运算的细节：#卷积运算后输出图片的像素大小：  { \left\lfloor {\frac{ {n+2p-f} } { {s} } +1}  \right\rfloor }其中，输入图片像素为n×n，滤波器大小为f×f，p为padding大小，s为步长。这个公式也可以用于算">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-07T13:28:21.101Z">
+<meta property="og:updated_time" content="2019-10-10T13:21:13.583Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="deeplearning4">
+<meta name="twitter:title" content="吴恩达深度学习--卷积神经网络">
 <meta name="twitter:description" content="卷积神经网络一般的经典卷积神经网络是由卷积层、池化层和全连接层组成。其中卷积层和池化层交替出现，全连接层都在最后。 一个卷积层运算的细节：#卷积运算后输出图片的像素大小：  { \left\lfloor {\frac{ {n+2p-f} } { {s} } +1}  \right\rfloor }其中，输入图片像素为n×n，滤波器大小为f×f，p为padding大小，s为步长。这个公式也可以用于算">
   
     <link rel="alternate" href="/atom.xml" title="Zhou" type="application/atom+xml">
@@ -78,7 +78,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      deeplearning4
+      吴恩达深度学习--卷积神经网络
     </h1>
   
 
@@ -97,11 +97,15 @@
 <p> 在inception网络中用到1×1卷积来压缩图像通道的维度用来提升计算速度。</p>
 <h1 id="Inception"><a href="#Inception" class="headerlink" title="Inception"></a>Inception</h1><p>Inception模块是用多个不同大小的卷积核和池化层同时处理某一层的输入，再讲处理的结果叠加起来进行输出。</p>
 <h1 id="迁移学习"><a href="#迁移学习" class="headerlink" title="迁移学习"></a>迁移学习</h1><p>下载已经在大数据集上训练好的网络权重，只根据自己的业务进行少量层数（后面几层）的训练。通常是数据越多，应该训练的层数也越多。</p>
+<h1 id="YOLO"><a href="#YOLO" class="headerlink" title="YOLO"></a>YOLO</h1><p>将一张图片分成n×n个网格，如果一个物体的中点落在某个网格里，则那个网格就认为有物体存在，然后再后面跟着物体的中点坐标和宽高还有表示物体种类的量，他们构成一个的p维向量。但是这个算法在一个格子里只能检测出一个物体。</p>
+<p>所以说YOLO网络输入一张n×n像素的图片，输出的是一个n×n×p维向量。其中p维向量第一个数是表示有无物体（物体的中点是否落在此单元格内）。2-5个数分别表示物体的x，y坐标和宽高占比，其中，定义n×n方格内的左上角为(0,0)，右下角为(1,1)，所以x，y坐标必然属于[0,1]，但是宽高占比可能大于1，因为物体边缘可能会跳出这个单元格。</p>
+<h1 id="物体检测评价指标"><a href="#物体检测评价指标" class="headerlink" title="物体检测评价指标"></a>物体检测评价指标</h1><p>Intersection over Union(IoU)就是计算预测区域和实际区域的交集和并集的比。</p>
+<h1 id="非极大值抑制"><a href="#非极大值抑制" class="headerlink" title="非极大值抑制"></a>非极大值抑制</h1><p>在运行YOLO算法时，由于网格大小较小，往往会产生多个矩形框重叠在一个物体上。非极大值抑制(NMS)算法就是保留其中有目标物体可能性最高的矩形框，而舍弃与这个矩形框的IoU值较高的其他矩形框。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/04/deeplearning4/" data-id="ck1kh4ulv0004dguaifitpq31" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/04/deeplearning4/" data-id="ck1mbb3cz00054ouaj09dpyvk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -163,7 +167,7 @@
           </li>
         
           <li>
-            <a href="/2019/10/04/deeplearning4/">deeplearning4</a>
+            <a href="/2019/10/04/deeplearning4/">吴恩达深度学习--卷积神经网络</a>
           </li>
         
           <li>

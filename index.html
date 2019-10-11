@@ -149,7 +149,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/10/pcaAlgorithm/" data-id="ck1kh4ulx0006dguausmm9x22" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/10/pcaAlgorithm/" data-id="ck1mbb3d300074ouapy7qtriq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -173,7 +173,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/04/deeplearning4/">deeplearning4</a>
+      <a class="article-title" href="/2019/10/04/deeplearning4/">吴恩达深度学习--卷积神经网络</a>
     </h1>
   
 
@@ -192,11 +192,15 @@
 <p> 在inception网络中用到1×1卷积来压缩图像通道的维度用来提升计算速度。</p>
 <h1 id="Inception"><a href="#Inception" class="headerlink" title="Inception"></a>Inception</h1><p>Inception模块是用多个不同大小的卷积核和池化层同时处理某一层的输入，再讲处理的结果叠加起来进行输出。</p>
 <h1 id="迁移学习"><a href="#迁移学习" class="headerlink" title="迁移学习"></a>迁移学习</h1><p>下载已经在大数据集上训练好的网络权重，只根据自己的业务进行少量层数（后面几层）的训练。通常是数据越多，应该训练的层数也越多。</p>
+<h1 id="YOLO"><a href="#YOLO" class="headerlink" title="YOLO"></a>YOLO</h1><p>将一张图片分成n×n个网格，如果一个物体的中点落在某个网格里，则那个网格就认为有物体存在，然后再后面跟着物体的中点坐标和宽高还有表示物体种类的量，他们构成一个的p维向量。但是这个算法在一个格子里只能检测出一个物体。</p>
+<p>所以说YOLO网络输入一张n×n像素的图片，输出的是一个n×n×p维向量。其中p维向量第一个数是表示有无物体（物体的中点是否落在此单元格内）。2-5个数分别表示物体的x，y坐标和宽高占比，其中，定义n×n方格内的左上角为(0,0)，右下角为(1,1)，所以x，y坐标必然属于[0,1]，但是宽高占比可能大于1，因为物体边缘可能会跳出这个单元格。</p>
+<h1 id="物体检测评价指标"><a href="#物体检测评价指标" class="headerlink" title="物体检测评价指标"></a>物体检测评价指标</h1><p>Intersection over Union(IoU)就是计算预测区域和实际区域的交集和并集的比。</p>
+<h1 id="非极大值抑制"><a href="#非极大值抑制" class="headerlink" title="非极大值抑制"></a>非极大值抑制</h1><p>在运行YOLO算法时，由于网格大小较小，往往会产生多个矩形框重叠在一个物体上。非极大值抑制(NMS)算法就是保留其中有目标物体可能性最高的矩形框，而舍弃与这个矩形框的IoU值较高的其他矩形框。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/04/deeplearning4/" data-id="ck1kh4ulv0004dguaifitpq31" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/04/deeplearning4/" data-id="ck1mbb3cz00054ouaj09dpyvk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -339,11 +343,48 @@
 { {f{ \left( {x\mathop{ {} } \nolimits_{ {1} } ,x\mathop{ {} } \nolimits_{ {2} } ,...,x\mathop{ {} } \nolimits_{ {n} } }  \right) } =f{ \left( {x}  \right) } =x\mathop{ {} } \nolimits^{ {T} } Ax} \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } { \left( {A=A\mathop{ {} } \nolimits^{ {T} } }  \right) } }</script><p>只含有平方项的二次型称为<strong>标准型</strong>。一般的二次型可以通过正交矩阵对角化变换得到标准型。</p>
 <p>对于非零向量x∈R，如果总有f(x)&gt;0，则称这个二次型为<strong>正定二次型</strong>，A为<strong>正定矩阵</strong>。</p>
 <p>对于非零向量x∈R，如果总有f(x)&gt;=0，则称这个二次型为<strong>半正定二次型</strong>，A为<strong>半正定矩阵</strong>。</p>
+<h1 id="行列式"><a href="#行列式" class="headerlink" title="行列式"></a>行列式</h1><p>行列式的研究对象是<strong>方阵</strong>。</p>
+<p>行列式的四条<strong>基本性质</strong>：</p>
+<ul>
+<li>单位阵的行列式等于1。</li>
+<li>交换行列式的两行，行列式符号取反。</li>
+<li>矩阵某行的元素都乘以一个系数t，它的行列式是原先的t倍。即：</li>
+</ul>
+<script type="math/tex; mode=display">
+{ { \left| {\begin{array} {*{20} {l} } 
+{ta} &{tb} \\
+{c} &{d} 
+\end{array} }  \right| } =t{ \left| {\begin{array} {*{20} {l} } 
+{a} &{b} \\
+{c} &{d} 
+\end{array} }  \right| } }</script><ul>
+<li>矩阵某行的元素都加任意一个数，它的行列式等于原先的行列式加用被加数替换的矩阵的行列式。即：</li>
+</ul>
+<script type="math/tex; mode=display">
+{ { { { \left| {\begin{array} {*{20} {l} } 
+{a+a\mathop{ {} } \nolimits^{ {\text{'} } } } &{b+b\mathop{ {} } \nolimits^{ {\text{'} } } } \\
+{c} &{d} 
+\end{array} }  \right| } ={ \left| {\begin{array} {*{20} {l} } 
+{a} &{b} \\
+{c} &{d} 
+\end{array} }  \right| } } +} { \left| {\begin{array} {*{20} {l} } 
+{a\mathop{ {} } \nolimits^{ {\text{'} } } } &{b\mathop{ {} } \nolimits^{ {\text{'} } } } \\
+{c} &{d} 
+\end{array} }  \right| } }</script><p>由以上四条基本性质可以推导出以下几条常用的性质：</p>
+<ul>
+<li>矩阵存在任意两行相等时，其行列式为0。</li>
+<li>经过行初等变换的矩阵，其行列式不变。</li>
+<li>若有一行全为0，则其行列式为0。</li>
+<li>矩阵为奇异矩阵时，其行列式为0。</li>
+<li>一个矩阵和它的转置矩阵行列式相等。</li>
+<li>上三角矩阵（下三角矩阵）的行列式等于对角线元素的乘积。</li>
+<li>两个矩阵相乘的行列式等于两个矩阵的行列式相乘。即det(AB)=det(A)×det(B)。</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/12/linearAlgebra/" data-id="ck1kh4um40009dguaqyi4qrar" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/12/linearAlgebra/" data-id="ck1mbb3de00094ouaocf6dllr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -423,7 +464,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/04/deeplearning5/" data-id="ck1kh4um30008dgua6vf7cr07" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/04/deeplearning5/" data-id="ck1mbb3dd00084ouaokhbbaif" class="article-share-link">Share</a>
       
       
     </footer>
@@ -479,7 +520,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/28/project1/" data-id="ck1kh4uly0007dguab75dwcnk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/28/project1/" data-id="ck1mbb3d100064ouau6r8xmtt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -519,7 +560,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/27/labelme-tutor/" data-id="ck1kh4ulw0005dgua87ekgy4x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/27/labelme-tutor/" data-id="ck1mbb3cw00034oua08vcnshq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -598,7 +639,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/22/deeplearning2/" data-id="ck1kh4ult0003dguague34fy1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/22/deeplearning2/" data-id="ck1mbb3cu00024oualre3n0d4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -647,7 +688,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/19/deeplearning1/" data-id="ck1kh4uli0000dguaqv69fahi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/19/deeplearning1/" data-id="ck1mbb3cy00044ouajrk0aqby" class="article-share-link">Share</a>
       
       
     </footer>
@@ -762,7 +803,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/26/NGcourse/" data-id="ck1kh4umj000adguaateooosc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/26/NGcourse/" data-id="ck1mbb3df000a4ouamztt10nr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -801,7 +842,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/" data-id="ck1kh4ulp0001dguattk4amay" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/" data-id="ck1mbb3ci00014ouad418oddn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -851,7 +892,7 @@
           </li>
         
           <li>
-            <a href="/2019/10/04/deeplearning4/">deeplearning4</a>
+            <a href="/2019/10/04/deeplearning4/">吴恩达深度学习--卷积神经网络</a>
           </li>
         
           <li>
