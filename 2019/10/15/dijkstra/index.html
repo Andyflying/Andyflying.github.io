@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>dijkstra算法针对稠密图和稀疏图的两种不同策略 | Zhou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="迪杰斯特拉（dijkstra）算法是一种普遍用于求两点之间（或者说一个给定点到图中其他任意点）的最短路径的算法。但当图的连接较为稠密或者较为稀疏的时候，采用两种不同的思路，可以优化算法的执行速度。 应用于稠密连接图的dijkstra算法所谓稠密连接就是指图之间的连接路径趋近于n的平方（n为图中节点的个数）。在稠密连接的条件下，dijkstra算法的算法复杂度是O(n^2)。 算法思想是分两步走：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dijkstra算法针对稠密图和稀疏图的两种不同策略">
+<meta property="og:url" content="http://yoursite.com/2019/10/15/dijkstra/index.html">
+<meta property="og:site_name" content="Zhou">
+<meta property="og:description" content="迪杰斯特拉（dijkstra）算法是一种普遍用于求两点之间（或者说一个给定点到图中其他任意点）的最短路径的算法。但当图的连接较为稠密或者较为稀疏的时候，采用两种不同的思路，可以优化算法的执行速度。 应用于稠密连接图的dijkstra算法所谓稠密连接就是指图之间的连接路径趋近于n的平方（n为图中节点的个数）。在稠密连接的条件下，dijkstra算法的算法复杂度是O(n^2)。 算法思想是分两步走：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-14T16:58:24.207Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="dijkstra算法针对稠密图和稀疏图的两种不同策略">
+<meta name="twitter:description" content="迪杰斯特拉（dijkstra）算法是一种普遍用于求两点之间（或者说一个给定点到图中其他任意点）的最短路径的算法。但当图的连接较为稠密或者较为稀疏的时候，采用两种不同的思路，可以优化算法的执行速度。 应用于稠密连接图的dijkstra算法所谓稠密连接就是指图之间的连接路径趋近于n的平方（n为图中节点的个数）。在稠密连接的条件下，dijkstra算法的算法复杂度是O(n^2)。 算法思想是分两步走：">
+  
+    <link rel="alternate" href="/atom.xml" title="Zhou" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Zhou</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-dijkstra" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/15/dijkstra/" class="article-date">
+  <time datetime="2019-10-14T16:57:30.000Z" itemprop="datePublished">2019-10-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      dijkstra算法针对稠密图和稀疏图的两种不同策略
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>迪杰斯特拉（dijkstra）算法是一种普遍用于求两点之间（或者说一个给定点到图中其他任意点）的最短路径的算法。但当图的连接较为稠密或者较为稀疏的时候，采用两种不同的思路，可以优化算法的执行速度。</p>
+<h1 id="应用于稠密连接图的dijkstra算法"><a href="#应用于稠密连接图的dijkstra算法" class="headerlink" title="应用于稠密连接图的dijkstra算法"></a>应用于稠密连接图的dijkstra算法</h1><p>所谓稠密连接就是指图之间的连接路径趋近于n的平方（n为图中节点的个数）。在稠密连接的条件下，dijkstra算法的算法复杂度是O(n^2)。</p>
+<p>算法思想是分两步走：</p>
+<ul>
+<li>从起点开始，依次找到距离起点最近且没有被遍历过的点。</li>
+<li>更新与这个点直接连接的点的最短距离值。</li>
+</ul>
+<p>其中，更新最短距离值的状态转移方程为：</p>
+<script type="math/tex; mode=display">
+{d{ \left( {y}  \right) } =min{ \left( {d{ \left( {y}  \right) } ,d{ \left( {x}  \right) } +map{ \left( {x,y}  \right) } }  \right) } }</script><p>其中，x是指当前正在遍历的点，y是指和当前正在遍历的点直接连接的点，map(x,y)是指x和y的距离。</p>
+<p>所以很容易得到，第一步的算法复杂度是O(n)，第二步也是O(n)。由于两个步骤嵌套执行，所以算法复杂度是O(n^2)。</p>
+<p>此算法的伪代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for([1:n]):</span><br><span class="line">	for([1:n]):找出距离起点最近且没有被遍历过的点</span><br><span class="line">	for([1:n]):更新与这个点直接连接的点的最短距离值</span><br></pre></td></tr></table></figure>
+<h1 id="应用于稀疏连接图的dijkstra算法"><a href="#应用于稀疏连接图的dijkstra算法" class="headerlink" title="应用于稀疏连接图的dijkstra算法"></a>应用于稀疏连接图的dijkstra算法</h1><p>稀疏连接和稠密连接界限的界定没有那么明显，但是在很多问题场景下，节点的数量远远大于与一个节点连接的边的数量。对于这种稀疏连接的图，我们可以将算法复杂度优化到O(mlogn)。其中m为图中边的个数，n为图中节点的个数。</p>
+<p>算法思想总体思想和稠密图的类似，但是实现细节上有些不同。</p>
+<p>在第一步找距离起点最近且没有被遍历过的点的时候，我们需要用到<a href="https://baike.baidu.com/item/优先队列/9354754?fr=aladdin" target="_blank" rel="noopener">优先队列</a>，就是在执行第二步更新节点值的时候，将与当前节点直接连接的节点（也就是可能被更新的节点）放入优先队列中，然后在下一步用优先队列直接取出距离最近的节点。我们知道优先队列的增删改查算法复杂度都在O(logn)之内。</p>
+<p>在第二步更新当前遍历点直接连接节点的最短距离值的时候，就不用遍历所有节点了。</p>
+<p>所以算法思想如下：</p>
+<ul>
+<li>从起点开始，依次遍历优先队列中的点。</li>
+<li>取与此节点相连接的边，并更新另一头连接节点的距离最小值。</li>
+<li>将相连的节点放入优先队列。</li>
+</ul>
+<p>此算法的伪代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(q:Queue):优先队列里与原点距离最短的点</span><br><span class="line">	for(e:Edge):与此点直接相连的边</span><br><span class="line">		将相连的节点放入优先队列;</span><br></pre></td></tr></table></figure>
+<p>此算法前两个循环实际上是遍历了m条边，再加上循环内优先队列的开销，可知此算法复杂度都是O(mlogn)。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/15/dijkstra/" data-id="ck1qnwdjc0005ewua8l02iyyi" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/10/12/pytorchLearning/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">pytorch学习笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/15/dijkstra/">dijkstra算法针对稠密图和稀疏图的两种不同策略</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/12/pytorchLearning/">pytorch学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/10/pcaAlgorithm/">主成分分析（PCA）算法的介绍、解释和证明</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/deeplearning4/">吴恩达深度学习--卷积神经网络</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/12/linearAlgebra/">线性代数常用知识点总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 zhou<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+</body>
+</html>

@@ -62,6 +62,108 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-dijkstra" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/15/dijkstra/" class="article-date">
+  <time datetime="2019-10-14T16:57:30.000Z" itemprop="datePublished">2019-10-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/15/dijkstra/">dijkstra算法针对稠密图和稀疏图的两种不同策略</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>迪杰斯特拉（dijkstra）算法是一种普遍用于求两点之间（或者说一个给定点到图中其他任意点）的最短路径的算法。但当图的连接较为稠密或者较为稀疏的时候，采用两种不同的思路，可以优化算法的执行速度。</p>
+<h1 id="应用于稠密连接图的dijkstra算法"><a href="#应用于稠密连接图的dijkstra算法" class="headerlink" title="应用于稠密连接图的dijkstra算法"></a>应用于稠密连接图的dijkstra算法</h1><p>所谓稠密连接就是指图之间的连接路径趋近于n的平方（n为图中节点的个数）。在稠密连接的条件下，dijkstra算法的算法复杂度是O(n^2)。</p>
+<p>算法思想是分两步走：</p>
+<ul>
+<li>从起点开始，依次找到距离起点最近且没有被遍历过的点。</li>
+<li>更新与这个点直接连接的点的最短距离值。</li>
+</ul>
+<p>其中，更新最短距离值的状态转移方程为：</p>
+<script type="math/tex; mode=display">
+{d{ \left( {y}  \right) } =min{ \left( {d{ \left( {y}  \right) } ,d{ \left( {x}  \right) } +map{ \left( {x,y}  \right) } }  \right) } }</script><p>其中，x是指当前正在遍历的点，y是指和当前正在遍历的点直接连接的点，map(x,y)是指x和y的距离。</p>
+<p>所以很容易得到，第一步的算法复杂度是O(n)，第二步也是O(n)。由于两个步骤嵌套执行，所以算法复杂度是O(n^2)。</p>
+<p>此算法的伪代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for([1:n]):</span><br><span class="line">	for([1:n]):找出距离起点最近且没有被遍历过的点</span><br><span class="line">	for([1:n]):更新与这个点直接连接的点的最短距离值</span><br></pre></td></tr></table></figure>
+<h1 id="应用于稀疏连接图的dijkstra算法"><a href="#应用于稀疏连接图的dijkstra算法" class="headerlink" title="应用于稀疏连接图的dijkstra算法"></a>应用于稀疏连接图的dijkstra算法</h1><p>稀疏连接和稠密连接界限的界定没有那么明显，但是在很多问题场景下，节点的数量远远大于与一个节点连接的边的数量。对于这种稀疏连接的图，我们可以将算法复杂度优化到O(mlogn)。其中m为图中边的个数，n为图中节点的个数。</p>
+<p>算法思想总体思想和稠密图的类似，但是实现细节上有些不同。</p>
+<p>在第一步找距离起点最近且没有被遍历过的点的时候，我们需要用到<a href="https://baike.baidu.com/item/优先队列/9354754?fr=aladdin" target="_blank" rel="noopener">优先队列</a>，就是在执行第二步更新节点值的时候，将与当前节点直接连接的节点（也就是可能被更新的节点）放入优先队列中，然后在下一步用优先队列直接取出距离最近的节点。我们知道优先队列的增删改查算法复杂度都在O(logn)之内。</p>
+<p>在第二步更新当前遍历点直接连接节点的最短距离值的时候，就不用遍历所有节点了。</p>
+<p>所以算法思想如下：</p>
+<ul>
+<li>从起点开始，依次遍历优先队列中的点。</li>
+<li>取与此节点相连接的边，并更新另一头连接节点的距离最小值。</li>
+<li>将相连的节点放入优先队列。</li>
+</ul>
+<p>此算法的伪代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(q:Queue):优先队列里与原点距离最短的点</span><br><span class="line">	for(e:Edge):与此点直接相连的边</span><br><span class="line">		将相连的节点放入优先队列;</span><br></pre></td></tr></table></figure>
+<p>此算法前两个循环实际上是遍历了m条边，再加上循环内优先队列的开销，可知此算法复杂度都是O(mlogn)。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/15/dijkstra/" data-id="ck1qnwdjc0005ewua8l02iyyi" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-pytorchLearning" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/12/pytorchLearning/" class="article-date">
+  <time datetime="2019-10-12T07:33:07.000Z" itemprop="datePublished">2019-10-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/12/pytorchLearning/">pytorch学习笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://pytorch.org/docs/stable/torch.html" target="_blank" rel="noopener">官方文档链接</a></p>
+<p>pytorch提供了一种数据结构tensor可以和numpy相互转化。</p>
+<p>variable：网络中的节点数据，在网络中的节点可以自动求梯度。（当前版本好像和tensor合并了，也就是说不用variable了。）</p>
+<p>pytorch搭建的神经网络只处理二维数据？？</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/12/pytorchLearning/" data-id="ck1qnwdjg0009ewuaeo79z15w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-pcaAlgorithm" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/10/10/pcaAlgorithm/" class="article-date">
@@ -149,7 +251,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/10/pcaAlgorithm/" data-id="ck1mbb3d300074ouapy7qtriq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/10/pcaAlgorithm/" data-id="ck1qnwdje0007ewuaanha8zd8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -200,7 +302,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/04/deeplearning4/" data-id="ck1mbb3cz00054ouaj09dpyvk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/04/deeplearning4/" data-id="ck1qnwdjb0004ewuao101db94" class="article-share-link">Share</a>
       
       
     </footer>
@@ -281,13 +383,15 @@
 {U\text{满} \text{足} U\mathop{ {} } \nolimits^{ {T} } AA\mathop{ {} } \nolimits^{ {T} } U\text{是} \text{对} \text{角} \text{矩} \text{阵} } \\
 {V\text{满} \text{足} V\mathop{ {} } \nolimits^{ {T} } A\mathop{ {} } \nolimits^{ {T} } AV\text{是} \text{对} \text{角} \text{矩} \text{阵} } 
 \end{array} }</script><p>如果矩阵<strong>A</strong>为m×n维矩阵，那么矩阵<strong>U</strong>为m×m维矩阵，矩阵<strong>D</strong>为m×n维矩阵，矩阵<strong>V</strong>为n×n维矩阵。</p>
-<h1 id="主成分分析（PCA）"><a href="#主成分分析（PCA）" class="headerlink" title="主成分分析（PCA）"></a>主成分分析（PCA）</h1><ul>
+<p>介绍一个用到奇异值分解的PCA算法：</p>
+<h2 id="主成分分析（PCA）"><a href="#主成分分析（PCA）" class="headerlink" title="主成分分析（PCA）"></a>主成分分析（PCA）</h2><ul>
 <li>去平均值，即每一位特征减去各自的平均值。</li>
 <li>计算协方差矩阵。</li>
 <li>通过SVD计算协方差矩阵的特征值与特征向量。（因为是方阵，我觉的也可以直接求特征值和特征向量再归一化。）</li>
 <li>对特征值从大到小排序（计算时往往已经排好），选择其中最大的k个。然后将其对应的k个特征向量分别作为列向量组成特征向量矩阵。</li>
 <li>将数据转换到k个特征向量构建的新空间中，即取矩阵<strong>U</strong>或矩阵<strong>V</strong>的前k行或前k列与原矩阵相乘。</li>
 </ul>
+<p><a href="https://andyflying.github.io/2019/10/10/pcaAlgorithm/" target="_blank" rel="noopener">具体证明过程</a></p>
 <h1 id="LU分解"><a href="#LU分解" class="headerlink" title="LU分解"></a>LU分解</h1><p>矩阵的LU分解常用于解方程组。</p>
 <p>将矩阵<strong>A</strong>（方阵）分解为：</p>
 <script type="math/tex; mode=display">
@@ -384,7 +488,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/12/linearAlgebra/" data-id="ck1mbb3de00094ouaocf6dllr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/12/linearAlgebra/" data-id="ck1qnwdjq000bewuatx4tlarw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -464,7 +568,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/04/deeplearning5/" data-id="ck1mbb3dd00084ouaokhbbaif" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/04/deeplearning5/" data-id="ck1qnwdjn000aewua1487qckb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -520,7 +624,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/28/project1/" data-id="ck1mbb3d100064ouau6r8xmtt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/28/project1/" data-id="ck1qnwdjf0008ewuawc7zwyea" class="article-share-link">Share</a>
       
       
     </footer>
@@ -560,7 +664,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/27/labelme-tutor/" data-id="ck1mbb3cw00034oua08vcnshq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/27/labelme-tutor/" data-id="ck1qnwdjd0006ewuaj6xrnqsj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -639,7 +743,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/22/deeplearning2/" data-id="ck1mbb3cu00024oualre3n0d4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/22/deeplearning2/" data-id="ck1qnwdj90003ewuaa0qvwvfs" class="article-share-link">Share</a>
       
       
     </footer>
@@ -688,161 +792,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/19/deeplearning1/" data-id="ck1mbb3cy00044ouajrk0aqby" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-NGcourse" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/07/26/NGcourse/" class="article-date">
-  <time datetime="2019-07-26T11:22:09.000Z" itemprop="datePublished">2019-07-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/26/NGcourse/">吴恩达机器学习公开课</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本文主要总结吴恩达老师机器学习公开课的知识点。课程共8次编程作业已经上传到我的GitHub上了。链接为：<a href="https://github.com/Andyflying/ML-assignment-professorNg" target="_blank" rel="noopener">https://github.com/Andyflying/ML-assignment-professorNg</a></p>
-<h1 id="回归和分类"><a href="#回归和分类" class="headerlink" title="回归和分类"></a>回归和分类</h1><p>回归问题是指用已知数据拟合一个合适的假设函数h(x)，或者可以理解为曲线，来预测新输入的变量的输出结果，如给定房间的大学位置等信息，预测房价。<br>而分类问题，顾名思义，是指用已知数据拟合一个合适的假设函数h(x)，对未知数据进行分类。在分类问题中，用到的假设函数为logistic函数：</p>
-<script type="math/tex; mode=display">
-{h\mathop{ { } }\nolimits_{ { \theta } } \left( x \left) =g \left(  \theta \mathop{ { } }\nolimits^{ {T} }X \left) =\frac{ {1} } { {1+e{  }_{ }^{- \theta \mathop{ { } }\nolimits^{ {T} }X} { }_{ }^{ } } }\right. \right. \right. \right. }</script><p>回归问题和分类问题的代价函数也有所不同。回归问题的代价函数为：</p>
-<script type="math/tex; mode=display">
-{ {J \left(  \theta  \left) =\right. \right. }\frac{ {1} } { {2m} } { \left( { {\mathop{ \sum }\limits_{ {i=1} }^{ {m} } { { \left( {h\mathop{ { } }\nolimits_{ { \theta } } { \left( {x\mathop{ { } }\nolimits^{ { \left( i \right) } } } \right) }-y\mathop{ { } }\nolimits^{ { \left( i \right) } } } \right) }\mathop{ { } }\nolimits^{ {2} } } } } \right) } }</script><p>含义显而易见，就是要最小化预测值和真实值之间的误差。其中m为样本个数，x^i为第i个样本。前面的分母为2m的原因可能是求导方便。</p>
-<p>分类问题的代价函数为:</p>
-<script type="math/tex; mode=display">
-{J{ \left( { \theta } \right) }=-\frac{ {1} }{ {m} }{\mathop{ \sum }\limits_{ {i=1} }^{ {m} }{ { \left[ {y\mathop{ { } }\nolimits^{ { \left( i \right) } }log{ \left( {\mathop{ {h} }\nolimits_{ { \theta } } { \left( {\mathop{ {x} }\nolimits^{ { \left( i \right) } } } \right) } } \right) }+{ \left( {1-y\mathop{ {} }\nolimits^{ { \left( i \right) } } } \right) }log{ \left( {1-\mathop{ {h} }\nolimits_{ { \theta } }{ \left( {\mathop{ {x} }\nolimits^{ { \left( i \right) } } } \right) } } \right) } } \right] } } } }</script><p>由于标签只有0和1，而预测值是0~1之间的小数，所以采用这个代价函数更能反映预测的误差。</p>
-<h1 id="梯度下降算法"><a href="#梯度下降算法" class="headerlink" title="梯度下降算法"></a>梯度下降算法</h1><p>对代价函数求导，以一个学习率来逐渐更新需要学习的参数。</p>
-<script type="math/tex; mode=display">
-{ \theta  \leftarrow  \theta - \alpha \frac{ { \partial J} } { { \partial  \theta } } }</script><p>其中，mini-batch算法可以在训练集中取一部分求损失，然后进行梯度下降，这样可以提升速度。</p>
-<h1 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h1><p>正则化是防止过拟合的算法。在损失函数的基础上，加入参数项的惩罚项，目的是不让参数的值过大而产生比较歪歪曲曲的函数。如分类问题正则化代价函数为：</p>
-<script type="math/tex; mode=display">
-{J{ \left(  \theta  \right) }=-\frac{ {1} }{ {m} }{\mathop{ \sum }\limits_{ {i=1} }^{ {m} }{ \left[ {y\mathop{ {} }\nolimits^{ { \left( i \right) } }log{ \left( {\mathop{ {h} }\nolimits_{ \theta }{ \left( \mathop{ {x} }\nolimits^{ { \left( i \right) } } \right) } } \right) }+{ \left( {1-y\mathop{ {} }\nolimits^{ { \left( i \right) } } } \right) }log{ \left( {1-\mathop{ {h} }\nolimits_{ \theta } { \left( \mathop{ {x} }\nolimits^{ { \left( i \right) } } \right) } } \right) }+\frac{ { \lambda } }{ {2m} }{ {\mathop{ \sum }\limits_{ {j=1}}^{ {n} }{ \theta \mathop{ { } }\nolimits_{ {j} }^{ {2} } } } } } \right] } } }</script><p>需要注意的是，正则化不作用于偏移项。</p>
-<h1 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h1><p>（略，在我的<a href="https://andyflying.github.io/2019/08/19/deeplearning1/" target="_blank" rel="noopener">吴恩达深度学习</a>课程笔记中有这一部分的介绍。）</p>
-<h1 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h1><p>支持向量机是一个分类器，具体来说是最大间距分类器。</p>
-<p>其优化目标和前面提到的logistic分类问题有些相似，具体是：</p>
-<script type="math/tex; mode=display">
-{ \mathop{ {min} }\limits_{ { \theta } }\text{  }C{\mathop{ \sum }\limits_{ {i=1} }^{ {m} }{ { \left[ {y\mathop{ {} }\nolimits^{ { \left( i \right) } }cost\mathop{ {} }\nolimits_{ {1} }{ \left( { \theta \mathop{ {} }\nolimits^{ {T} }\mathop{ {x} }\nolimits^{ { \left( i \right) } } } \right) }+ \left( 1-y\mathop{ {} }\nolimits^{ { \left( i \right) } } \left) cost\mathop{ {} }\nolimits_{ {0} }{ \left( { \theta \mathop{ {} }\nolimits^{ {T} }x\mathop{ {} }\nolimits^{ { \left( i \right) } } } \right) }\right. \right. } \right] } } }+\frac{ {1} }{ {2} }{\mathop{ \sum }\limits_{ {j=1} }^{ {n} }{ \theta \mathop{ {} }\nolimits_{ {j} }^{ {2} } } } }</script><p>其中：</p>
-<script type="math/tex; mode=display">
-{ {cost\mathop{ {} }\nolimits_{ {1} }{ \left( {z} \right) }={ \left\{ \begin{array}{*{20}{l} }
-{-z+1\text{ },\text{ }z \le 1}\\
-{0\text{ },\text{ }z > 1}
-\end{array}\right. }\text{ }{\text{ }\text{ }\text{ }\text{ }cost\mathop{ {} }\nolimits_{ {0} }{ \left( {z} \right) }={ \left\{ \begin{array}{*{20}{l} }
-{0\text{ },\text{ }z \le -1}\\
-{z+1\text{ },\text{ }z > -1}
-\end{array}\right. }\text{ } }\text{ } } }</script><p>C为调节正则化的参数。</p>
-<p>支持向量机和logistic分类不同的是支持向量机只返回0或1（是正样本还是负样本）的结果，并不会返回一个0~1之间的小数来表征概率。因为支持向量机是通过超平面将特征划分为两类的，其中法向量指向的是正类，另一侧为负类。</p>
-<p>支持向量机的大边界分类的原理可以简单概括为在满足两个cost函数为0的情况下，最小化后面的正则项，即：</p>
-<script type="math/tex; mode=display">
-{\begin{array}{*{20}{l} } 
-{\mathop{ { {min\text{  } } } }\limits_{ { \theta } }\frac{ {1} }{ {2} }{\mathop{ \sum }\limits_{ {j=1} }^{ {n} }{ \theta \mathop{ {} }\nolimits_{ {j} }^{ {2} } } }\text{ }=\text{  }\frac{ {1} }{ {2} }\mathop{ { { \left\Vert { \theta } \right\Vert } } }\nolimits_{ {2} } }\\
-{s.t.\text{ }\text{ }p\mathop{ {} }\nolimits^{ { \left( i \right) } }∙\mathop{ { { \left\Vert { \theta } \right\Vert } } }\nolimits_{ {2}  }\text{ } \ge \text{ }1\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }if\text{ }y\mathop{ {} }\nolimits^{ { \left( i \right) } }=0}\\
-{\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }p\mathop{ {} }\nolimits^{ { \left( i \right) } }∙\mathop{ { { \left\Vert { \theta } \right\Vert } } }\nolimits_{ {2} }\text{ } \le -\text{  }1\text{ }\text{ }\text{ }\text{ }\text{ }if\text{ }y\mathop{ {} }\nolimits^{ { \left( i \right) } }=1} 
-\end{array} }</script><p>其中，p^i为x^i在向量θ上的投影。</p>
-<p>要使得θ越小，所以p就得越大，由于θ参数是分类超平面的法向量，也就是说每个样本的特征向量在分类超平面的法向量的投影需要越大越好，也就是说每个样本的特征向量和分类超平面的法向量夹角越小越好。如图所示：</p>
-<p><img src="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/111.jpg" alt="SVM"></p>
-<p>为了解决分类中的非线性问题，支持向量机引入了核函数的方法。</p>
-<p>由于SVM分类器（未引入核函数之前）的模型是线性的，不能很好的对如下图所示的情况进行分类。所以需要引入核函数来处理非线性的问题。<br>核函数的解决方案是用新的特征f来代替输入向量的特征x，从而构造新的假设函数：</p>
-<script type="math/tex; mode=display">
-{ {\mathop{ {h} } \nolimits_{ { \theta } } { \left( {x}  \right) } } =\mathop{ { \theta } } \nolimits_{ {1} } \mathop{ {f} } \nolimits_{ {1} } +\mathop{ { \theta } } \nolimits_{ {2} } \mathop{ {f} } \nolimits_{ {2} } +...+\mathop{ { \theta } } \nolimits_{ {n} } \mathop{ {f} } \nolimits_{ {n} } }</script><p>新的特征f如何构造呢？首先我们选取标定向量l，l的选取方法为训练集中每个x的位置。即：</p>
-<script type="math/tex; mode=display">
-{l\mathop{ {}  }  \nolimits^{ { { \left( {1}   \right) }  }  }  =x\mathop{ {}  }  \nolimits^{ { { \left( {1}   \right) }  }  }  ,{l\mathop{ {}  }  \nolimits^{ { { \left( {2}   \right) }  }  }  =x\mathop{ {}  }  \nolimits^{ { { \left( {2}   \right) }  }  }  ...{l\mathop{ {}  }  \nolimits^{ { { \left( {n}   \right) }  }  }  =x\mathop{ {}  }  \nolimits^{ { { \left( {n}   \right) }  }  }  }  }  }</script><p>给定一个训练实例x^i，分别对每个l求近似程度来构成新的特征f。求近似程度（f与x/l之间的映射关系）的方法就是我们说的核函数。下面以常用的高斯核函数为例说明其过程：</p>
-<script type="math/tex; mode=display">
-{\begin{array} {*{20} {l} } 
-{f\mathop{ {} } \nolimits_{ {1} } =exp{ \left( {-\frac{ { { \left\Vert {x-l\mathop{ {} } \nolimits^{ { \left( 1 \right) } } }  \right\Vert } \mathop{ {} } \nolimits^{ {2} } } } { {2 \sigma \mathop{ {} } \nolimits^{ {2} } } } }  \right) } } \\
-{...} \\
-{ {f\mathop{ {} } \nolimits_{ {n} } =exp{ \left( {-\frac{ { { \left\Vert {x-l\mathop{ {} } \nolimits^{ { \left( n \right) } } }  \right\Vert } \mathop{ {} } \nolimits^{ {2} } } } { {2 \sigma \mathop{ {} } \nolimits^{ {2} } } } }  \right) } } } 
-\end{array} }</script><p>经过以上过程的处理，成功的在假设函数中用f替代了x，接下来的处理过程同上面介绍的线性的SVM。</p>
-<h1 id="K-means聚类"><a href="#K-means聚类" class="headerlink" title="K-means聚类"></a>K-means聚类</h1><p>K-means是一种聚类算法，属于无监督学习。</p>
-<p>可以设置K个聚类中心，也就是将你的训练样本分为K类。算法原理是首先，随机设置K个点，然后将每个训练样本归类到最近的聚类中心，然后将每个聚类中心移动到所以这一类的样本的平均值的位置。重复执行这个过程，直到距离中心不在变化。</p>
-<p>需要充分理解K-means算法的损失函数，即：</p>
-<script type="math/tex; mode=display">
-{J{ \left( {c\mathop{ {} } \nolimits^{ { \left( 1 \right) } } ,...c\mathop{ {} } \nolimits^{ { \left( m \right) } } , \mu \mathop{ {} } \nolimits_{ {1} } ,...,\mathop{ { \mu } } \nolimits_{ {K} } }  \right) } =\frac{ {1} } { {m} } {\mathop{ \sum } \limits_{ {i=1} } ^{ {m} } { { \left\Vert {X\mathop{ {} } \nolimits^{ { \left( i \right) } } - \mu \mathop{ {} } \nolimits_{ {c\mathop{ {} } \nolimits^{ { \left( i \right) } } } } }  \right\Vert } \mathop{ {} } \nolimits^{ {2} } } } }</script><p>其中，c^i是指x^i所属于是聚类中心，μ是指各个聚类中心的位置。</p>
-<h1 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h1><p>PCA （Principal Component Analysis，主成分分析）是一种降维算法。比如需要将三维的数据集降为二维，就是寻找一个离数据点最近的平面，将数据点映射到此平面内。下图为二维数据集降为一维：</p>
-<p><img src="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/OD2DI9%7BR%7DZA52_ZI%254U7GCH.png" alt="PCA"></p>
-<p>PCA算法的数学原理详见<a href="https://andyflying.github.io/2019/10/10/pcaAlgorithm/" target="_blank" rel="noopener">https://andyflying.github.io/2019/10/10/pcaAlgorithm/</a></p>
-<h1 id="异常检测"><a href="#异常检测" class="headerlink" title="异常检测"></a>异常检测</h1><p>感觉异常检测算法既可以看做监督学习，又可以看做无监督学习，有点迷。<br>异常分析简单讲就是将数据归一化之后，建立高斯分布模型。然后设置阈值，未能达到阈值的样本就认为是异常样本。<br>算法具体步骤是对给定数据集，计算每一个维度特征的均值μ和方差σ2。</p>
-<script type="math/tex; mode=display">
-{\begin{array} {*{20} {l} } 
-{ { { { {\mathop{ { \mu } } \nolimits_{ {j} } =\frac{ {1} } { {m} } {\mathop{ \sum } \limits_{ {i=1} } ^{ {m} } {\mathop{ {x} } \nolimits_{ {j} } ^{ { \left( i \right) }  } } } } } } } } \\
-{ {\begin{array} {*{20} {l} } 
-{ { \sigma \mathop{ {} } \nolimits_{ {2} } ^{ {j} } =\frac{ {1} } { {m} } {\mathop{ \sum } \limits_{ {i=1} } ^{ {m} } {\mathop{ { { { \left( {\mathop{ {x} } \nolimits_{ {j} } ^{ { \left( i \right) } } -\mathop{ { \mu } } \nolimits_{ {j} } }  \right) } } } } \nolimits^{ {2} } } } } } \\
-{p{ \left( {x}  \right) } ={\mathop{ \prod } \limits_{ {j=1} } ^{ {n} } {p{ \left( {x\mathop{ {} } \nolimits_{ {j} } \text{ } ;\mathop{ { { \mu } } } \nolimits_{ {j} } \text{ } ; \sigma \mathop{ {} } \nolimits_{ {j} } ^{  {2}  } }  \right) } ={\mathop{ \prod } \limits_{ {j=1} } ^{ {n} } {\frac{ {1} } { {\sqrt{ {2 \pi } } \mathop{ { \sigma } } \nolimits_{ {j} } } } exp{ \left( {\frac{ { { \left( {x\mathop{ {} } \nolimits_{ {j} } \text{ } -\mathop{ { { \mu } } } \nolimits_{ {j} } }  \right) } \mathop{ {} } \nolimits^{ {2} } } } { {2 \sigma \mathop{ {} } \nolimits_{ {j} } ^{ {2} } } } }  \right) } } } } } } 
-\end{array} } } 
-\end{array} }</script><p>当p(x)&lt;ε时认为是异常。</p>
-<p>但是上述算法存在问题，如图所示：<br><img src="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/ET%5DV%40BHLXX7_1D.jpg" alt="多元高斯分布问题"></p>
-<p>可以通过构建<a href="https://baike.baidu.com/item/%E5%8D%8F%E6%96%B9%E5%B7%AE%E7%9F%A9%E9%98%B5/9822183?fr=aladdin" target="_blank" rel="noopener">协方差矩阵</a>来解决。当然通过自己根据特征的相关性添加新的组合特征向量也可以解决此问题。</p>
-<h1 id="推荐系统"><a href="#推荐系统" class="headerlink" title="推荐系统"></a>推荐系统</h1><p>推荐系统是根据用户对已有部分产品的评价来自动的为用户推荐同类产品，从而产生广告效益。（ps：很赚钱）</p>
-<p>课程中讲的问题实例是推荐电影。利用已有的各个用户的评分数据去学习下图中？的数据。其中x1，x2可以看做是每个电影的类别信息，x项的多少可以根据情况设定。</p>
-<p><img src="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/HUWLJRWK8D151T.png" alt="电影推荐问题"></p>
-<p>采用的方法是协同过滤算法：</p>
-<script type="math/tex; mode=display">
-{J{ \left( {x\mathop{ {} } \nolimits^{ { \left( 1 \right) } } ,...,x\mathop{ {} } \nolimits^{ { \left( \mathop{ {n} } \nolimits_{ {m} }  \right) } } , \theta \mathop{ {} } \nolimits^{ { \left( 1 \right) } } ,..., \theta \mathop{ {} } \nolimits^{ { \left( \mathop{ {n} } \nolimits_{ {u} }  \right) } } }  \right) } =\frac{ {1} } { {2} } {\mathop{ \sum } \limits_{ { \left( i,j \left) :r \left( i,j \left) =1\right. \right. \right. \right. } } { { \left( { { \left( {\mathop{ { \theta } } \nolimits^{ { \left( j \right) } } }  \right) } \mathop{ {} } \nolimits^{ {T} } x\mathop{ {} } \nolimits^{ { \left( i \right) } } -\mathop{ {y} } \nolimits^{ { \left( i,j \right) } } }  \right) } \mathop{ {} } \nolimits^{ {2} } } } +\frac{ { \lambda } } { {2} } {\mathop{ \sum } \limits_{ {i=1} } ^{ {\mathop{ {n} } \nolimits_{ {m} } } } { {\mathop{ \sum } \limits_{ {k=1} } ^{ {n} } { { \left( {x\mathop{ {} } \nolimits_{ {k} } ^{ { \left( i \right) } } }  \right) } \mathop{ {} } \nolimits^{ {2} } } } } } +\frac{ { \lambda } } { {2} } {\mathop{ \sum } \limits_{ {j=1} } ^{ {\mathop{ {n} } \nolimits_{ {u} } } } { {\mathop{ \sum } \limits_{ {k=1} } ^{ {n} } { { \left( { \theta \mathop{ {} } \nolimits_{ {k} } ^{  { \left( j \right) } } }  \right) } \mathop{ {} } \nolimits^{ {2} } } } } } }</script><p>算法执行的过程是先对给定的x来优化θ：</p>
-<script type="math/tex; mode=display">
-{\mathop{ {min} } \limits_{ { \theta \mathop{ {} } \nolimits^{ { \left( 1 \right) } } ,..., \theta \mathop{ {} } \nolimits^{ { \left( nu \right) } } } } \text{ } \text{ } \frac{ {1} } { {2} } {\mathop{ \sum } \limits_{ {j=1} } ^{ {\mathop{ {n} } \nolimits_{ {u} } } } {\mathop{ \sum } \limits_{ {i:r \left( i,j \left) =1\right. \right. } } { { \left( { { \left( \mathop{ \theta } \nolimits^{ { \left( j \right) } }  \right) } \mathop{ {} } \nolimits^{ {T} } x\mathop{ {} } \nolimits^{ { \left( i \right) } } -\mathop{ {y} } \nolimits^{ { \left( i,j \right) } } }  \right) } \mathop{ {} } \nolimits^{ {2} } } } } +\frac{ \lambda } { {2} } {\mathop{ \sum } \limits_{ {j=1} } ^{ {\mathop{ {n} } \nolimits_{ {u} } } } {\mathop{ \sum } \limits_{ {k=1} } ^{ {n} } { { \left( { \theta \mathop{ {} } \nolimits_{ {k} } ^{ { \left( j \right) } } }  \right) } \mathop{ {} } \nolimits^{ {2} } } } } }</script><p>让用给定的θ来优化x：</p>
-<script type="math/tex; mode=display">
-{\mathop{ {min} } \limits_{ {x\mathop{ {} } \nolimits^{ { \left( 1 \right) } } ,...,x\mathop{ {} } \nolimits^{ { \left( \mathop{ {n} } \nolimits_{ {m} }  \right) } } } } \text{ } \text{ } \frac{ {1} } { {2} } {\mathop{ \sum } \limits_{ {i=1} } ^{ {\mathop{ {n} } \nolimits_{ {m} } } } { {\mathop{ \sum } \limits_{ {j:r \left( i,j \left) =1\right. \right. } } { { \left( { { \left( {\mathop{ { \theta } } \nolimits^{ { \left( j \right) } } }  \right) } \mathop{ {} } \nolimits^{ {T} } x\mathop{ {} } \nolimits^{ { \left( i \right) } } -\mathop{ {y} } \nolimits^{ { \left( i,j \right) } } }  \right) } \mathop{ {} } \nolimits^{ {2} } } } } } +\frac{ { \lambda } } { {2} } {\mathop{ \sum } \limits_{ {i=1} } ^{ {\mathop{ {n} } \nolimits_{ {m} } } } { {\mathop{ \sum } \limits_{ {k=1} } ^{ {n} } { { \left( {x\mathop{ {} } \nolimits_{ {k} } ^{ { \left( i \right) } } }  \right) } \mathop{ {} } \nolimits^{ {2} } } } } } }</script><p>迭代执行上述两个优化过程，从而实现对总的损失函数J(x,θ)进行优化。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/26/NGcourse/" data-id="ck1mbb3df000a4ouamztt10nr" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Codeforces-Round-#510-problem(D)-Petya-and-Array" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/" class="article-date">
-  <time datetime="2019-07-25T08:49:09.000Z" itemprop="datePublished">2019-07-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/">Codeforces-Round-#510-problem(D)-Petya-and-Array</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="http://codeforces.com/contest/1042/problem/D0" target="_blank" rel="noopener">题目链接</a></p>
-<p>本题如果采用两层for循环遍历每个l和r，时间复杂度为O(n2)，将会超时。所以可以采用分治的算法，将数组二分递归，完成一个分支之后将此次l和r之间的数进行排序，目的是能以O(n)的时间复杂度统计出此分支符合要求的个数。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FOR(I,A,B) for(int I = (A); I &lt; (B); I++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FORE(I,A,B) for(int I = (A); I &lt;= (B); I++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PRII pair<span class="meta-string">&lt;int,int&gt; </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 1000000001</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line">LL a[<span class="number">200005</span>],t;</span><br><span class="line">LL ans;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dg</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l==r) <span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">int</span> mid=(l+r)/<span class="number">2</span>;</span><br><span class="line">	dg(l,mid);</span><br><span class="line">	dg(mid+<span class="number">1</span>,r);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=l,j=mid;i&lt;=mid;i++)&#123;</span><br><span class="line">		<span class="keyword">while</span>(j&lt;r &amp;&amp; (a[j+<span class="number">1</span>]-a[i])&lt;t) j++;</span><br><span class="line">		ans+=j-mid;</span><br><span class="line">	&#125;</span><br><span class="line">	sort(a+l,a+r+<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;t;</span><br><span class="line">	FORE(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">		a[i]+=a[i<span class="number">-1</span>];	</span><br><span class="line">	&#125; </span><br><span class="line">	dg(<span class="number">0</span>,n);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/25/Codeforces-Round-#510-problem(D)-Petya-and-Array/" data-id="ck1mbb3ci00014ouad418oddn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/19/deeplearning1/" data-id="ck1qnwdj80002ewua35bdoy98" class="article-share-link">Share</a>
       
       
     </footer>
@@ -888,6 +838,14 @@
       <ul>
         
           <li>
+            <a href="/2019/10/15/dijkstra/">dijkstra算法针对稠密图和稀疏图的两种不同策略</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/12/pytorchLearning/">pytorch学习笔记</a>
+          </li>
+        
+          <li>
             <a href="/2019/10/10/pcaAlgorithm/">主成分分析（PCA）算法的介绍、解释和证明</a>
           </li>
         
@@ -897,14 +855,6 @@
         
           <li>
             <a href="/2019/09/12/linearAlgebra/">线性代数常用知识点总结</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/04/deeplearning5/">吴恩达深度学习--序列模型</a>
-          </li>
-        
-          <li>
-            <a href="/2019/08/28/project1/">船舰识别比赛总结</a>
           </li>
         
       </ul>
