@@ -14,10 +14,12 @@
 <meta property="og:site_name" content="Zhou">
 <meta property="og:description" content="提出multi-group Encoder-Decoder networks (MGED-Net)  模型融合多种输入特征，解决预测一天后预测给定站点，给定污染物种类（PM2.5）的污染程度的问题。 难点：时空数据都存在，面临异构数据融合的问题；需要进行较长时间（一天）的预测。针对这些难点，本文提出了一个多组数据的Encoder-Decoder模型，主要贡献有三点。  将空间网格的天气数据（包括历">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-19T14:48:33.798Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/TI20191019225855.jpg">
+<meta property="og:updated_time" content="2019-10-19T15:05:39.878Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="19IJCAI_Multi-Group Encoder-Decoder Networks to Fuse Heterogeneous Data for Next-Day Air Quality Prediction">
 <meta name="twitter:description" content="提出multi-group Encoder-Decoder networks (MGED-Net)  模型融合多种输入特征，解决预测一天后预测给定站点，给定污染物种类（PM2.5）的污染程度的问题。 难点：时空数据都存在，面临异构数据融合的问题；需要进行较长时间（一天）的预测。针对这些难点，本文提出了一个多组数据的Encoder-Decoder模型，主要贡献有三点。  将空间网格的天气数据（包括历">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/TI20191019225855.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Zhou" type="application/atom+xml">
   
@@ -95,7 +97,8 @@
 </ul>
 <p>感觉（2）（3）步共同构成了类似集成学习的一个算法。</p>
 <p>用到的数据类型：用到k个空气污染物种类，历史和预测的天气数据都用。还用到地理环境（道路信息和海拔数据）、时间戳信息。</p>
-<p><strong>总体解决方案</strong>：作者主要从数据的角度入手，利用经典的Encoder-Decoder网络模型，加上提出的三点创新性的数据融合算法，来解决此预测问题。</p>
+<p><strong>总体解决方案</strong>：作者主要从数据的角度入手，利用经典的Encoder-Decoder网络模型，加上提出的三点创新性的数据融合算法，来解决此预测问题。下面是本文提出的网络架构图：</p>
+<p><img src="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/TI20191019225855.jpg" alt="structure"></p>
 <h1 id="本文创新点"><a href="#本文创新点" class="headerlink" title="本文创新点"></a>本文创新点</h1><h2 id="特征表示"><a href="#特征表示" class="headerlink" title="特征表示"></a>特征表示</h2><p>此方法在文中仅仅针对天气数据。天气特征是网格化的，而我们针对的是站点的空气质量预测。所以要将网格化的数据转换为与某一站点有关的数据，采用了三种方法结合：</p>
 <ul>
 <li>选取站点所在的网格的天气数据。</li>
@@ -125,7 +128,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/19/paper1/" data-id="ck1xogfpt0004y4ua5cejl359" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/19/paper1/" data-id="ck1xp2u2j0006scuapvu7y0aj" class="article-share-link">Share</a>
       
       
     </footer>
