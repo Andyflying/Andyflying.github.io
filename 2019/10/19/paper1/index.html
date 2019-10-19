@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>19IJCAI_Multi-Group Encoder-Decoder Networks to Fuse Heterogeneous Data for Next-Day Air Quality Prediction | Zhou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="提出multi-group Encoder-Decoder networks (MGED-Net)  模型融合多种输入特征，解决预测一天后预测给定站点，给定污染物种类（PM2.5）的污染程度的问题。 难点：时空数据都存在，面临异构数据融合的问题；需要进行较长时间（一天）的预测。针对这些难点，本文提出了一个多组数据的Encoder-Decoder模型，主要贡献有三点。  将空间网格的天气数据（包括历">
+<meta property="og:type" content="article">
+<meta property="og:title" content="19IJCAI_Multi-Group Encoder-Decoder Networks to Fuse Heterogeneous Data for Next-Day Air Quality Prediction">
+<meta property="og:url" content="http://yoursite.com/2019/10/19/paper1/index.html">
+<meta property="og:site_name" content="Zhou">
+<meta property="og:description" content="提出multi-group Encoder-Decoder networks (MGED-Net)  模型融合多种输入特征，解决预测一天后预测给定站点，给定污染物种类（PM2.5）的污染程度的问题。 难点：时空数据都存在，面临异构数据融合的问题；需要进行较长时间（一天）的预测。针对这些难点，本文提出了一个多组数据的Encoder-Decoder模型，主要贡献有三点。  将空间网格的天气数据（包括历">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-19T14:48:33.798Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="19IJCAI_Multi-Group Encoder-Decoder Networks to Fuse Heterogeneous Data for Next-Day Air Quality Prediction">
+<meta name="twitter:description" content="提出multi-group Encoder-Decoder networks (MGED-Net)  模型融合多种输入特征，解决预测一天后预测给定站点，给定污染物种类（PM2.5）的污染程度的问题。 难点：时空数据都存在，面临异构数据融合的问题；需要进行较长时间（一天）的预测。针对这些难点，本文提出了一个多组数据的Encoder-Decoder模型，主要贡献有三点。  将空间网格的天气数据（包括历">
+  
+    <link rel="alternate" href="/atom.xml" title="Zhou" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Zhou</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-paper1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/19/paper1/" class="article-date">
+  <time datetime="2019-10-19T14:47:00.000Z" itemprop="datePublished">2019-10-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      19IJCAI_Multi-Group Encoder-Decoder Networks to Fuse Heterogeneous Data for Next-Day Air Quality Prediction
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>提出multi-group Encoder-Decoder networks (MGED-Net)  模型融合多种输入特征，解决<strong>预测一天后</strong>预测给定站点，给定污染物种类（PM2.5）的污染程度的问题。</p>
+<p>难点：时空数据都存在，面临异构数据融合的问题；需要进行较长时间（一天）的预测。针对这些难点，本文提出了一个多组数据的Encoder-Decoder模型，主要贡献有三点。</p>
+<ul>
+<li>将空间网格的天气数据（包括历史与未来的）通过卷积核（根据先验得出的）变换成观测站附近的天气数据。</li>
+<li>按照皮尔斯相关系数进行特征分组。</li>
+<li>利用组间互相关进行encoder后的特征融合。</li>
+</ul>
+<p>感觉（2）（3）步共同构成了类似集成学习的一个算法。</p>
+<p>用到的数据类型：用到k个空气污染物种类，历史和预测的天气数据都用。还用到地理环境（道路信息和海拔数据）、时间戳信息。</p>
+<p><strong>总体解决方案</strong>：作者主要从数据的角度入手，利用经典的Encoder-Decoder网络模型，加上提出的三点创新性的数据融合算法，来解决此预测问题。</p>
+<h1 id="本文创新点"><a href="#本文创新点" class="headerlink" title="本文创新点"></a>本文创新点</h1><h2 id="特征表示"><a href="#特征表示" class="headerlink" title="特征表示"></a>特征表示</h2><p>此方法在文中仅仅针对天气数据。天气特征是网格化的，而我们针对的是站点的空气质量预测。所以要将网格化的数据转换为与某一站点有关的数据，采用了三种方法结合：</p>
+<ul>
+<li>选取站点所在的网格的天气数据。</li>
+<li>取周围k×k网格天气数据的平均。</li>
+<li>用各种代表天气状态（比如风向）的卷积核卷积k×k的网格天气数据。</li>
+</ul>
+<h2 id="特征分组"><a href="#特征分组" class="headerlink" title="特征分组"></a>特征分组</h2><p>本文提到了3种不同的分组方法：</p>
+<ul>
+<li>每个特征一组</li>
+<li>每个领域的特征一组。（天气特征一组，空气质量特征一组）</li>
+<li>相关性分组</li>
+</ul>
+<p>相关性分组是重点。本文的分组思想是最大化类内相关性并且最小化类间相关性。用到了<a href="https://baike.baidu.com/item/%E7%9A%AE%E5%B0%94%E9%80%8A%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0/12712835?fr=aladdin" target="_blank" rel="noopener">皮尔逊相关系数</a>来表示相关性。采用枚举把特征分为2,3,4个组，来找出符合最大化类内相关性和最小化类间相关性的分组方法。</p>
+<h2 id="融合架构"><a href="#融合架构" class="headerlink" title="融合架构"></a>融合架构</h2><ul>
+<li>特征融合（在encoder之前）</li>
+<li>encoder之后融合（在网络结构图中fusion位置）</li>
+<li>encoder之后与相关性结合的融合（在网络结构图中fusion位置）</li>
+</ul>
+<h1 id="实验结果对比"><a href="#实验结果对比" class="headerlink" title="实验结果对比"></a>实验结果对比</h1><ul>
+<li>特征表示的三种方案对比</li>
+<li>特征分组三种方案对比</li>
+<li>三种融合架构的对比</li>
+<li>和其他模型的对比</li>
+</ul>
+<p>由这些对比论证了模型的合理性。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/19/paper1/" data-id="ck1xogfpt0004y4ua5cejl359" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/10/15/dijkstra/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">dijkstra算法针对稠密图和稀疏图的两种不同策略</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/19/paper1/">19IJCAI_Multi-Group Encoder-Decoder Networks to Fuse Heterogeneous Data for Next-Day Air Quality Prediction</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/15/dijkstra/">dijkstra算法针对稠密图和稀疏图的两种不同策略</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/12/pytorchLearning/">pytorch学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/10/pcaAlgorithm/">主成分分析（PCA）算法的介绍、解释和证明</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/deeplearning4/">吴恩达深度学习--卷积神经网络</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 zhou<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+</body>
+</html>

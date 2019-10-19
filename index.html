@@ -62,6 +62,77 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-paper1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/19/paper1/" class="article-date">
+  <time datetime="2019-10-19T14:47:00.000Z" itemprop="datePublished">2019-10-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/19/paper1/">19IJCAI_Multi-Group Encoder-Decoder Networks to Fuse Heterogeneous Data for Next-Day Air Quality Prediction</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>提出multi-group Encoder-Decoder networks (MGED-Net)  模型融合多种输入特征，解决<strong>预测一天后</strong>预测给定站点，给定污染物种类（PM2.5）的污染程度的问题。</p>
+<p>难点：时空数据都存在，面临异构数据融合的问题；需要进行较长时间（一天）的预测。针对这些难点，本文提出了一个多组数据的Encoder-Decoder模型，主要贡献有三点。</p>
+<ul>
+<li>将空间网格的天气数据（包括历史与未来的）通过卷积核（根据先验得出的）变换成观测站附近的天气数据。</li>
+<li>按照皮尔斯相关系数进行特征分组。</li>
+<li>利用组间互相关进行encoder后的特征融合。</li>
+</ul>
+<p>感觉（2）（3）步共同构成了类似集成学习的一个算法。</p>
+<p>用到的数据类型：用到k个空气污染物种类，历史和预测的天气数据都用。还用到地理环境（道路信息和海拔数据）、时间戳信息。</p>
+<p><strong>总体解决方案</strong>：作者主要从数据的角度入手，利用经典的Encoder-Decoder网络模型，加上提出的三点创新性的数据融合算法，来解决此预测问题。</p>
+<h1 id="本文创新点"><a href="#本文创新点" class="headerlink" title="本文创新点"></a>本文创新点</h1><h2 id="特征表示"><a href="#特征表示" class="headerlink" title="特征表示"></a>特征表示</h2><p>此方法在文中仅仅针对天气数据。天气特征是网格化的，而我们针对的是站点的空气质量预测。所以要将网格化的数据转换为与某一站点有关的数据，采用了三种方法结合：</p>
+<ul>
+<li>选取站点所在的网格的天气数据。</li>
+<li>取周围k×k网格天气数据的平均。</li>
+<li>用各种代表天气状态（比如风向）的卷积核卷积k×k的网格天气数据。</li>
+</ul>
+<h2 id="特征分组"><a href="#特征分组" class="headerlink" title="特征分组"></a>特征分组</h2><p>本文提到了3种不同的分组方法：</p>
+<ul>
+<li>每个特征一组</li>
+<li>每个领域的特征一组。（天气特征一组，空气质量特征一组）</li>
+<li>相关性分组</li>
+</ul>
+<p>相关性分组是重点。本文的分组思想是最大化类内相关性并且最小化类间相关性。用到了<a href="https://baike.baidu.com/item/%E7%9A%AE%E5%B0%94%E9%80%8A%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0/12712835?fr=aladdin" target="_blank" rel="noopener">皮尔逊相关系数</a>来表示相关性。采用枚举把特征分为2,3,4个组，来找出符合最大化类内相关性和最小化类间相关性的分组方法。</p>
+<h2 id="融合架构"><a href="#融合架构" class="headerlink" title="融合架构"></a>融合架构</h2><ul>
+<li>特征融合（在encoder之前）</li>
+<li>encoder之后融合（在网络结构图中fusion位置）</li>
+<li>encoder之后与相关性结合的融合（在网络结构图中fusion位置）</li>
+</ul>
+<h1 id="实验结果对比"><a href="#实验结果对比" class="headerlink" title="实验结果对比"></a>实验结果对比</h1><ul>
+<li>特征表示的三种方案对比</li>
+<li>特征分组三种方案对比</li>
+<li>三种融合架构的对比</li>
+<li>和其他模型的对比</li>
+</ul>
+<p>由这些对比论证了模型的合理性。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/19/paper1/" data-id="ck1xogfpt0004y4ua5cejl359" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-dijkstra" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/10/15/dijkstra/" class="article-date">
@@ -114,7 +185,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/15/dijkstra/" data-id="ck1qnwdjc0005ewua8l02iyyi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/15/dijkstra/" data-id="ck1xogfpu0005y4uacgu2zvpg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -154,7 +225,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/12/pytorchLearning/" data-id="ck1qnwdjg0009ewuaeo79z15w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/12/pytorchLearning/" data-id="ck1xogfpx0007y4uahird88co" class="article-share-link">Share</a>
       
       
     </footer>
@@ -251,7 +322,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/10/pcaAlgorithm/" data-id="ck1qnwdje0007ewuaanha8zd8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/10/pcaAlgorithm/" data-id="ck1xogfpz0009y4uaskuj2csq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -302,7 +373,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/04/deeplearning4/" data-id="ck1qnwdjb0004ewuao101db94" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/04/deeplearning4/" data-id="ck1xogfpw0006y4uat1tdy9c2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -488,7 +559,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/12/linearAlgebra/" data-id="ck1qnwdjq000bewuatx4tlarw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/12/linearAlgebra/" data-id="ck1xogfqc000cy4uar9qjlumx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -568,7 +639,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/04/deeplearning5/" data-id="ck1qnwdjn000aewua1487qckb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/04/deeplearning5/" data-id="ck1xogfqb000by4ua8n2uuz54" class="article-share-link">Share</a>
       
       
     </footer>
@@ -624,7 +695,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/28/project1/" data-id="ck1qnwdjf0008ewuawc7zwyea" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/28/project1/" data-id="ck1xogfpy0008y4uaxhd2fvl3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -664,7 +735,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/27/labelme-tutor/" data-id="ck1qnwdjd0006ewuaj6xrnqsj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/27/labelme-tutor/" data-id="ck1xogfq0000ay4uaxklzi87c" class="article-share-link">Share</a>
       
       
     </footer>
@@ -743,56 +814,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/22/deeplearning2/" data-id="ck1qnwdj90003ewuaa0qvwvfs" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-deeplearning1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/19/deeplearning1/" class="article-date">
-  <time datetime="2019-08-19T12:33:48.000Z" itemprop="datePublished">2019-08-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/19/deeplearning1/">吴恩达深度学习--神经网络与深度学习</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="计算图"><a href="#计算图" class="headerlink" title="计算图"></a>计算图</h1><p>吴恩达老师用计算图形象的说明的链式求导的问题。链式求导是反向传播算法（BP算法）的核心依据。</p>
-<p>举个例子，如果，f是关于z的函数，z又是关于x的函数，则链式求导就是：</p>
-<script type="math/tex; mode=display">
-{\frac{ { \partial f} } { { \partial x} } =\frac{ { \partial f} } { { \partial z} } \frac{ { \partial z} } { { \partial x} } }</script><h1 id="向量化"><a href="#向量化" class="headerlink" title="向量化"></a>向量化</h1><p>在深度学习中，数据的处理量往往是巨大的。为了加快运算，可以采用并行运算的方法节约运算时间，增加效率。向量化的方法就是将神经网络间的运算表示为矩阵运算的形式，从而进行并行计算；而不是使用for循环。在python中可以使用numpy库进行矩阵运算。</p>
-<h1 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h1><p>神经网络需要使用非线性激活函数，否则整个神经网络就可以用一层的线性结构来代替。</p>
-<p>常用的非线性激活函数有ReLU、sigmoid、tanh等。</p>
-<p>sigmoid函数并不是很常用，因为在原理零点的时候，sigmoid函数导数很小，训练网络时容易产生梯度消失。所以sigmoid函数大多数只作为二元分类的最后一层的激活函数。在大多数应用场景中，它的效果不如tanh函数。</p>
-<p>ReLU函数的优点是执行速度快。有一种改进的ReLU函数叫做leaky ReLU，它在负半轴有一个很小的正斜率。</p>
-<h1 id="前向传播和反向传播"><a href="#前向传播和反向传播" class="headerlink" title="前向传播和反向传播"></a>前向传播和反向传播</h1><p>前向传播和反向传播的大概结构和原理如下图所示。</p>
-<p><img src="https://raw.githubusercontent.com/Andyflying/hexo-image/master/img/shbdfsgfsd5.jpg" alt="BP"></p>
-<p>反向传播算法运用于训练神经网络模型，更新学习参数以得到最小的loss值。反向传播的核心思想就是利用链式求导求出每一层参数w和b的误差dw和db，按照学习率更新参数w和b。</p>
-<h1 id="参数和超参数"><a href="#参数和超参数" class="headerlink" title="参数和超参数"></a>参数和超参数</h1><p>参数指的是在神经网络中可以通过训练进行改变和优化的参数，比如网络中的权值。</p>
-<p>超参数指的是训练之前预先设定好的参数。比如学习率，迭代次数，隐藏层层数，每层的神经元个数，选择的激活函数等。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/19/deeplearning1/" data-id="ck1qnwdj80002ewua35bdoy98" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/22/deeplearning2/" data-id="ck1xogfpr0003y4uad41tkw7l" class="article-share-link">Share</a>
       
       
     </footer>
@@ -838,6 +860,10 @@
       <ul>
         
           <li>
+            <a href="/2019/10/19/paper1/">19IJCAI_Multi-Group Encoder-Decoder Networks to Fuse Heterogeneous Data for Next-Day Air Quality Prediction</a>
+          </li>
+        
+          <li>
             <a href="/2019/10/15/dijkstra/">dijkstra算法针对稠密图和稀疏图的两种不同策略</a>
           </li>
         
@@ -851,10 +877,6 @@
         
           <li>
             <a href="/2019/10/04/deeplearning4/">吴恩达深度学习--卷积神经网络</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/12/linearAlgebra/">线性代数常用知识点总结</a>
           </li>
         
       </ul>
