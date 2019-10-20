@@ -62,6 +62,57 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-paper2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/20/paper2/" class="article-date">
+  <time datetime="2019-10-20T15:41:42.000Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/20/paper2/">19KDD AccuAir Winning Solution to Air Quality</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>目的：用空气质量、meteorology （气象学）、spatial topology （空间拓扑）、天气预报、站点信息、时间信息来预测空气质量。</p>
+<p>难点：影响因素多，参量之间的影响是非线性的且具有时空特性，突变的噪声性质，有未知参量的影响。</p>
+<p>解决方案：建立了LightGBM、spatial-temporal gated DNN、Seq2Seq model三个模型，分别用现有数据集训练；再训练一个线性模型将上述三个模型的结果合并起来作为预测的输出。</p>
+<h1 id="related-work"><a href="#related-work" class="headerlink" title="related work"></a>related work</h1><p>介绍了气象学模型，静态学习模型，深度学习模型（基于时间序列）来解决空气质量预测的问题。提出完成此任务要提出融合多种时空信息的策略，这是解决问题的关键。</p>
+<h1 id="提出的方法"><a href="#提出的方法" class="headerlink" title="提出的方法"></a>提出的方法</h1><p>LightGBM：特征选择器，比较稳定</p>
+<p>spatial-temporal gated DNN：有处理时空响应的能力</p>
+<p>Seq2Seq model：编码输入，解码输出</p>
+<h2 id="LightGBM"><a href="#LightGBM" class="headerlink" title="LightGBM"></a>LightGBM</h2><p>LightGBM是基本的baseline，spatial-temporal gated DNN提取时空信息。Seq2Seq model做编解码，能对快速变化的输入产生良好的反应。本文分为了四个步骤训练LightGBM。第一步使用72h的气象学数据训练模型，得到的效果很差。第二步加入天气预测数据，效果比第一次好。第三步加入了历史空气质量数据，效果提示明显。第四步加入城市中12个站的数据，效果又得到提升。</p>
+<h2 id="Spatial-temporal-Gated-DNN"><a href="#Spatial-temporal-Gated-DNN" class="headerlink" title="Spatial-temporal Gated DNN"></a>Spatial-temporal Gated DNN</h2><p>为了解决深度神经网络对于时间信息的不敏感性，本文提出时空门的概念，可以控制信号的长度。</p>
+<p>ps：swish是一个激活函数：swish(x)=x*sigmoid(bx)</p>
+<p>有缺失的数据？通过mask进行预处理？</p>
+<h2 id="Sequence-to-Sequence-Model"><a href="#Sequence-to-Sequence-Model" class="headerlink" title="Sequence to Sequence Model"></a>Sequence to Sequence Model</h2><p>用GRU做循环单元。</p>
+<p>历史数据72h，预测未来48h。</p>
+<p>对于缺失数据用了另一篇文章提到的方法。</p>
+<h1 id="result"><a href="#result" class="headerlink" title="result"></a>result</h1><p>4.1先介绍了评测指标。4.2和别的参赛队伍的比较。4.3用控制变量法分析输入特征的作用，并说明了用线性回归模型来整合三个模型的输出结果。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/20/paper2/" data-id="ck1z5usek0005bguazx67k0jo" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-paper1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/10/19/paper1/" class="article-date">
@@ -76,7 +127,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/19/paper1/">19IJCAI_Multi-Group Encoder-Decoder Networks to Fuse Heterogeneous Data for Next-Day Air Quality Prediction</a>
+      <a class="article-title" href="/2019/10/19/paper1/">19IJCAI Multi-Group Encoder-Decoder Networks to Fuse Heterogeneous Data for Next-Day Air Quality Prediction</a>
     </h1>
   
 
@@ -84,7 +135,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>提出multi-group Encoder-Decoder networks (MGED-Net)  模型融合多种输入特征，解决<strong>预测一天后</strong>预测给定站点，给定污染物种类（PM2.5）的污染程度的问题。</p>
+        <p>本文提出multi-group Encoder-Decoder networks (MGED-Net)  模型融合多种输入特征，解决<strong>预测一天后</strong>预测给定站点，给定污染物种类（PM2.5）的污染程度的问题。</p>
 <p>难点：时空数据都存在，面临异构数据融合的问题；需要进行较长时间（一天）的预测。针对这些难点，本文提出了一个多组数据的Encoder-Decoder模型，主要贡献有三点。</p>
 <ul>
 <li>将空间网格的天气数据（包括历史与未来的）通过卷积核（根据先验得出的）变换成观测站附近的天气数据。</li>
@@ -124,7 +175,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/19/paper1/" data-id="ck1xp2u2j0006scuapvu7y0aj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/19/paper1/" data-id="ck1z5useu0009bguahgy81wg2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -186,7 +237,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/15/dijkstra/" data-id="ck1xp2u2l0007scuays96llfa" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/15/dijkstra/" data-id="ck1z5usen0006bguayxaqnlms" class="article-share-link">Share</a>
       
       
     </footer>
@@ -226,7 +277,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/12/pytorchLearning/" data-id="ck1xp2u2m0008scua01palvkj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/12/pytorchLearning/" data-id="ck1z5usep0007bguaas6mpwk1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -323,7 +374,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/10/pcaAlgorithm/" data-id="ck1xp2u2o0009scua9pbssik7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/10/pcaAlgorithm/" data-id="ck1z5usex000abguadusmt965" class="article-share-link">Share</a>
       
       
     </footer>
@@ -374,7 +425,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/04/deeplearning4/" data-id="ck1xp2u2h0004scual2hpthjk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/04/deeplearning4/" data-id="ck1z5useg0004bguac1nfrw7a" class="article-share-link">Share</a>
       
       
     </footer>
@@ -560,7 +611,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/12/linearAlgebra/" data-id="ck1xp2u33000cscua1niiwaq8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/12/linearAlgebra/" data-id="ck1z5usfg000dbguas6hjfo5j" class="article-share-link">Share</a>
       
       
     </footer>
@@ -640,7 +691,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/04/deeplearning5/" data-id="ck1xp2u31000bscuacbgg4kpi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/04/deeplearning5/" data-id="ck1z5usff000cbgua8aiwz4jc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -696,7 +747,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/28/project1/" data-id="ck1xp2u2p000ascuavhyyk6ir" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/28/project1/" data-id="ck1z5usf0000bbguauvx8hsic" class="article-share-link">Share</a>
       
       
     </footer>
@@ -736,86 +787,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/27/labelme-tutor/" data-id="ck1xp2u2i0005scuawb3ymms6" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-deeplearning2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/22/deeplearning2/" class="article-date">
-  <time datetime="2019-08-22T06:09:58.000Z" itemprop="datePublished">2019-08-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/22/deeplearning2/">吴恩达深度学习--改善深层神经网络：超参数调试、正则化以及优化</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h1><h2 id="参数惩罚项"><a href="#参数惩罚项" class="headerlink" title="参数惩罚项"></a>参数惩罚项</h2><p>在吴恩达的机器学习课程中，降到了加入参数项的惩罚项的正则化方法，目的是为了防止过拟合。正则化的方法如下：</p>
-<script type="math/tex; mode=display">
-{J{ \left(  \theta  \right) }=-\frac{ {1} }{ {m} }{\mathop{ \sum }\limits_{ {i=1} }^{ {m} }{ \left[ {y\mathop{ {} }\nolimits^{ { \left( i \right) } }log{ \left( {\mathop{ {h} }\nolimits_{ \theta }{ \left( \mathop{ {x} }\nolimits^{ { \left( i \right) } } \right) } } \right) }+{ \left( {1-y\mathop{ {} }\nolimits^{ { \left( i \right) } } } \right) }log{ \left( {1-\mathop{ {h} }\nolimits_{ \theta } { \left( \mathop{ {x} }\nolimits^{ { \left( i \right) } } \right) } } \right) }+\frac{ { \lambda } }{ {2m} }{ {\mathop{ \sum }\limits_{ {j=1}}^{ {n} }{ \theta \mathop{ { } }\nolimits_{ {j} }^{ {2} } } } } } \right] } } }</script><h2 id="dropout"><a href="#dropout" class="headerlink" title="dropout"></a>dropout</h2><p>在这个课程中，介绍了dropout正则化。dropout正则化就是每次迭代训练网络时<strong>随机删除网络中的一些神经元节点</strong>。dropout正则化可以防止过拟合的原因可能是这种方法限制了单一输入节点的作用，因为节点可以随机的被取消。实际上也是起到了压缩权重的方法，和加入参数项的惩罚项的正则化方法有类似之处。</p>
-<p>使用dropout正则化的缺点是损失函数<strong>J</strong>不能被明确定义。</p>
-<h2 id="提前终止训练"><a href="#提前终止训练" class="headerlink" title="提前终止训练"></a>提前终止训练</h2><p>可以通过提前终止训练的方法，在交叉验证集表现最好的时候保存模型。在实际操作中，可以每隔一定次数的迭代就保存一个模型，最后选择在交叉验证集表现最好的模型进行使用。</p>
-<h2 id="正则化输入"><a href="#正则化输入" class="headerlink" title="正则化输入"></a>正则化输入</h2><p>使得输入数据遵循：</p>
-<script type="math/tex; mode=display">
-{ \mu =\frac{ {1} } { {m} } {\mathop{ \sum } \limits_{ {i=1} } ^{ {m} } {\mathop{ {x} } \nolimits^{ { { \left( {i}  \right) } } } } } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } x \leftarrow x- \mu }</script><script type="math/tex; mode=display">
-{ \sigma \mathop{ {} } \nolimits^{ {2} } =\frac{ {1} } { {m} } {\mathop{ \sum } \limits_{ {i=1} } ^{ {m} } { { \left( {x\mathop{ {} } \nolimits^{ { { \left( {i}  \right) } } } }  \right) } \mathop{ {} } \nolimits^{ {2} } } } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } x \leftarrow \frac{ {x} } { { \sigma \mathop{ {} } \nolimits^{ {2} } } } }</script><h1 id="梯度消失与梯度爆炸"><a href="#梯度消失与梯度爆炸" class="headerlink" title="梯度消失与梯度爆炸"></a>梯度消失与梯度爆炸</h1><p>在深层神经网络中，每一层都是以乘法形式运算。如果数值比1大，则随着网络的加深，数值会越来越大，产生梯度爆炸的现象；反正，则会产生梯度消失的现象。<br>解决方法是按照一定的规律设置初始权重为1左右，并且对于不同的激活函数，设置方法也不太相同。</p>
-<h1 id="优化算法"><a href="#优化算法" class="headerlink" title="优化算法"></a>优化算法</h1><h2 id="mini-batch"><a href="#mini-batch" class="headerlink" title="mini-batch"></a>mini-batch</h2><p>以特定数量的训练样本为一组进行计算损失和更新网络参数值，而不是所有训练样本为一组。这样可以加快训练速度，避免训练集样本过多时内存占用大的问题。</p>
-<h2 id="momentum"><a href="#momentum" class="headerlink" title="momentum"></a>momentum</h2><p>动量梯度下降（momentum）算法是利用指数加权平均的方法，在更新<strong>需要训练的网络参数</strong>的时候，参考之前的偏差，按照下式进行更新：</p>
-<script type="math/tex; mode=display">
-{\begin{array} {*{20} {l} } 
-{V\mathop{ {} } \nolimits_{ {dW} } = \beta V\mathop{ {} } \nolimits_{ {dW} } +{ \left( {1- \beta }  \right) } dW} \\
-{W \leftarrow W- \alpha V\mathop{ {} } \nolimits_{ {dW} } } 
-\end{array} }</script><script type="math/tex; mode=display">
-{\begin{array} {*{20} {l} } 
-{V\mathop{ {} } \nolimits_{ {db} } = \beta V\mathop{ {} } \nolimits_{ {db} } +{ \left( {1- \beta }  \right) } db} \\
-{b \leftarrow b- \alpha V\mathop{ {} } \nolimits_{ {db} } } 
-\end{array} }</script><p>其中α为学习率。</p>
-<p>由于初始的dW、db值为0，导致初期的计算结果与实际值偏移较大，可以用偏差修正的方法，即：</p>
-<script type="math/tex; mode=display">
-{V\mathop{ {} } \nolimits_{ {dW} } =\frac{ {V\mathop{ {} } \nolimits_{ {dW} } } } { {1- \beta \mathop{ {} } \nolimits^{ {t} } } } }</script><p>其中t为迭代次数。这样就可以在前期也可以得到较为准确的结果。</p>
-<h2 id="RMSprop"><a href="#RMSprop" class="headerlink" title="RMSprop"></a>RMSprop</h2><p>RMSprop算法应用于减缓b方向的学习和加速W方向的学习。（具体原理我也没弄明白）</p>
-<p>公式如下：</p>
-<script type="math/tex; mode=display">
-{\begin{array} {*{20} {l} } 
-{\mathop{ {S} } \nolimits_{ {dW} } = \beta S\mathop{ {} } \nolimits_{ {dW} } +{ \left( {1- \beta }  \right) } dW\mathop{ {} } \nolimits^{ {2} } } \\
-{W \leftarrow W- \alpha \frac{ {dW} } { {\sqrt{ {S\mathop{ {} } \nolimits_{ {dW} } } } + \varepsilon } } } 
-\end{array} }</script><script type="math/tex; mode=display">
-{\begin{array} {*{20} {l} } 
-{\mathop{ {S} } \nolimits_{ {db} } = \beta S\mathop{ {} } \nolimits_{ {db} } +{ \left( {1- \beta }  \right) } db\mathop{ {} } \nolimits^{ {2} } } \\
-{b \leftarrow b- \alpha \frac{ {db} } { {\sqrt{ {S\mathop{ {} } \nolimits_{ {db} } } } + \varepsilon } } } 
-\end{array} }</script><p>其中ε是一个很小的数，目的是防止分母为0。</p>
-<h2 id="Adam"><a href="#Adam" class="headerlink" title="Adam"></a>Adam</h2><p>Adam算法（Adaptive Moment Estimation）就是将momentum和RMSprop结合起来，作用于更新网络参数的时候。</p>
-<p>公式如下：</p>
-<script type="math/tex; mode=display">
-{\mathop{ {V} } \nolimits_{ {dW} } = \beta \mathop{ {} } \nolimits_{ {1} } V\mathop{ {} } \nolimits_{ {dW} } +{ \left( {1- \beta \mathop{ {} } \nolimits_{ {1} } }  \right) } dW\text{ } {\mathop{ {\text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } V} } \nolimits_{ {db} } = \beta \mathop{ {} } \nolimits_{ {1} } V\mathop{ {} } \nolimits_{ {db} } +{ \left( {1- \beta \mathop{ {} } \nolimits_{ {1} } }  \right) } db} }</script><script type="math/tex; mode=display">
-{\mathop{ {S} } \nolimits_{ {dW} } = \beta \mathop{ {} } \nolimits_{ {2} } S\mathop{ {} } \nolimits_{ {dW} } +{ \left( {1- \beta \mathop{ {} } \nolimits_{ {2} } }  \right) } dW\mathop{ {} } \nolimits^{ {2} } \text{ } {\mathop{ {\text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } S} } \nolimits_{ {db} } = \beta \mathop{ {} } \nolimits_{ {2} } S\mathop{ {} } \nolimits_{ {db} } +{ \left( {1- \beta \mathop{ {} } \nolimits_{ {2} } }  \right) } db\mathop{ {} } \nolimits^{ {2} } } }</script><script type="math/tex; mode=display">
-{\mathop{ {V}  }  \nolimits_{ {dW}  }   \leftarrow \frac{ {V\mathop{ {}  }  \nolimits_{ {dW}  }  }  }  { {1- \beta \mathop{ {}  }  \nolimits_{ {1}  }  ^{ {t}  }  }  }  {\mathop{ {\text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  V}  }  \nolimits_{ {db}  }   \leftarrow \frac{ {V\mathop{ {}  }  \nolimits_{ {db}  }  }  }  { {1- \beta \mathop{ {}  }  \nolimits_{ {1}  }  ^{ {t}  }  }  }  }  }</script><script type="math/tex; mode=display">
-{\mathop{ {S}  }  \nolimits_{ {dW}  }   \leftarrow \frac{ {S\mathop{ {}  }  \nolimits_{ {dW}  }  }  }  { {1- \beta \mathop{ {}  }  \nolimits_{ {2}  }  ^{ {t}  }  }  }  {\mathop{ {\text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  \text{ }  S}  }  \nolimits_{ {db}  }   \leftarrow \frac{ {S\mathop{ {}  }  \nolimits_{ {db}  }  }  }  { {1- \beta \mathop{ {}  }  \nolimits_{ {2}  }  ^{ {t}  }  }  }  }  }</script><script type="math/tex; mode=display">
-{ {W \leftarrow W- \alpha \frac{ {V\mathop{ {} } \nolimits_{ {dW} } } } { {\sqrt{ {S\mathop{ {} } \nolimits_{ {dW} } } } + \varepsilon } } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } \text{ } b \leftarrow b- \alpha \frac{ {V\mathop{ {} } \nolimits_{ {db} } } } { {\sqrt{ {S\mathop{ {} } \nolimits_{ {db} } } } + \varepsilon } } } }</script><p>通常β1=0.9、β2=0.999、ε=10-8。</p>
-<h2 id="学习率衰减"><a href="#学习率衰减" class="headerlink" title="学习率衰减"></a>学习率衰减</h2><p>通过迭代次数来减小学习率而不是使用固定的学习率，有助于提升模型训练速度和训练出更接近最优的模型。学习率衰减的方法有很多，视情况而定。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/22/deeplearning2/" data-id="ck1xp2u2c0001scua2egxb85i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/27/labelme-tutor/" data-id="ck1z5user0008bguagqmbfc55" class="article-share-link">Share</a>
       
       
     </footer>
@@ -861,7 +833,11 @@
       <ul>
         
           <li>
-            <a href="/2019/10/19/paper1/">19IJCAI_Multi-Group Encoder-Decoder Networks to Fuse Heterogeneous Data for Next-Day Air Quality Prediction</a>
+            <a href="/2019/10/20/paper2/">19KDD AccuAir Winning Solution to Air Quality</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/19/paper1/">19IJCAI Multi-Group Encoder-Decoder Networks to Fuse Heterogeneous Data for Next-Day Air Quality Prediction</a>
           </li>
         
           <li>
@@ -874,10 +850,6 @@
         
           <li>
             <a href="/2019/10/10/pcaAlgorithm/">主成分分析（PCA）算法的介绍、解释和证明</a>
-          </li>
-        
-          <li>
-            <a href="/2019/10/04/deeplearning4/">吴恩达深度学习--卷积神经网络</a>
           </li>
         
       </ul>
