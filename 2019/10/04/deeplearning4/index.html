@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Zhou">
 <meta property="og:description" content="卷积神经网络一般的经典卷积神经网络是由卷积层、池化层和全连接层组成。其中卷积层和池化层交替出现，全连接层都在最后。 一个卷积层运算的细节：#卷积运算后输出图片的像素大小：  { \left\lfloor {\frac{ {n+2p-f} } { {s} } +1}  \right\rfloor }其中，输入图片像素为n×n，滤波器大小为f×f，p为padding大小，s为步长。这个公式也可以用于算">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-10T13:21:13.583Z">
+<meta property="og:updated_time" content="2019-10-22T01:58:59.573Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="吴恩达深度学习--卷积神经网络">
 <meta name="twitter:description" content="卷积神经网络一般的经典卷积神经网络是由卷积层、池化层和全连接层组成。其中卷积层和池化层交替出现，全连接层都在最后。 一个卷积层运算的细节：#卷积运算后输出图片的像素大小：  { \left\lfloor {\frac{ {n+2p-f} } { {s} } +1}  \right\rfloor }其中，输入图片像素为n×n，滤波器大小为f×f，p为padding大小，s为步长。这个公式也可以用于算">
@@ -95,17 +95,19 @@
 <h1 id="1×1卷积"><a href="#1×1卷积" class="headerlink" title="1×1卷积"></a>1×1卷积</h1><p>我们知道池化层可以压缩数据长和宽的尺寸，而1×1卷积可以用来的压缩（改变）图像通道的维度。比起比较大的卷积核，1×1卷积改变通道的维度的计算量较小，速度更快。</p>
 <p>例如，如果想将28×28×192的数据变为28×28×32，就可以用32个1×1×192的卷积核对其进行卷积操作。</p>
 <p> 在inception网络中用到1×1卷积来压缩图像通道的维度用来提升计算速度。</p>
-<h1 id="Inception"><a href="#Inception" class="headerlink" title="Inception"></a>Inception</h1><p>Inception模块是用多个不同大小的卷积核和池化层同时处理某一层的输入，再讲处理的结果叠加起来进行输出。</p>
+<h1 id="Inception"><a href="#Inception" class="headerlink" title="Inception"></a>Inception</h1><p>Inception模块是用多个不同大小的卷积核和池化层同时处理某一层的输入，再将处理的结果叠加起来进行输出。这样就不用人为的选定卷积核的大小了。</p>
 <h1 id="迁移学习"><a href="#迁移学习" class="headerlink" title="迁移学习"></a>迁移学习</h1><p>下载已经在大数据集上训练好的网络权重，只根据自己的业务进行少量层数（后面几层）的训练。通常是数据越多，应该训练的层数也越多。</p>
 <h1 id="YOLO"><a href="#YOLO" class="headerlink" title="YOLO"></a>YOLO</h1><p>将一张图片分成n×n个网格，如果一个物体的中点落在某个网格里，则那个网格就认为有物体存在，然后再后面跟着物体的中点坐标和宽高还有表示物体种类的量，他们构成一个的p维向量。但是这个算法在一个格子里只能检测出一个物体。</p>
 <p>所以说YOLO网络输入一张n×n像素的图片，输出的是一个n×n×p维向量。其中p维向量第一个数是表示有无物体（物体的中点是否落在此单元格内）。2-5个数分别表示物体的x，y坐标和宽高占比，其中，定义n×n方格内的左上角为(0,0)，右下角为(1,1)，所以x，y坐标必然属于[0,1]，但是宽高占比可能大于1，因为物体边缘可能会跳出这个单元格。</p>
+<p>在运行YOLO算法时，由于网格大小较小，往往会产生多个矩形框重叠在一个物体上。非极大值抑制(NMS)算法就是保留其中有目标物体可能性最高的矩形框，而舍弃与这个矩形框的IoU值较高的其他矩形框。</p>
+<p>YOLO是you only look once的缩写，只用了一步来解决物体区域检测问题，而R-CNN、Fast R-CNN、Faster R-CNN则将物体区域检测任务分为了检测候选区域和对候选区域进行识别这两个步骤。</p>
 <h1 id="物体检测评价指标"><a href="#物体检测评价指标" class="headerlink" title="物体检测评价指标"></a>物体检测评价指标</h1><p>Intersection over Union(IoU)就是计算预测区域和实际区域的交集和并集的比。</p>
-<h1 id="非极大值抑制"><a href="#非极大值抑制" class="headerlink" title="非极大值抑制"></a>非极大值抑制</h1><p>在运行YOLO算法时，由于网格大小较小，往往会产生多个矩形框重叠在一个物体上。非极大值抑制(NMS)算法就是保留其中有目标物体可能性最高的矩形框，而舍弃与这个矩形框的IoU值较高的其他矩形框。</p>
+<h1 id="人脸识别"><a href="#人脸识别" class="headerlink" title="人脸识别"></a>人脸识别</h1><p>人脸识别的挑战是one-shot learning problem，就是只用一张图片作为训练集就能成功的识别出对应的人。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/04/deeplearning4/" data-id="ck1z5useg0004bguac1nfrw7a" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/04/deeplearning4/" data-id="ck2aezb6000044wua16j3wxp9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -163,6 +165,10 @@
       <ul>
         
           <li>
+            <a href="/2019/10/28/activationFunction/">激活函数总结</a>
+          </li>
+        
+          <li>
             <a href="/2019/10/20/paper2/">19KDD AccuAir Winning Solution to Air Quality</a>
           </li>
         
@@ -176,10 +182,6 @@
         
           <li>
             <a href="/2019/10/12/pytorchLearning/">pytorch学习笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2019/10/10/pcaAlgorithm/">主成分分析（PCA）算法的介绍、解释和证明</a>
           </li>
         
       </ul>

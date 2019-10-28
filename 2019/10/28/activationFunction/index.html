@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>激活函数总结 | Zhou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ReLU及其变种RELU {f{ \left( {x}  \right) } =max{ \left( {0,x}  \right) } }RELU6 {f{ \left( {x}  \right) } =min{ \left( {max{ \left( {0,x}  \right) } ,6}  \right) } }为啥是6呢，很玄学。 ELU {f{ \left( {x}  \right)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="激活函数总结">
+<meta property="og:url" content="http://yoursite.com/2019/10/28/activationFunction/index.html">
+<meta property="og:site_name" content="Zhou">
+<meta property="og:description" content="ReLU及其变种RELU {f{ \left( {x}  \right) } =max{ \left( {0,x}  \right) } }RELU6 {f{ \left( {x}  \right) } =min{ \left( {max{ \left( {0,x}  \right) } ,6}  \right) } }为啥是6呢，很玄学。 ELU {f{ \left( {x}  \right)">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-28T12:44:20.486Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="激活函数总结">
+<meta name="twitter:description" content="ReLU及其变种RELU {f{ \left( {x}  \right) } =max{ \left( {0,x}  \right) } }RELU6 {f{ \left( {x}  \right) } =min{ \left( {max{ \left( {0,x}  \right) } ,6}  \right) } }为啥是6呢，很玄学。 ELU {f{ \left( {x}  \right)">
+  
+    <link rel="alternate" href="/atom.xml" title="Zhou" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Zhou</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-activationFunction" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/28/activationFunction/" class="article-date">
+  <time datetime="2019-10-28T12:43:48.000Z" itemprop="datePublished">2019-10-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      激活函数总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ReLU及其变种"><a href="#ReLU及其变种" class="headerlink" title="ReLU及其变种"></a>ReLU及其变种</h1><h2 id="RELU"><a href="#RELU" class="headerlink" title="RELU"></a>RELU</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =max{ \left( {0,x}  \right) } }</script><h2 id="RELU6"><a href="#RELU6" class="headerlink" title="RELU6"></a>RELU6</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =min{ \left( {max{ \left( {0,x}  \right) } ,6}  \right) } }</script><p>为啥是6呢，很玄学。</p>
+<h2 id="ELU"><a href="#ELU" class="headerlink" title="ELU"></a>ELU</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =max{ \left( {0,x}  \right) } +min{ \left( {0, \alpha { \left( {e\mathop{ {} } \nolimits^{ {x} } -1}  \right) } }  \right) } }</script><p>在负数范围内的操作1。</p>
+<h2 id="PReLU"><a href="#PReLU" class="headerlink" title="PReLU"></a>PReLU</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =max{ \left( {0,x}  \right) } +a∙min{ \left( {0,x}  \right) } }</script><p>学习a，在负数范围内的操作2。</p>
+<h2 id="LeakyRELU"><a href="#LeakyRELU" class="headerlink" title="LeakyRELU"></a>LeakyRELU</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =max{ \left( {0,x}  \right) } + \beta ∙min{ \left( {0,x}  \right) } }</script><p>β不变，在负数范围内的操作3。</p>
+<h2 id="Threshold"><a href="#Threshold" class="headerlink" title="Threshold"></a>Threshold</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =max{ \left( {x,threshold}  \right) } }</script><h1 id="tanh及其变种"><a href="#tanh及其变种" class="headerlink" title="tanh及其变种"></a>tanh及其变种</h1><h2 id="Hardtanh"><a href="#Hardtanh" class="headerlink" title="Hardtanh"></a>Hardtanh</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } ={ \left\{ \begin{array} {*{20} {l} } 
+{-1,x < -1} \\
+{x,-1 \le x \le 1} \\
+{1,x > 1} 
+\end{array} \right. } }</script><h2 id="tanh"><a href="#tanh" class="headerlink" title="tanh"></a>tanh</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =\frac{ {e\mathop{ {} } \nolimits^{ {x} } -e\mathop{ {} } \nolimits^{ {-x} } } } { {e\mathop{ {} } \nolimits^{ {x} } +e\mathop{ {} } \nolimits^{ {-x} } } } }</script><h1 id="sigmoid及其变种"><a href="#sigmoid及其变种" class="headerlink" title="sigmoid及其变种"></a>sigmoid及其变种</h1><p>sigmoid用作二元分类问题，softmax用作k元分类问题。</p>
+<h2 id="Sigmoid"><a href="#Sigmoid" class="headerlink" title="Sigmoid"></a>Sigmoid</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =\frac{ {1} } { {1+e\mathop{ {} } \nolimits^{ {-x} } } } }</script><h2 id="Softmax"><a href="#Softmax" class="headerlink" title="Softmax"></a>Softmax</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =\frac{ {\mathop{ {e} } \nolimits^{ {x\mathop{ {} } \nolimits_{ {i} } } } } } { { {\mathop{ \sum } \nolimits_{ {j} } {e\mathop{ {} } \nolimits^{ {x\mathop{ {} } \nolimits_{ {j} } } } } } } } }</script><h2 id="LogSigmoid"><a href="#LogSigmoid" class="headerlink" title="LogSigmoid"></a>LogSigmoid</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =log{ \left( {\frac{ {1} } { {1+e\mathop{ {} } \nolimits^{ {-x} } } } }  \right) } }</script><h2 id="LogSoftmax"><a href="#LogSoftmax" class="headerlink" title="LogSoftmax"></a>LogSoftmax</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =log{ \left( {\frac{ {\mathop{ {e} } \nolimits^{ {x\mathop{ {} } \nolimits_{ {i} } } } } } { { {\mathop{ \sum } \nolimits_{ {j} } {e\mathop{ {} } \nolimits^{ {x\mathop{ {} } \nolimits_{ {j} } } } } } } } }  \right) } }</script><h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="Softplus"><a href="#Softplus" class="headerlink" title="Softplus"></a>Softplus</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =\frac{ {1} } { { \beta } } log{ \left( {1+e\mathop{ {} } \nolimits^{ { \beta x} } }  \right) } }</script><p>Softplus函数是ReLU函数的平滑逼近，Softplus函数可以使得输出值限定为正数。<br>为了保证数值稳定性，线性函数的转换可以使输出大于某个值。</p>
+<h2 id="Softshrink"><a href="#Softshrink" class="headerlink" title="Softshrink"></a>Softshrink</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } ={ \left\{ \begin{array} {*{20} {l} } 
+{-x+ \lambda ,x < - \lambda } \\
+{0,- \lambda  \le x \le  \lambda } \\
+{x- \lambda ,x >  \lambda } 
+\end{array} \right. } }</script><h2 id="Softsign"><a href="#Softsign" class="headerlink" title="Softsign"></a>Softsign</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =\frac{ {x} } { {1-{ \left| {x}  \right| } } } }</script><h2 id="Tanhshrink"><a href="#Tanhshrink" class="headerlink" title="Tanhshrink"></a>Tanhshrink</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =x-\frac{ {e\mathop{ {} } \nolimits^{ {x} } -e\mathop{ {} } \nolimits^{ {-x} } } } { {e\mathop{ {} } \nolimits^{ {x} } +e\mathop{ {} } \nolimits^{ {-x} } } } }</script>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/28/activationFunction/" data-id="ck2aezb5w00024wuarr7g3q3h" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/10/20/paper2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">19KDD AccuAir Winning Solution to Air Quality</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/28/activationFunction/">激活函数总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/paper2/">19KDD AccuAir Winning Solution to Air Quality</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/19/paper1/">19IJCAI Multi-Group Encoder-Decoder Networks to Fuse Heterogeneous Data for Next-Day Air Quality Prediction</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/15/dijkstra/">dijkstra算法针对稠密图和稀疏图的两种不同策略</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/12/pytorchLearning/">pytorch学习笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 zhou<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+</body>
+</html>

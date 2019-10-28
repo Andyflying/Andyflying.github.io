@@ -7,17 +7,17 @@
   
   <title>pytorch学习笔记 | Zhou</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="官方文档链接 pytorch提供了一种数据结构tensor可以和numpy相互转化。 variable：网络中的节点数据，在网络中的节点可以自动求梯度。（当前版本好像和tensor合并了，也就是说不用variable了。） pytorch搭建的神经网络只处理二维数据？？">
+  <meta name="description" content="官方文档链接 pytorch提供了一种数据结构tensor可以和numpy相互转化。 variable：网络中的节点数据，在网络中的节点可以自动求梯度。（当前版本好像和tensor合并了，也就是说不用variable了。） pytorch搭建的神经网络只处理二维的数据结构，所以要把一维的数组用转换成二维。 pytorch搭建神经网络要定义一个类，并继承torch.nn.module。类里面要定义两">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pytorch学习笔记">
 <meta property="og:url" content="http://yoursite.com/2019/10/12/pytorchLearning/index.html">
 <meta property="og:site_name" content="Zhou">
-<meta property="og:description" content="官方文档链接 pytorch提供了一种数据结构tensor可以和numpy相互转化。 variable：网络中的节点数据，在网络中的节点可以自动求梯度。（当前版本好像和tensor合并了，也就是说不用variable了。） pytorch搭建的神经网络只处理二维数据？？">
+<meta property="og:description" content="官方文档链接 pytorch提供了一种数据结构tensor可以和numpy相互转化。 variable：网络中的节点数据，在网络中的节点可以自动求梯度。（当前版本好像和tensor合并了，也就是说不用variable了。） pytorch搭建的神经网络只处理二维的数据结构，所以要把一维的数组用转换成二维。 pytorch搭建神经网络要定义一个类，并继承torch.nn.module。类里面要定义两">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-12T09:11:11.162Z">
+<meta property="og:updated_time" content="2019-10-21T13:00:45.437Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pytorch学习笔记">
-<meta name="twitter:description" content="官方文档链接 pytorch提供了一种数据结构tensor可以和numpy相互转化。 variable：网络中的节点数据，在网络中的节点可以自动求梯度。（当前版本好像和tensor合并了，也就是说不用variable了。） pytorch搭建的神经网络只处理二维数据？？">
+<meta name="twitter:description" content="官方文档链接 pytorch提供了一种数据结构tensor可以和numpy相互转化。 variable：网络中的节点数据，在网络中的节点可以自动求梯度。（当前版本好像和tensor合并了，也就是说不用variable了。） pytorch搭建的神经网络只处理二维的数据结构，所以要把一维的数组用转换成二维。 pytorch搭建神经网络要定义一个类，并继承torch.nn.module。类里面要定义两">
   
     <link rel="alternate" href="/atom.xml" title="Zhou" type="application/atom+xml">
   
@@ -89,12 +89,13 @@
         <p><a href="https://pytorch.org/docs/stable/torch.html" target="_blank" rel="noopener">官方文档链接</a></p>
 <p>pytorch提供了一种数据结构tensor可以和numpy相互转化。</p>
 <p>variable：网络中的节点数据，在网络中的节点可以自动求梯度。（当前版本好像和tensor合并了，也就是说不用variable了。）</p>
-<p>pytorch搭建的神经网络只处理二维数据？？</p>
+<p>pytorch搭建的神经网络只处理二维的数据结构，所以要把一维的数组用转换成二维。</p>
+<p>pytorch搭建神经网络要定义一个类，并继承torch.nn.module。类里面要定义两个函数：一个是__init__函数，功能是初始化，要继承父类的__init__函数。另一个是forward函数，用于组合前向传播网络的结构。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/12/pytorchLearning/" data-id="ck1z5usep0007bguaas6mpwk1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/12/pytorchLearning/" data-id="ck2aezb8n000c4wuaf6dmbart" class="article-share-link">Share</a>
       
       
     </footer>
@@ -152,6 +153,10 @@
       <ul>
         
           <li>
+            <a href="/2019/10/28/activationFunction/">激活函数总结</a>
+          </li>
+        
+          <li>
             <a href="/2019/10/20/paper2/">19KDD AccuAir Winning Solution to Air Quality</a>
           </li>
         
@@ -165,10 +170,6 @@
         
           <li>
             <a href="/2019/10/12/pytorchLearning/">pytorch学习笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2019/10/10/pcaAlgorithm/">主成分分析（PCA）算法的介绍、解释和证明</a>
           </li>
         
       </ul>

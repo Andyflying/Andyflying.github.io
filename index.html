@@ -62,6 +62,72 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-activationFunction" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/28/activationFunction/" class="article-date">
+  <time datetime="2019-10-28T12:43:48.000Z" itemprop="datePublished">2019-10-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/28/activationFunction/">激活函数总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ReLU及其变种"><a href="#ReLU及其变种" class="headerlink" title="ReLU及其变种"></a>ReLU及其变种</h1><h2 id="RELU"><a href="#RELU" class="headerlink" title="RELU"></a>RELU</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =max{ \left( {0,x}  \right) } }</script><h2 id="RELU6"><a href="#RELU6" class="headerlink" title="RELU6"></a>RELU6</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =min{ \left( {max{ \left( {0,x}  \right) } ,6}  \right) } }</script><p>为啥是6呢，很玄学。</p>
+<h2 id="ELU"><a href="#ELU" class="headerlink" title="ELU"></a>ELU</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =max{ \left( {0,x}  \right) } +min{ \left( {0, \alpha { \left( {e\mathop{ {} } \nolimits^{ {x} } -1}  \right) } }  \right) } }</script><p>在负数范围内的操作1。</p>
+<h2 id="PReLU"><a href="#PReLU" class="headerlink" title="PReLU"></a>PReLU</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =max{ \left( {0,x}  \right) } +a∙min{ \left( {0,x}  \right) } }</script><p>学习a，在负数范围内的操作2。</p>
+<h2 id="LeakyRELU"><a href="#LeakyRELU" class="headerlink" title="LeakyRELU"></a>LeakyRELU</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =max{ \left( {0,x}  \right) } + \beta ∙min{ \left( {0,x}  \right) } }</script><p>β不变，在负数范围内的操作3。</p>
+<h2 id="Threshold"><a href="#Threshold" class="headerlink" title="Threshold"></a>Threshold</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =max{ \left( {x,threshold}  \right) } }</script><h1 id="tanh及其变种"><a href="#tanh及其变种" class="headerlink" title="tanh及其变种"></a>tanh及其变种</h1><h2 id="Hardtanh"><a href="#Hardtanh" class="headerlink" title="Hardtanh"></a>Hardtanh</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } ={ \left\{ \begin{array} {*{20} {l} } 
+{-1,x < -1} \\
+{x,-1 \le x \le 1} \\
+{1,x > 1} 
+\end{array} \right. } }</script><h2 id="tanh"><a href="#tanh" class="headerlink" title="tanh"></a>tanh</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =\frac{ {e\mathop{ {} } \nolimits^{ {x} } -e\mathop{ {} } \nolimits^{ {-x} } } } { {e\mathop{ {} } \nolimits^{ {x} } +e\mathop{ {} } \nolimits^{ {-x} } } } }</script><h1 id="sigmoid及其变种"><a href="#sigmoid及其变种" class="headerlink" title="sigmoid及其变种"></a>sigmoid及其变种</h1><p>sigmoid用作二元分类问题，softmax用作k元分类问题。</p>
+<h2 id="Sigmoid"><a href="#Sigmoid" class="headerlink" title="Sigmoid"></a>Sigmoid</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =\frac{ {1} } { {1+e\mathop{ {} } \nolimits^{ {-x} } } } }</script><h2 id="Softmax"><a href="#Softmax" class="headerlink" title="Softmax"></a>Softmax</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =\frac{ {\mathop{ {e} } \nolimits^{ {x\mathop{ {} } \nolimits_{ {i} } } } } } { { {\mathop{ \sum } \nolimits_{ {j} } {e\mathop{ {} } \nolimits^{ {x\mathop{ {} } \nolimits_{ {j} } } } } } } } }</script><h2 id="LogSigmoid"><a href="#LogSigmoid" class="headerlink" title="LogSigmoid"></a>LogSigmoid</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =log{ \left( {\frac{ {1} } { {1+e\mathop{ {} } \nolimits^{ {-x} } } } }  \right) } }</script><h2 id="LogSoftmax"><a href="#LogSoftmax" class="headerlink" title="LogSoftmax"></a>LogSoftmax</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =log{ \left( {\frac{ {\mathop{ {e} } \nolimits^{ {x\mathop{ {} } \nolimits_{ {i} } } } } } { { {\mathop{ \sum } \nolimits_{ {j} } {e\mathop{ {} } \nolimits^{ {x\mathop{ {} } \nolimits_{ {j} } } } } } } } }  \right) } }</script><h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="Softplus"><a href="#Softplus" class="headerlink" title="Softplus"></a>Softplus</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =\frac{ {1} } { { \beta } } log{ \left( {1+e\mathop{ {} } \nolimits^{ { \beta x} } }  \right) } }</script><p>Softplus函数是ReLU函数的平滑逼近，Softplus函数可以使得输出值限定为正数。<br>为了保证数值稳定性，线性函数的转换可以使输出大于某个值。</p>
+<h2 id="Softshrink"><a href="#Softshrink" class="headerlink" title="Softshrink"></a>Softshrink</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } ={ \left\{ \begin{array} {*{20} {l} } 
+{-x+ \lambda ,x < - \lambda } \\
+{0,- \lambda  \le x \le  \lambda } \\
+{x- \lambda ,x >  \lambda } 
+\end{array} \right. } }</script><h2 id="Softsign"><a href="#Softsign" class="headerlink" title="Softsign"></a>Softsign</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =\frac{ {x} } { {1-{ \left| {x}  \right| } } } }</script><h2 id="Tanhshrink"><a href="#Tanhshrink" class="headerlink" title="Tanhshrink"></a>Tanhshrink</h2><script type="math/tex; mode=display">
+{f{ \left( {x}  \right) } =x-\frac{ {e\mathop{ {} } \nolimits^{ {x} } -e\mathop{ {} } \nolimits^{ {-x} } } } { {e\mathop{ {} } \nolimits^{ {x} } +e\mathop{ {} } \nolimits^{ {-x} } } } }</script>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/28/activationFunction/" data-id="ck2aezb5w00024wuarr7g3q3h" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-paper2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/10/20/paper2/" class="article-date">
@@ -103,7 +169,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/20/paper2/" data-id="ck1z5usek0005bguazx67k0jo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/20/paper2/" data-id="ck2aezb78000b4wuadk854q3m" class="article-share-link">Share</a>
       
       
     </footer>
@@ -175,7 +241,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/19/paper1/" data-id="ck1z5useu0009bguahgy81wg2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/19/paper1/" data-id="ck2aezb6600074wuar7ko4gtk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -237,7 +303,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/15/dijkstra/" data-id="ck1z5usen0006bguayxaqnlms" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/15/dijkstra/" data-id="ck2aezb6400064wuapg4fywb0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -272,12 +338,13 @@
         <p><a href="https://pytorch.org/docs/stable/torch.html" target="_blank" rel="noopener">官方文档链接</a></p>
 <p>pytorch提供了一种数据结构tensor可以和numpy相互转化。</p>
 <p>variable：网络中的节点数据，在网络中的节点可以自动求梯度。（当前版本好像和tensor合并了，也就是说不用variable了。）</p>
-<p>pytorch搭建的神经网络只处理二维数据？？</p>
+<p>pytorch搭建的神经网络只处理二维的数据结构，所以要把一维的数组用转换成二维。</p>
+<p>pytorch搭建神经网络要定义一个类，并继承torch.nn.module。类里面要定义两个函数：一个是__init__函数，功能是初始化，要继承父类的__init__函数。另一个是forward函数，用于组合前向传播网络的结构。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/12/pytorchLearning/" data-id="ck1z5usep0007bguaas6mpwk1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/12/pytorchLearning/" data-id="ck2aezb8n000c4wuaf6dmbart" class="article-share-link">Share</a>
       
       
     </footer>
@@ -374,7 +441,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/10/pcaAlgorithm/" data-id="ck1z5usex000abguadusmt965" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/10/pcaAlgorithm/" data-id="ck2aezb6x000a4wuagf5a4gac" class="article-share-link">Share</a>
       
       
     </footer>
@@ -415,17 +482,19 @@
 <h1 id="1×1卷积"><a href="#1×1卷积" class="headerlink" title="1×1卷积"></a>1×1卷积</h1><p>我们知道池化层可以压缩数据长和宽的尺寸，而1×1卷积可以用来的压缩（改变）图像通道的维度。比起比较大的卷积核，1×1卷积改变通道的维度的计算量较小，速度更快。</p>
 <p>例如，如果想将28×28×192的数据变为28×28×32，就可以用32个1×1×192的卷积核对其进行卷积操作。</p>
 <p> 在inception网络中用到1×1卷积来压缩图像通道的维度用来提升计算速度。</p>
-<h1 id="Inception"><a href="#Inception" class="headerlink" title="Inception"></a>Inception</h1><p>Inception模块是用多个不同大小的卷积核和池化层同时处理某一层的输入，再讲处理的结果叠加起来进行输出。</p>
+<h1 id="Inception"><a href="#Inception" class="headerlink" title="Inception"></a>Inception</h1><p>Inception模块是用多个不同大小的卷积核和池化层同时处理某一层的输入，再将处理的结果叠加起来进行输出。这样就不用人为的选定卷积核的大小了。</p>
 <h1 id="迁移学习"><a href="#迁移学习" class="headerlink" title="迁移学习"></a>迁移学习</h1><p>下载已经在大数据集上训练好的网络权重，只根据自己的业务进行少量层数（后面几层）的训练。通常是数据越多，应该训练的层数也越多。</p>
 <h1 id="YOLO"><a href="#YOLO" class="headerlink" title="YOLO"></a>YOLO</h1><p>将一张图片分成n×n个网格，如果一个物体的中点落在某个网格里，则那个网格就认为有物体存在，然后再后面跟着物体的中点坐标和宽高还有表示物体种类的量，他们构成一个的p维向量。但是这个算法在一个格子里只能检测出一个物体。</p>
 <p>所以说YOLO网络输入一张n×n像素的图片，输出的是一个n×n×p维向量。其中p维向量第一个数是表示有无物体（物体的中点是否落在此单元格内）。2-5个数分别表示物体的x，y坐标和宽高占比，其中，定义n×n方格内的左上角为(0,0)，右下角为(1,1)，所以x，y坐标必然属于[0,1]，但是宽高占比可能大于1，因为物体边缘可能会跳出这个单元格。</p>
+<p>在运行YOLO算法时，由于网格大小较小，往往会产生多个矩形框重叠在一个物体上。非极大值抑制(NMS)算法就是保留其中有目标物体可能性最高的矩形框，而舍弃与这个矩形框的IoU值较高的其他矩形框。</p>
+<p>YOLO是you only look once的缩写，只用了一步来解决物体区域检测问题，而R-CNN、Fast R-CNN、Faster R-CNN则将物体区域检测任务分为了检测候选区域和对候选区域进行识别这两个步骤。</p>
 <h1 id="物体检测评价指标"><a href="#物体检测评价指标" class="headerlink" title="物体检测评价指标"></a>物体检测评价指标</h1><p>Intersection over Union(IoU)就是计算预测区域和实际区域的交集和并集的比。</p>
-<h1 id="非极大值抑制"><a href="#非极大值抑制" class="headerlink" title="非极大值抑制"></a>非极大值抑制</h1><p>在运行YOLO算法时，由于网格大小较小，往往会产生多个矩形框重叠在一个物体上。非极大值抑制(NMS)算法就是保留其中有目标物体可能性最高的矩形框，而舍弃与这个矩形框的IoU值较高的其他矩形框。</p>
+<h1 id="人脸识别"><a href="#人脸识别" class="headerlink" title="人脸识别"></a>人脸识别</h1><p>人脸识别的挑战是one-shot learning problem，就是只用一张图片作为训练集就能成功的识别出对应的人。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/04/deeplearning4/" data-id="ck1z5useg0004bguac1nfrw7a" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/04/deeplearning4/" data-id="ck2aezb6000044wua16j3wxp9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -476,8 +545,14 @@
 <h1 id="相似矩阵"><a href="#相似矩阵" class="headerlink" title="相似矩阵"></a>相似矩阵</h1><p>设<strong>A</strong>，<strong>B</strong>都是n阶矩阵，如果存在可逆矩阵<strong>P</strong>，使得：</p>
 <script type="math/tex; mode=display">
 {P\mathop{ {} } \nolimits^{ {-1} } AP=B}</script><p>则称<strong>A</strong>与<strong>B</strong>相似。</p>
-<p>相似矩阵有相同的特征多项式，也就是说<strong>A</strong>与<strong>B</strong>有相同的特征值和相同的行列式（det）。</p>
-<h1 id="矩阵对角化"><a href="#矩阵对角化" class="headerlink" title="矩阵对角化"></a>矩阵对角化</h1><p>对于一个矩阵来讲，对角矩阵在各种计算上比较简单，比如二次型中的标准型就可以用对角矩阵表示。所以如果能将矩阵对角化，就可以方便计算。</p>
+<p>相似矩阵有相同的<a href="https://baike.baidu.com/item/特征多项式/2774334?fr=aladdin" target="_blank" rel="noopener">特征多项式</a>，也就是说<strong>A</strong>与<strong>B</strong>有相同的特征值和相同的行列式（det），这是相似矩阵的一个重要性质。下面给出证明：</p>
+<script type="math/tex; mode=display">
+{\begin{array} {*{20} {l} } 
+{ { \left| { \lambda I-A}  \right| } ={ \left| {P\mathop{ {} } \nolimits^{ {-1} }  \lambda IP-P\mathop{ {} } \nolimits^{ {-1} } BP}  \right| } } \\
+{={ \left| {P\mathop{ {} } \nolimits^{ {-1} } { \left( { \lambda I-B}  \right) } P}  \right| } } \\
+{={ \left| {P\mathop{ {} } \nolimits^{ {-1} } }  \right| } ∙{ \left| { \lambda I-B}  \right| } ∙{ \left| {P}  \right| } } \\
+{={ \left| { \lambda I-B}  \right| } } 
+\end{array} }</script><h1 id="矩阵对角化"><a href="#矩阵对角化" class="headerlink" title="矩阵对角化"></a>矩阵对角化</h1><p>对于一个矩阵来讲，对角矩阵在各种计算上比较简单，比如二次型中的标准型就可以用对角矩阵表示。所以如果能将矩阵对角化，就可以方便计算。</p>
 <p>n阶方阵<strong>A</strong>可对角化的充要条件是它有n个<strong>线性无关</strong>的特征向量。则有：</p>
 <script type="math/tex; mode=display">
 {P\mathop{ {} } \nolimits^{ {-1} } AP= \Lambda }</script><p><strong>P</strong>由特征向量组成，<strong>Λ</strong>由特征值组成，即：</p>
@@ -611,7 +686,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/12/linearAlgebra/" data-id="ck1z5usfg000dbguas6hjfo5j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/12/linearAlgebra/" data-id="ck2aezb8r000d4wuaowkj12ou" class="article-share-link">Share</a>
       
       
     </footer>
@@ -691,7 +766,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/04/deeplearning5/" data-id="ck1z5usff000cbgua8aiwz4jc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/04/deeplearning5/" data-id="ck2aezb8v000e4wua4q5s15i1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -747,47 +822,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/28/project1/" data-id="ck1z5usf0000bbguauvx8hsic" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-labelme-tutor" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/27/labelme-tutor/" class="article-date">
-  <time datetime="2019-08-27T12:26:46.000Z" itemprop="datePublished">2019-08-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/27/labelme-tutor/">Windows下labelme安装简介</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1.安装anaconda。<br>2.打开anaconda prompt，依次输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conda create --name=labelme python=3.5 </span><br><span class="line">activate labelme</span><br><span class="line">conda install pyqt</span><br><span class="line">pip install labelme</span><br></pre></td></tr></table></figure>
-<p>tip：由于Python2和Python3存在兼容性问题，使用时注意Python版本。</p>
-<p>参考文献：<br><a href="https://blog.csdn.net/DuanTuiXiaoALi/article/details/78295053" target="_blank" rel="noopener">https://blog.csdn.net/DuanTuiXiaoALi/article/details/78295053</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/27/labelme-tutor/" data-id="ck1z5user0008bguagqmbfc55" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/28/project1/" data-id="ck2aezb6v00094wua6xu6ofap" class="article-share-link">Share</a>
       
       
     </footer>
@@ -833,6 +868,10 @@
       <ul>
         
           <li>
+            <a href="/2019/10/28/activationFunction/">激活函数总结</a>
+          </li>
+        
+          <li>
             <a href="/2019/10/20/paper2/">19KDD AccuAir Winning Solution to Air Quality</a>
           </li>
         
@@ -846,10 +885,6 @@
         
           <li>
             <a href="/2019/10/12/pytorchLearning/">pytorch学习笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2019/10/10/pcaAlgorithm/">主成分分析（PCA）算法的介绍、解释和证明</a>
           </li>
         
       </ul>

@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Zhou">
 <meta property="og:description" content="矩阵的四个基本子空间矩阵的四个基本子空间分别是列空间、零空间、行空间、左零空间。 对于m×n维的矩阵A：  列空间C(A)，是方程Ax=b中b的解空间。可以理解为有列向量组成的矩阵A的线性组合。维数是rank(A)。 零空间N(A)，是方程Ax=0中x的可行解空间。维数是n-rank(A)。 行空间C(A^T)，是A转置的列空间。维数是rank(A)。 左零空间N(A^T)，是A转置的零空间。维数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-11T16:00:04.481Z">
+<meta property="og:updated_time" content="2019-10-22T01:06:35.299Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性代数常用知识点总结">
 <meta name="twitter:description" content="矩阵的四个基本子空间矩阵的四个基本子空间分别是列空间、零空间、行空间、左零空间。 对于m×n维的矩阵A：  列空间C(A)，是方程Ax=b中b的解空间。可以理解为有列向量组成的矩阵A的线性组合。维数是rank(A)。 零空间N(A)，是方程Ax=0中x的可行解空间。维数是n-rank(A)。 行空间C(A^T)，是A转置的列空间。维数是rank(A)。 左零空间N(A^T)，是A转置的零空间。维数">
@@ -105,8 +105,14 @@
 <h1 id="相似矩阵"><a href="#相似矩阵" class="headerlink" title="相似矩阵"></a>相似矩阵</h1><p>设<strong>A</strong>，<strong>B</strong>都是n阶矩阵，如果存在可逆矩阵<strong>P</strong>，使得：</p>
 <script type="math/tex; mode=display">
 {P\mathop{ {} } \nolimits^{ {-1} } AP=B}</script><p>则称<strong>A</strong>与<strong>B</strong>相似。</p>
-<p>相似矩阵有相同的特征多项式，也就是说<strong>A</strong>与<strong>B</strong>有相同的特征值和相同的行列式（det）。</p>
-<h1 id="矩阵对角化"><a href="#矩阵对角化" class="headerlink" title="矩阵对角化"></a>矩阵对角化</h1><p>对于一个矩阵来讲，对角矩阵在各种计算上比较简单，比如二次型中的标准型就可以用对角矩阵表示。所以如果能将矩阵对角化，就可以方便计算。</p>
+<p>相似矩阵有相同的<a href="https://baike.baidu.com/item/特征多项式/2774334?fr=aladdin" target="_blank" rel="noopener">特征多项式</a>，也就是说<strong>A</strong>与<strong>B</strong>有相同的特征值和相同的行列式（det），这是相似矩阵的一个重要性质。下面给出证明：</p>
+<script type="math/tex; mode=display">
+{\begin{array} {*{20} {l} } 
+{ { \left| { \lambda I-A}  \right| } ={ \left| {P\mathop{ {} } \nolimits^{ {-1} }  \lambda IP-P\mathop{ {} } \nolimits^{ {-1} } BP}  \right| } } \\
+{={ \left| {P\mathop{ {} } \nolimits^{ {-1} } { \left( { \lambda I-B}  \right) } P}  \right| } } \\
+{={ \left| {P\mathop{ {} } \nolimits^{ {-1} } }  \right| } ∙{ \left| { \lambda I-B}  \right| } ∙{ \left| {P}  \right| } } \\
+{={ \left| { \lambda I-B}  \right| } } 
+\end{array} }</script><h1 id="矩阵对角化"><a href="#矩阵对角化" class="headerlink" title="矩阵对角化"></a>矩阵对角化</h1><p>对于一个矩阵来讲，对角矩阵在各种计算上比较简单，比如二次型中的标准型就可以用对角矩阵表示。所以如果能将矩阵对角化，就可以方便计算。</p>
 <p>n阶方阵<strong>A</strong>可对角化的充要条件是它有n个<strong>线性无关</strong>的特征向量。则有：</p>
 <script type="math/tex; mode=display">
 {P\mathop{ {} } \nolimits^{ {-1} } AP= \Lambda }</script><p><strong>P</strong>由特征向量组成，<strong>Λ</strong>由特征值组成，即：</p>
@@ -240,7 +246,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/12/linearAlgebra/" data-id="ck1z5usfg000dbguas6hjfo5j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/12/linearAlgebra/" data-id="ck2aezb8r000d4wuaowkj12ou" class="article-share-link">Share</a>
       
       
     </footer>
@@ -298,6 +304,10 @@
       <ul>
         
           <li>
+            <a href="/2019/10/28/activationFunction/">激活函数总结</a>
+          </li>
+        
+          <li>
             <a href="/2019/10/20/paper2/">19KDD AccuAir Winning Solution to Air Quality</a>
           </li>
         
@@ -311,10 +321,6 @@
         
           <li>
             <a href="/2019/10/12/pytorchLearning/">pytorch学习笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2019/10/10/pcaAlgorithm/">主成分分析（PCA）算法的介绍、解释和证明</a>
           </li>
         
       </ul>
